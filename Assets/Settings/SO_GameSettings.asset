@@ -22,7 +22,8 @@ MonoBehaviour:
     dynamicPhysicsMaterial: {fileID: 13400000, guid: 063376ae475fa5e42828765abd1a5521,
       type: 2}
   controlSettings:
-    xSensitivity: 0.75
-    ySensitivity: 0.75
+    xSensitivity: 0.5
+    ySensitivity: 0.5
     yInverted: 0
     pitchClamp: 70
+  propDataset: []

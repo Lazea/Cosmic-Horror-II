@@ -6,6 +6,8 @@ public class GameManager : Singleton<GameManager>
 {
     public GameSettings settings;
 
+    public Transform propsContainer;
+
     // Start is called before the first frame update
     void Start()
     {

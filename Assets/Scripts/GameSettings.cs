@@ -4,11 +4,12 @@ using UnityEngine;
 
 [CreateAssetMenu(
     fileName="SO_GameSettings",
-    menuName="ScriptableObjects/Game Settings")]
+    menuName="Scriptable Objects/Game Settings")]
 public class GameSettings : ScriptableObject
 {
     public PlayerSettings playerSettings;
     public ControlSettings controlSettings;
+    public PropData[] propDataset;
 }
 
 [System.Serializable]
@@ -36,4 +37,16 @@ public struct ControlSettings
     public float ySensitivity;
     public bool yInverted;
     public float pitchClamp;
+}
+
+[System.Serializable]
+public struct PropData
+{
+    [Header("ID")]
+    public int id;
+    public string name;
+
+    [Header("Stats")]
+    public int hitCount;
+    public int damage;
 }

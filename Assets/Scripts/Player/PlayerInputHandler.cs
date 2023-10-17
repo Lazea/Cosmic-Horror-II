@@ -19,7 +19,8 @@ public class PlayerInputHandler : MonoBehaviour
     [Header("Actions")]
     public UnityEvent interact;
     public UnityEvent attack;
-    public UnityEvent block;
+    public UnityEvent blockStart;
+    public UnityEvent blockEnd;
     public UnityEvent dropProp;
     public UnityEvent throwProp;
 
@@ -33,10 +34,10 @@ public class PlayerInputHandler : MonoBehaviour
 
         controls.Interact.started += ctx => interact.Invoke();
         controls.Attack.started += ctx => attack.Invoke();
-        controls.Block.started += ctx => isBlocking = true;
-        controls.Block.canceled += ctx => isBlocking = false;
-        controls.Drop.started += ctx => dropProp.Invoke();
-        controls.Throw.started += ctx => throwProp.Invoke();
+        controls.Block.started += ctx => blockStart.Invoke();
+        controls.Block.canceled += ctx => blockEnd.Invoke();
+        controls.Drop.performed += ctx => dropProp.Invoke();
+        controls.Throw.performed += ctx => throwProp.Invoke();
     }
 
     private void OnEnable()
@@ -57,8 +58,5 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (isRunning)
             run.Invoke();
-
-        if (isBlocking)
-            block.Invoke();
     }
 }

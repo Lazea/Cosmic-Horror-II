@@ -18,8 +18,8 @@ public class FirstPersonCameraController : MonoBehaviour
     {
         if(!lockXRot)
         {
-            float mouseX = mouseDelta.x * controlSettings.ySensitivity;
-            yaw = transform.localEulerAngles.y + mouseX;
+            float mouseX = mouseDelta.x * controlSettings.ySensitivity * 100f;
+            yaw = transform.localEulerAngles.y + mouseX * Time.deltaTime;
         }
         else
         {
@@ -28,10 +28,10 @@ public class FirstPersonCameraController : MonoBehaviour
 
         if (!lockYRot)
         {
-            float mouseY = mouseDelta.y * controlSettings.xSensitivity *
+            float mouseY = mouseDelta.y * controlSettings.xSensitivity * 100f *
                 (controlSettings.yInverted ? 1 : -1);
 
-            pitch += mouseY;
+            pitch += mouseY * Time.deltaTime;
             pitch = Mathf.Clamp(
                 pitch,
                 -controlSettings.pitchClamp,

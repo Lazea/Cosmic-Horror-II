@@ -223,7 +223,7 @@
                 {
                     "name": "",
                     "id": "4a922cde-63c9-43fd-a4db-11952f245b75",
-                    "path": "<Mouse>/middleButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

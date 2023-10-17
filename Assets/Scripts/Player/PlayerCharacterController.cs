@@ -21,6 +21,9 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField]
     bool isGrounded;
 
+    [Header("Animation Smoothing")]
+    public float moveAnimSmooth;
+
     // Components
     PlayerSettings playerSettings
     {
@@ -29,14 +32,17 @@ public class PlayerCharacterController : MonoBehaviour
     Rigidbody rb;
     CapsuleCollider collider;
     PhysicMaterial physicsMaterial;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<CapsuleCollider>();
-        physicsMaterial = new PhysicMaterial(name="PlayerPhysMat");
+        physicsMaterial = new PhysicMaterial();
         collider.material = physicsMaterial;
+
+        anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -64,6 +70,8 @@ public class PlayerCharacterController : MonoBehaviour
 
             rb.velocity = velocity;
         }
+
+        run = false;
     }
 
     bool CheckGround()
@@ -111,7 +119,24 @@ public class PlayerCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        run = false;
+        Vector2 animMove = new Vector2(
+            anim.GetFloat("SpeedX"),
+            anim.GetFloat("SpeedY"));
+        animMove = Vector2.Lerp(
+            animMove,
+            moveInput,
+            moveAnimSmooth * Time.deltaTime);
+
+        anim.SetFloat("SpeedX", animMove.x);
+        anim.SetFloat("SpeedY", animMove.y);
+
+        float targetAnimSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude / 
+            playerSettings.runSpeed;
+        float animSpeed = Mathf.Lerp(
+            anim.GetFloat("Speed"),
+            targetAnimSpeed,
+            moveAnimSmooth * Time.deltaTime);
+        anim.SetFloat("Speed", animSpeed);
     }
 
     public void Move(Vector2 move)
