@@ -392,7 +392,7 @@ Transform:
   m_GameObject: {fileID: 150343321}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 1.5691454, z: 0}
+  m_LocalPosition: {x: -4, y: 6.2299995, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -412,9 +412,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &273551820
@@ -730,10 +744,6 @@ GameObject:
   - component: {fileID: 454451959}
   - component: {fileID: 454451965}
   - component: {fileID: 454451964}
-  - component: {fileID: 454451963}
-  - component: {fileID: 454451962}
-  - component: {fileID: 454451961}
-  - component: {fileID: 454451960}
   m_Layer: 6
   m_Name: Crowbar
   m_TagString: Prop
@@ -756,94 +766,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1986133997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &454451960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454451958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dec9d046182d44eae97b460837d73e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  propType: 0
-  hitCount: 0
-  damage: 0
-  isHeld: 0
-  rb: {fileID: 0}
-  colls: []
---- !u!65 &454451961
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454451958}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.035976015, y: 0.036842033, z: 0.11531262}
-  m_Center: {x: -4.2745844e-24, y: 0.23892555, z: 0.021552935}
---- !u!65 &454451962
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454451958}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.035976015, y: 0.45678025, z: 0.03625822}
-  m_Center: {x: 1.5658572e-26, y: 0.028956443, z: -0.0027958192}
---- !u!54 &454451963
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454451958}
-  serializedVersion: 4
-  m_Mass: 2
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!23 &454451964
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1292,14 +1214,6 @@ GameObject:
   - component: {fileID: 692481220}
   - component: {fileID: 692481230}
   - component: {fileID: 692481229}
-  - component: {fileID: 692481228}
-  - component: {fileID: 692481227}
-  - component: {fileID: 692481226}
-  - component: {fileID: 692481225}
-  - component: {fileID: 692481224}
-  - component: {fileID: 692481223}
-  - component: {fileID: 692481222}
-  - component: {fileID: 692481221}
   m_Layer: 7
   m_Name: Chair
   m_TagString: Prop
@@ -1322,178 +1236,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1375472538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &692481221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692481219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dec9d046182d44eae97b460837d73e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  propType: 1
-  hitCount: 0
-  damage: 0
-  isHeld: 0
-  rb: {fileID: 0}
-  colls: []
---- !u!65 &692481222
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692481219}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.057991028, y: 0.42088252, z: 0.059831634}
-  m_Center: {x: -0.1948657, y: -0.09, z: 0.19361496}
---- !u!65 &692481223
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692481219}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.057991028, y: 0.42088252, z: 0.059831634}
-  m_Center: {x: 0.1948657, y: -0.09, z: 0.19361496}
---- !u!65 &692481224
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692481219}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.057991028, y: 0.42088252, z: 0.08025503}
-  m_Center: {x: -0.1948657, y: -0.09, z: -0.24187252}
---- !u!65 &692481225
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692481219}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.057991028, y: 0.42088252, z: 0.08025503}
-  m_Center: {x: 0.1948657, y: -0.09, z: -0.24187252}
---- !u!65 &692481226
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692481219}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.44772243, y: 0.0937953, z: 0.51400006}
-  m_Center: {x: -0.000000014901161, y: 0.16, z: -0.025000006}
---- !u!65 &692481227
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692481219}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.44772243, y: 0.5062097, z: 0.076699734}
-  m_Center: {x: -0.000000014901161, y: 0.37, z: -0.24365017}
---- !u!54 &692481228
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692481219}
-  serializedVersion: 4
-  m_Mass: 8
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!23 &692481229
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1544,6 +1286,171 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692481219}
   m_Mesh: {fileID: -6264831526926562434, guid: 3c8ae7a2af989a54684718952a3eda03, type: 3}
+--- !u!43 &733232453
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: pb_Mesh-5184(Clone)
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 24
+    localAABB:
+      m_Center: {x: 0, y: 0.375, z: 0}
+      m_Extent: {x: 3.5, y: 2, z: 0.25}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 24
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 1152
+    _typelessdata: 000060c0000018400000803e00000000000000000000803f000080bf0000000000000000000080bf0000604000001840fdff5fc00000d0bf0000803e00000000000000000000803f000080bf0000000000000000000080bffdff5f400000d0bffdff5f40000018400000803e00000000000000000000803f000080bf0000000000000000000080bffdff5fc000001840000060400000d0bf0000803e00000000000000000000803f000080bf0000000000000000000080bf000060c00000d0bffdff5fc00000d0bf0000803e00000000000080bf00000000000080bf0000000000000000000080bffdff5f400000803efdff5fc00000d0bf000080be00000000000080bf00000000000080bf0000000000000000000080bffdff5f40000080be000060400000d0bf0000803e00000000000080bf00000000000080bf0000000000000000000080bf000060c00000803e000060400000d0bf000080be00000000000080bf00000000000080bf0000000000000000000080bf000060c0000080befdff5fc00000d0bf000080be0000000000000000000080bf0000803f0000000000000000000080bffdff5fc00000d0bf000060c000001840000080be0000000000000000000080bf0000803f0000000000000000000080bf000060c000001840000060400000d0bf000080be0000000000000000000080bf0000803f0000000000000000000080bf000060400000d0bffdff5f4000001840000080be0000000000000000000080bf0000803f0000000000000000000080bffdff5f4000001840000060c000001840000080be000000000000803f000000000000803f0000000000000000000080bf000060c0000080be000060c0000018400000803e000000000000803f000000000000803f0000000000000000000080bf000060c00000803efdff5f4000001840000080be000000000000803f000000000000803f0000000000000000000080bffdff5f40000080befdff5f40000018400000803e000000000000803f000000000000803f0000000000000000000080bffdff5f400000803efdff5f40000018400000803e0000803f000040340000000000000000000000000000803f000080bf0000803efdff1740000060400000d0bf0000803e0000803f000040340000000000000000000000000000803f000080bf0000803e0500d0bffdff5f4000001840000080be0000803f000040340000000000000000000000000000803f000080bf000080befdff1740000060400000d0bf000080be0000803f000040340000000000000000000000000000803f000080bf000080be0500d0bf000060c000001840000080be000080bf000040b4000000000000000000000000000080bf000080bf0000803e03001840fdff5fc00000d0bf000080be000080bf000040b4000000000000000000000000000080bf000080bf0000803efbffcfbf000060c0000018400000803e000080bf000040b4000000000000000000000000000080bf000080bf000080be03001840fdff5fc00000d0bf0000803e000080bf000040b4000000000000000000000000000080bf000080bf000080befbffcfbf
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.375, z: 0}
+    m_Extent: {x: 3.5, y: 2, z: 0.25}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &760962555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,9 +1599,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &832575517
@@ -1746,6 +1667,359 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &856414016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 856414017}
+  - component: {fileID: 856414022}
+  - component: {fileID: 856414021}
+  - component: {fileID: 856414020}
+  - component: {fileID: 856414019}
+  - component: {fileID: 856414018}
+  m_Layer: 0
+  m_Name: Wall (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &856414017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856414016}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.49994653, y: -0, z: -0, w: 0.86605626}
+  m_LocalPosition: {x: 10.25, y: 0.35, z: 5.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1928790552}
+  m_LocalEulerAnglesHint: {x: 59.993, y: 0, z: 0}
+--- !u!64 &856414018
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856414016}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 733232453}
+--- !u!33 &856414019
+MeshFilter:
+  m_ObjectHideFlags: 10
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856414016}
+  m_Mesh: {fileID: 733232453}
+--- !u!23 &856414020
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856414016}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 2
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &856414021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856414016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Shape:
+    rid: 3665070666113613825
+  m_Size: {x: 7, y: 4, z: -0.5}
+  m_Rotation: {x: 0, y: 0, z: -0.70710677, w: 0.70710677}
+  m_PivotLocation: 0
+  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_UnmodifiedMeshVersion: 4102
+  m_ShapeBox:
+    m_Center: {x: 0, y: 0.375, z: 0}
+    m_Extent: {x: 2, y: 3.5, z: 0.25}
+  references:
+    version: 2
+    RefIds:
+    - rid: 3665070666113613825
+      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
+--- !u!114 &856414022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856414016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MeshFormatVersion: 2
+  m_Faces:
+  - m_Indexes: 000000000100000002000000010000000300000002000000
+    m_SmoothingGroup: 0
+    m_Uv:
+      m_UseWorldSpace: 0
+      m_FlipU: 0
+      m_FlipV: 0
+      m_SwapUV: 0
+      m_Fill: 1
+      m_Scale: {x: 1, y: 1}
+      m_Offset: {x: 0, y: 0}
+      m_Rotation: 0
+      m_Anchor: 9
+    m_Material: {fileID: 0}
+    m_SubmeshIndex: 0
+    m_ManualUV: 0
+    elementGroup: -1
+    m_TextureGroup: -1
+  - m_Indexes: 040000000500000006000000050000000700000006000000
+    m_SmoothingGroup: 0
+    m_Uv:
+      m_UseWorldSpace: 0
+      m_FlipU: 0
+      m_FlipV: 0
+      m_SwapUV: 0
+      m_Fill: 1
+      m_Scale: {x: 1, y: 1}
+      m_Offset: {x: 0, y: 0}
+      m_Rotation: 0
+      m_Anchor: 9
+    m_Material: {fileID: 0}
+    m_SubmeshIndex: 0
+    m_ManualUV: 0
+    elementGroup: -1
+    m_TextureGroup: -1
+  - m_Indexes: 08000000090000000a000000090000000b0000000a000000
+    m_SmoothingGroup: 0
+    m_Uv:
+      m_UseWorldSpace: 0
+      m_FlipU: 0
+      m_FlipV: 0
+      m_SwapUV: 0
+      m_Fill: 1
+      m_Scale: {x: 1, y: 1}
+      m_Offset: {x: 0, y: 0}
+      m_Rotation: 0
+      m_Anchor: 9
+    m_Material: {fileID: 0}
+    m_SubmeshIndex: 0
+    m_ManualUV: 0
+    elementGroup: -1
+    m_TextureGroup: -1
+  - m_Indexes: 0c0000000d0000000e0000000d0000000f0000000e000000
+    m_SmoothingGroup: 0
+    m_Uv:
+      m_UseWorldSpace: 0
+      m_FlipU: 0
+      m_FlipV: 0
+      m_SwapUV: 0
+      m_Fill: 1
+      m_Scale: {x: 1, y: 1}
+      m_Offset: {x: 0, y: 0}
+      m_Rotation: 0
+      m_Anchor: 9
+    m_Material: {fileID: 0}
+    m_SubmeshIndex: 0
+    m_ManualUV: 0
+    elementGroup: -1
+    m_TextureGroup: -1
+  - m_Indexes: 100000001100000012000000110000001300000012000000
+    m_SmoothingGroup: 0
+    m_Uv:
+      m_UseWorldSpace: 0
+      m_FlipU: 0
+      m_FlipV: 0
+      m_SwapUV: 0
+      m_Fill: 1
+      m_Scale: {x: 1, y: 1}
+      m_Offset: {x: 0, y: 0}
+      m_Rotation: 0
+      m_Anchor: 9
+    m_Material: {fileID: 0}
+    m_SubmeshIndex: 0
+    m_ManualUV: 0
+    elementGroup: -1
+    m_TextureGroup: -1
+  - m_Indexes: 140000001500000016000000150000001700000016000000
+    m_SmoothingGroup: 0
+    m_Uv:
+      m_UseWorldSpace: 0
+      m_FlipU: 0
+      m_FlipV: 0
+      m_SwapUV: 0
+      m_Fill: 1
+      m_Scale: {x: 1, y: 1}
+      m_Offset: {x: 0, y: 0}
+      m_Rotation: 0
+      m_Anchor: 9
+    m_Material: {fileID: 0}
+    m_SubmeshIndex: 0
+    m_ManualUV: 0
+    elementGroup: -1
+    m_TextureGroup: -1
+  m_SharedVertices:
+  - m_Vertices: 000000000d00000016000000
+  - m_Vertices: 010000000400000017000000
+  - m_Vertices: 020000000f00000010000000
+  - m_Vertices: 030000000600000011000000
+  - m_Vertices: 050000000800000015000000
+  - m_Vertices: 070000000a00000013000000
+  - m_Vertices: 090000000c00000014000000
+  - m_Vertices: 0b0000000e00000012000000
+  m_SharedTextures: []
+  m_Positions:
+  - {x: -3.5, y: 2.375, z: 0.25}
+  - {x: -3.4999993, y: -1.625, z: 0.25}
+  - {x: 3.4999993, y: 2.375, z: 0.25}
+  - {x: 3.5, y: -1.625, z: 0.25}
+  - {x: -3.4999993, y: -1.625, z: 0.25}
+  - {x: -3.4999993, y: -1.625, z: -0.25}
+  - {x: 3.5, y: -1.625, z: 0.25}
+  - {x: 3.5, y: -1.625, z: -0.25}
+  - {x: -3.4999993, y: -1.625, z: -0.25}
+  - {x: -3.5, y: 2.375, z: -0.25}
+  - {x: 3.5, y: -1.625, z: -0.25}
+  - {x: 3.4999993, y: 2.375, z: -0.25}
+  - {x: -3.5, y: 2.375, z: -0.25}
+  - {x: -3.5, y: 2.375, z: 0.25}
+  - {x: 3.4999993, y: 2.375, z: -0.25}
+  - {x: 3.4999993, y: 2.375, z: 0.25}
+  - {x: 3.4999993, y: 2.375, z: 0.25}
+  - {x: 3.5, y: -1.625, z: 0.25}
+  - {x: 3.4999993, y: 2.375, z: -0.25}
+  - {x: 3.5, y: -1.625, z: -0.25}
+  - {x: -3.5, y: 2.375, z: -0.25}
+  - {x: -3.4999993, y: -1.625, z: -0.25}
+  - {x: -3.5, y: 2.375, z: 0.25}
+  - {x: -3.4999993, y: -1.625, z: 0.25}
+  m_Textures0:
+  - {x: 3.5, y: 2.375}
+  - {x: 3.4999993, y: -1.625}
+  - {x: -3.4999993, y: 2.375}
+  - {x: -3.5, y: -1.625}
+  - {x: 3.4999993, y: 0.25}
+  - {x: 3.4999993, y: -0.25}
+  - {x: -3.5, y: 0.25}
+  - {x: -3.5, y: -0.25}
+  - {x: -3.4999993, y: -1.625}
+  - {x: -3.5, y: 2.375}
+  - {x: 3.5, y: -1.625}
+  - {x: 3.4999993, y: 2.375}
+  - {x: -3.5, y: -0.25}
+  - {x: -3.5, y: 0.25}
+  - {x: 3.4999993, y: -0.25}
+  - {x: 3.4999993, y: 0.25}
+  - {x: 0.25, y: 2.3749993}
+  - {x: 0.25, y: -1.6250006}
+  - {x: -0.25, y: 2.3749993}
+  - {x: -0.25, y: -1.6250006}
+  - {x: 0.25, y: 2.3750007}
+  - {x: 0.25, y: -1.6249994}
+  - {x: -0.25, y: 2.3750007}
+  - {x: -0.25, y: -1.6249994}
+  m_Textures2: []
+  m_Textures3: []
+  m_Tangents:
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 0, y: 0, z: 1, w: -1}
+  - {x: 0, y: 0, z: 1, w: -1}
+  - {x: 0, y: 0, z: 1, w: -1}
+  - {x: 0, y: 0, z: 1, w: -1}
+  - {x: 0, y: 0, z: -1, w: -1}
+  - {x: 0, y: 0, z: -1, w: -1}
+  - {x: 0, y: 0, z: -1, w: -1}
+  - {x: 0, y: 0, z: -1, w: -1}
+  m_Colors: []
+  m_UnwrapParameters:
+    m_HardAngle: 88
+    m_PackMargin: 20
+    m_AngleError: 8
+    m_AreaError: 15
+  m_PreserveMeshAssetOnDestroy: 0
+  assetGuid: 
+  m_Mesh: {fileID: 733232453}
+  m_VersionIndex: 4102
+  m_IsSelectable: 1
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!1 &901505360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,7 +2138,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 990279101}
         m_TargetAssemblyTypeName: FirstPersonCameraController, Assembly-CSharp
         m_MethodName: GetMouseDelta
         m_Mode: 0
@@ -1876,9 +2150,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 990279101}
-        m_TargetAssemblyTypeName: FirstPersonCameraController, Assembly-CSharp
-        m_MethodName: GetMouseDelta
+      - m_Target: {fileID: 901505365}
+        m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
+        m_MethodName: AnimateLookLean
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2024,6 +2298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveInput: {x: 0, y: 0}
+  lookInput: {x: 0, y: 0}
   run: 0
   groundCheckRadius: 0.35
   groundCheckDistance: 0.6
@@ -2032,6 +2307,7 @@ MonoBehaviour:
     m_Bits: 129
   isGrounded: 0
   moveAnimSmooth: 10
+  lookAnimSmooth: 8
 --- !u!114 &901505366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2095,12 +2371,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwForce: 15
+  onThrow:
+    m_PersistentCalls:
+      m_Calls: []
   equiptProp: {fileID: 0}
   playerHandOneHandedProps: {fileID: 1986133997}
   playerHandTwoHandedProps: {fileID: 1375472538}
   playerHandMediumProps: {fileID: 1471983583}
   propDropPoint: {fileID: 106849172}
   propThrowPoint: {fileID: 1913671822}
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 2497
+  onAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttackHit:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttackMiss:
+    m_PersistentCalls:
+      m_Calls: []
+  onBlock:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &901505369
 Animator:
   serializedVersion: 5
@@ -2361,9 +2655,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &1030613674
@@ -2553,9 +2861,6 @@ GameObject:
   - component: {fileID: 1113754245}
   - component: {fileID: 1113754250}
   - component: {fileID: 1113754249}
-  - component: {fileID: 1113754248}
-  - component: {fileID: 1113754247}
-  - component: {fileID: 1113754246}
   m_Layer: 7
   m_Name: Barrel
   m_TagString: Prop
@@ -2578,74 +2883,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1471983583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1113754246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113754244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dec9d046182d44eae97b460837d73e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  propType: 2
-  hitCount: 0
-  damage: 0
-  isHeld: 0
-  rb: {fileID: 0}
-  colls: []
---- !u!64 &1113754247
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113754244}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8108563764783910780, guid: 3c8ae7a2af989a54684718952a3eda03, type: 3}
---- !u!54 &1113754248
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113754244}
-  serializedVersion: 4
-  m_Mass: 12
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!23 &1113754249
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2883,9 +3120,6 @@ GameObject:
   - component: {fileID: 1308030823}
   - component: {fileID: 1308030828}
   - component: {fileID: 1308030827}
-  - component: {fileID: 1308030826}
-  - component: {fileID: 1308030825}
-  - component: {fileID: 1308030824}
   m_Layer: 6
   m_Name: Jar
   m_TagString: Prop
@@ -2908,74 +3142,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1986133997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1308030824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308030822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dec9d046182d44eae97b460837d73e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  propType: 0
-  hitCount: 0
-  damage: 0
-  isHeld: 0
-  rb: {fileID: 0}
-  colls: []
---- !u!64 &1308030825
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308030822}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7065439566198968859, guid: 3c8ae7a2af989a54684718952a3eda03, type: 3}
---- !u!54 &1308030826
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308030822}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!23 &1308030827
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3507,7 +3673,7 @@ Transform:
   m_GameObject: {fileID: 1471983582}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.0000000018626451, w: 1}
-  m_LocalPosition: {x: 0.044823196, y: 0.07294007, z: -0.033250894}
+  m_LocalPosition: {x: 0.054, y: 0.073, z: 0.043}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3709,7 +3875,7 @@ Transform:
   m_GameObject: {fileID: 1735238962}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 1.5691454, z: 2.25}
+  m_LocalPosition: {x: -4, y: 6.2299995, z: 2.25}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3825,11 +3991,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15dec9d046182d44eae97b460837d73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &1788438758
@@ -4099,9 +4279,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &1913671821
@@ -4331,6 +4525,7 @@ Transform:
   m_Children:
   - {fileID: 458195541}
   - {fileID: 1388174782}
+  - {fileID: 856414017}
   m_Father: {fileID: 1289829126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1951860171
@@ -4678,10 +4873,6 @@ GameObject:
   - component: {fileID: 2132171666}
   - component: {fileID: 2132171672}
   - component: {fileID: 2132171671}
-  - component: {fileID: 2132171670}
-  - component: {fileID: 2132171669}
-  - component: {fileID: 2132171668}
-  - component: {fileID: 2132171667}
   m_Layer: 6
   m_Name: Shovel
   m_TagString: Prop
@@ -4704,96 +4895,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1375472538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2132171667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132171665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dec9d046182d44eae97b460837d73e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  propType: 1
-  hitCount: 0
-  damage: 0
-  isHeld: 0
-  rb: {fileID: 0}
-  colls: []
---- !u!65 &2132171668
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132171665}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.22246718, y: 0.26599896, z: 0.039613552}
-  m_Center: {x: -1.1679308e-25, y: 0.8346887, z: -0.0055515245}
---- !u!136 &2132171669
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132171665}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.022849673
-  m_Height: 1.0789073
-  m_Direction: 1
-  m_Center: {x: -1.6635866e-24, y: 0.2093736, z: -0.0055515263}
---- !u!54 &2132171670
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132171665}
-  serializedVersion: 4
-  m_Mass: 3
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!23 &2132171671
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6893,9 +6994,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &3125815223146754420
@@ -7127,9 +7242,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &3523116738111310006
@@ -7490,9 +7619,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &4327561481649268667
@@ -8498,9 +8641,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &5477794737318174386
@@ -8735,9 +8892,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &5545508336276954168
@@ -8839,9 +9010,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &5559938035772247663
@@ -9036,9 +9221,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &5709174629753234600
@@ -9249,9 +9448,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &6046760010162399498
@@ -9325,9 +9538,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &6061889459178953392
@@ -9513,9 +9740,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &6151171028455138768
@@ -9595,9 +9836,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!65 &6167800470665365934
@@ -9744,9 +9999,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!65 &6233344608349121535
@@ -10011,9 +10280,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &6820076120222326393
@@ -10087,9 +10370,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 2
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &6825390109737323850
@@ -10169,9 +10466,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 2
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &6865666505736039837
@@ -10353,9 +10664,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &6978763193147133410
@@ -10507,9 +10832,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &7028453989646584520
@@ -10582,9 +10921,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &7075789293806383428
@@ -10706,9 +11059,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &7103729154382733023
@@ -10796,9 +11163,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &7214602976777632891
@@ -10872,9 +11253,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &7247217103452378840
@@ -10948,9 +11343,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &7256353597184631116
@@ -11059,9 +11468,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &7276984942817111593
@@ -11157,11 +11580,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15dec9d046182d44eae97b460837d73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &7282095997498781256
@@ -11262,9 +11699,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!65 &7325629306596105295
@@ -11286,8 +11737,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.11057955, y: 1.4585528, z: 0.16974407}
-  m_Center: {x: -0.009542439, y: 0.53318346, z: 0.07180937}
+  m_Size: {x: 0.123914525, y: 1.4585528, z: 0.16974409}
+  m_Center: {x: -0.009542439, y: 0.74, z: 0.07180939}
 --- !u!33 &7360788506666178953
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11358,9 +11809,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &7373596534222005862
@@ -11483,9 +11948,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &7522039811015126717
@@ -11726,9 +12205,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &7614994992924487109
@@ -11809,9 +12302,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &7626462187472297123
@@ -11926,9 +12433,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &7715409393596264383
@@ -12050,9 +12571,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &7757997437993679297
@@ -12133,9 +12668,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &7799548081426983972
@@ -12240,9 +12789,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &7821864354214596749
@@ -12349,9 +12912,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &7845712578280654559
@@ -12432,9 +13009,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &7849580408720045180
@@ -12530,9 +13121,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &7879943725229160465
@@ -12613,9 +13218,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &7936452415333941351
@@ -12811,9 +13430,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &7977952849133098751
@@ -12925,9 +13558,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &8025886456999439346
@@ -13007,9 +13654,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!64 &8126444151807590013
@@ -13141,9 +13802,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &8219497423306093342
@@ -13230,9 +13905,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &8251954333169427625
@@ -13305,9 +13994,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 2
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &8310235835860288023
@@ -13435,9 +14138,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &8387010588444672185
@@ -13598,9 +14315,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &8703138836032935371
@@ -13686,9 +14417,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &8732689367392418442
@@ -13796,9 +14541,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &8743660585401060488
@@ -13878,9 +14637,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &8788288628286936583
@@ -13961,9 +14734,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &8822728165806326199
@@ -14071,9 +14858,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &8908953073841067051
@@ -14146,9 +14947,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!4 &9080594121560153354
@@ -14251,9 +15066,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1 &9087446179980575598
@@ -14361,9 +15190,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &9146341803600668378
@@ -14437,9 +15280,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &9157761164084049647
@@ -14535,9 +15392,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!33 &9164081482690507376
@@ -14610,9 +15481,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &9215467895076779354
@@ -14719,9 +15604,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 0
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!23 &9222044223607719749
@@ -14851,9 +15750,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   propType: 1
-  hitCount: 0
+  propMaterial: 0
+  durability: 0
   damage: 0
+  attackRange: 0
+  attackForce: 0
   isHeld: 0
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   rb: {fileID: 0}
   colls: []
 --- !u!1660057539 &9223372036854775807

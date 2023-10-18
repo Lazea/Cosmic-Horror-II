@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerPropController : MonoBehaviour
 {
     [Header("Throw Force")]
     public float throwForce;
+    public UnityEvent onThrow;
 
     [Header("Prop")]
     public BaseProp equiptProp;
@@ -16,6 +18,20 @@ public class PlayerPropController : MonoBehaviour
     public Transform playerHandMediumProps;
     public Transform propDropPoint;
     public Transform propThrowPoint;
+
+    [Header("Attacking")]
+    public LayerMask attackMask;
+    public UnityEvent onAttack;
+    public UnityEvent onAttackHit;
+    public UnityEvent onAttackMiss;
+
+    [Header("Blocking")]
+    public UnityEvent onBlock;
+
+    PropSettings propSettings
+    {
+        get { return GameManager.Instance.settings.propSettings; }
+    }
 
     // Components
     Animator anim;
@@ -39,7 +55,7 @@ public class PlayerPropController : MonoBehaviour
             DropProp();
         }
 
-        switch(prop.propType)
+        switch (prop.propType)
         {
             case BaseProp.PropType.OneHanded:
                 prop.transform.parent = playerHandOneHandedProps;
@@ -131,7 +147,11 @@ public class PlayerPropController : MonoBehaviour
         {
             canAttack = true;
         }
-        else if(animState.IsTag("Attack") && animState.normalizedTime >= 0.25f)
+        else if (animState.IsTag("Attack") && animState.normalizedTime >= 0.2f)
+        {
+            canAttack = true;
+        }
+        else if (animState.IsTag("AttackHeavy") && animState.normalizedTime >= 0.55f)
         {
             canAttack = true;
         }
@@ -142,6 +162,122 @@ public class PlayerPropController : MonoBehaviour
                 anim.SetTrigger("AttackHeavy");
             else
                 anim.SetTrigger("Attack");
+        }
+    }
+
+    public void AttackStart()
+    {
+        onAttack.Invoke();
+    }
+
+    public void PerformAttack1()
+    {
+        Vector3 forceDir = -Camera.main.transform.right;
+        forceDir += Camera.main.transform.up * 0.1f;
+        PerformAttackRaycast(
+            equiptProp.damage,
+            GetAttackRange(equiptProp),
+            forceDir * GetAttackForce(equiptProp));
+    }
+
+    public void PerformAttack2()
+    {
+        Vector3 forceDir = Camera.main.transform.right;
+        forceDir += Camera.main.transform.up * 0.1f;
+        PerformAttackRaycast(
+            equiptProp.damage,
+            GetAttackRange(equiptProp),
+            forceDir * GetAttackForce(equiptProp));
+    }
+
+    public void PerformHeavyAttack1()
+    {
+        Vector3 forceDir = -Camera.main.transform.right;
+        forceDir += Camera.main.transform.up * 0.1f;
+        PerformAttackRaycast(
+            equiptProp.damage,
+            GetAttackRange(equiptProp),
+            forceDir * GetAttackForce(equiptProp));
+    }
+
+    float GetAttackRange(BaseProp prop)
+    {
+        float range = 0f;
+        switch (prop.propAttackRange)
+        {
+            case BaseProp.PropAttackRange.Short:
+                range = propSettings.AttackShortRange;
+                break;
+            case BaseProp.PropAttackRange.Long:
+                range = propSettings.AttackShortRange;
+                break;
+            default:
+                range = 1f;
+                break;
+        }
+
+        return range;
+    }
+
+    float GetAttackForce(BaseProp prop)
+    {
+        float force = 0f;
+        switch (prop.propAttackForce)
+        {
+            case BaseProp.PropAttackForce.Light:
+                force = propSettings.attackLightForce;
+                break;
+            case BaseProp.PropAttackForce.Heavy:
+                force = propSettings.attackHeavyForce;
+                break;
+            default:
+                force = 15f;
+                break;
+        }
+
+        return force;
+    }
+
+    bool PerformAttackRaycast(
+        int attackDamage,
+        float attackRange,
+        Vector3 attackForce)
+    {
+        Ray ray = new Ray(
+            Camera.main.transform.position,
+            Camera.main.transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(
+            ray,
+            out hit,
+            attackRange,
+            attackMask))
+        {
+            var hitDamageable = hit.collider.GetComponent<IDamageable>();
+            if(hitDamageable != null)
+            {
+                hitDamageable.DealDamage(
+                    attackDamage,
+                    attackForce,
+                    hit.point,
+                    gameObject);
+            }
+
+            Debug.Log(
+                string.Format("Player Attack hit {0} with {1} damage and {2}:{3} force",
+                hit.collider.name, attackDamage, attackForce, attackForce.magnitude));
+
+            equiptProp.durability--;
+            if (equiptProp.durability <= 0)
+                DestroyEquiptProp();
+
+            onAttackHit.Invoke();
+            return true;
+        }
+        else
+        {
+            onAttackMiss.Invoke();
+            return false;
         }
     }
 
@@ -168,6 +304,10 @@ public class PlayerPropController : MonoBehaviour
             return;
 
         anim.SetTrigger("Block");
+        onBlock.Invoke();
+        equiptProp.durability--;
+        if (equiptProp.durability <= 0)
+            DestroyEquiptProp();
     }
 
     public void BlockEnd()
@@ -176,5 +316,38 @@ public class PlayerPropController : MonoBehaviour
             return;
 
         anim.SetBool("Blocking", false);
+    }
+
+    public void DestroyEquiptProp()
+    {
+        var _prop = equiptProp;
+        equiptProp = null;
+
+        anim.ResetTrigger("AttackHeavy");
+        anim.ResetTrigger("Attack");
+
+        _prop.DestroyObject();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying)
+            return;
+        Gizmos.color = Color.blue;
+        var cameraTransform = Camera.main.transform;
+        Gizmos.DrawWireSphere(
+            cameraTransform.position + cameraTransform.forward * propSettings.AttackShortRange,
+            0.25f);
+        Gizmos.DrawLine(
+            cameraTransform.position,
+            cameraTransform.position + cameraTransform.forward * propSettings.AttackShortRange);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(
+            cameraTransform.position + cameraTransform.forward * propSettings.AttackLongRange,
+            0.25f);
+        Gizmos.DrawLine(
+            cameraTransform.position,
+            cameraTransform.position + cameraTransform.forward * propSettings.AttackLongRange);
     }
 }

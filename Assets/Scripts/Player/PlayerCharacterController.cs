@@ -9,6 +9,8 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField]
     Vector2 moveInput;
     [SerializeField]
+    Vector2 lookInput;
+    [SerializeField]
     bool run;
 
     Vector3 velocity;
@@ -23,6 +25,7 @@ public class PlayerCharacterController : MonoBehaviour
 
     [Header("Animation Smoothing")]
     public float moveAnimSmooth;
+    public float lookAnimSmooth;
 
     // Components
     PlayerSettings playerSettings
@@ -119,6 +122,7 @@ public class PlayerCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Animate movement lean
         Vector2 animMove = new Vector2(
             anim.GetFloat("SpeedX"),
             anim.GetFloat("SpeedY"));
@@ -130,6 +134,7 @@ public class PlayerCharacterController : MonoBehaviour
         anim.SetFloat("SpeedX", animMove.x);
         anim.SetFloat("SpeedY", animMove.y);
 
+        // Animate movement
         float targetAnimSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude / 
             playerSettings.runSpeed;
         float animSpeed = Mathf.Lerp(
@@ -137,6 +142,18 @@ public class PlayerCharacterController : MonoBehaviour
             targetAnimSpeed,
             moveAnimSmooth * Time.deltaTime);
         anim.SetFloat("Speed", animSpeed);
+
+        // Animate Look Lean
+        Vector2 animLook = new Vector2(
+            anim.GetFloat("LookX"),
+            anim.GetFloat("LookY"));
+        animLook = Vector2.Lerp(
+            animLook,
+            lookInput,
+            lookAnimSmooth * Time.deltaTime);
+
+        anim.SetFloat("LookX", animLook.x);
+        anim.SetFloat("LookY", animLook.y);
     }
 
     public void Move(Vector2 move)
@@ -147,6 +164,11 @@ public class PlayerCharacterController : MonoBehaviour
     public void Run()
     {
         run = true;
+    }
+
+    public void AnimateLookLean(Vector2 look)
+    {
+        lookInput = look.normalized;
     }
 
     private void OnDrawGizmos()

@@ -9,7 +9,7 @@ public class GameSettings : ScriptableObject
 {
     public PlayerSettings playerSettings;
     public ControlSettings controlSettings;
-    public PropData[] propDataset;
+    public PropSettings propSettings;
 }
 
 [System.Serializable]
@@ -40,13 +40,44 @@ public struct ControlSettings
 }
 
 [System.Serializable]
+public struct PropSettings
+{
+    [Header("Attack Settings")]
+    public float AttackShortRange;
+    public float AttackLongRange;
+    public float attackLightForce;
+    public float attackHeavyForce;
+    public AnimationCurve propImpactDamageCurve;
+    [System.Serializable]
+    public struct PropMaterialImpactDamageMultipier
+    {
+        public PropMaterial propMaterial;
+        [Range(1f, 2f)]
+        public float multipier;
+    }
+    public PropMaterialImpactDamageMultipier[] propMaterialImpactDamageMultipiers;
+
+    [Header("Props Dataset")]
+    public PropData[] propsDataset;
+}
+
+[System.Serializable]
 public struct PropData
 {
     [Header("ID")]
     public int id;
     public string name;
+    public PropMaterial propMaterial;
 
     [Header("Stats")]
-    public int hitCount;
+    public int durability;
     public int damage;
+}
+
+public enum PropMaterial
+{
+    Wood,
+    Metal,
+    Glass,
+    Other
 }

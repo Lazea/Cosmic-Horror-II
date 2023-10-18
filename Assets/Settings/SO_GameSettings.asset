@@ -26,4 +26,61 @@ MonoBehaviour:
     ySensitivity: 0.5
     yInverted: 0
     pitchClamp: 70
-  propDataset: []
+  propSettings:
+    AttackShortRange: 1.45
+    AttackLongRange: 1.95
+    attackLightForce: 12
+    attackHeavyForce: 18
+    propImpactDamageCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5
+        value: 0
+        inSlope: 0
+        outSlope: 0.2570702
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.037358824
+      - serializedVersion: 3
+        time: 20
+        value: 4
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    propMaterialImpactDamageMultipiers:
+    - propMaterial: 0
+      multipier: 1.15
+    - propMaterial: 1
+      multipier: 0
+    - propMaterial: 2
+      multipier: 2
+    - propMaterial: 3
+      multipier: 1
+    propsDataset:
+    - id: 0
+      name: ShortRangeTest
+      propMaterial: 0
+      durability: 8
+      damage: 2
+    - id: 1
+      name: LongRangeTest
+      propMaterial: 0
+      durability: 5
+      damage: 2
