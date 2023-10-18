@@ -11,6 +11,7 @@ public class PlayerPropController : MonoBehaviour
 
     [Header("Prop")]
     public BaseProp equiptProp;
+    public Collider propHoldingCollider;
 
     [Header("Points")]
     public Transform playerHandOneHandedProps;
@@ -35,21 +36,32 @@ public class PlayerPropController : MonoBehaviour
 
     // Components
     Animator anim;
+    PlayerCharacterController cc;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        cc = GetComponent<PlayerCharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (cc.IsRunning() && anim.GetBool("Blocking"))
+            BlockEnd();
+        else if(cc.IsClimbing() && anim.GetBool("Blocking"))
+            BlockEnd();
 
+        propHoldingCollider.enabled = (equiptProp != null);
     }
 
+    #region [Equipt and Drop]
     public void EquiptProp(BaseProp prop)
     {
+        if (cc.IsClimbing())
+            return;
+
         if (equiptProp != null)
         {
             DropProp();
@@ -99,6 +111,9 @@ public class PlayerPropController : MonoBehaviour
 
     public void DropProp()
     {
+        if (cc.IsClimbing())
+            return;
+
         var _prop = equiptProp;
         if (!UnequiptProp())
         {
@@ -109,14 +124,22 @@ public class PlayerPropController : MonoBehaviour
 
         _prop.transform.position = propDropPoint.position;
         _prop.transform.rotation = propDropPoint.rotation;
-        _prop.rb.velocity = _prop.transform.forward * 0.75f;
+        _prop.rb.velocity = Vector3.zero; // _prop.transform.forward * 0.75f;
         _prop.rb.angularVelocity = Vector3.zero;
 
         anim.SetBool("Blocking", false);
     }
+    #endregion
 
+    #region [Prop Actions]
     public void ThrowProp()
     {
+        if (cc.IsClimbing())
+            return;
+
+        if (cc.IsRunning())
+            return;
+
         var _prop = equiptProp;
         if (!UnequiptProp())
         {
@@ -135,8 +158,15 @@ public class PlayerPropController : MonoBehaviour
         anim.SetBool("Blocking", false);
     }
 
+    #region [Prop Attacking]
     public void Attack()
     {
+        if (cc.IsClimbing())
+            return;
+
+        if (cc.IsRunning())
+            return;
+
         if (equiptProp == null)
             return;
 
@@ -280,9 +310,16 @@ public class PlayerPropController : MonoBehaviour
             return false;
         }
     }
+    #endregion
 
     public void BlockStart()
     {
+        if (cc.IsClimbing())
+            return;
+
+        if (cc.IsRunning())
+            return;
+
         if (equiptProp == null)
             return;
 
@@ -328,6 +365,7 @@ public class PlayerPropController : MonoBehaviour
 
         _prop.DestroyObject();
     }
+    #endregion
 
     private void OnDrawGizmos()
     {

@@ -7,13 +7,11 @@ public class PlayerInputHandler : MonoBehaviour
 {
     Controls.GameplayActions controls;
 
-    bool isRunning;
-    bool isBlocking;
-
     [Header("Movement")]
     public UnityEvent<Vector2> look = new UnityEvent<Vector2>();
     public UnityEvent<Vector2> move = new UnityEvent<Vector2>();
-    public UnityEvent run;
+    public UnityEvent runStart;
+    public UnityEvent runEnd;
     public UnityEvent climb;
 
     [Header("Actions")]
@@ -29,8 +27,8 @@ public class PlayerInputHandler : MonoBehaviour
         controls = new Controls().Gameplay;
 
         controls.Climb.started += ctx => climb.Invoke();
-        controls.Run.started += ctx => isRunning = true;
-        controls.Run.canceled += ctx => isRunning = false;
+        controls.Run.started += ctx => runStart.Invoke();
+        controls.Run.canceled += ctx => runEnd.Invoke();
 
         controls.Interact.started += ctx => interact.Invoke();
         controls.Attack.started += ctx => attack.Invoke();
@@ -55,8 +53,5 @@ public class PlayerInputHandler : MonoBehaviour
     {
         look.Invoke(controls.Look.ReadValue<Vector2>());
         move.Invoke(controls.Movement.ReadValue<Vector2>());
-
-        if (isRunning)
-            run.Invoke();
     }
 }

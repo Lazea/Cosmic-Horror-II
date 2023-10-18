@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerCharacterController : MonoBehaviour
@@ -12,8 +10,15 @@ public class PlayerCharacterController : MonoBehaviour
     Vector2 lookInput;
     [SerializeField]
     bool run;
+    [SerializeField]
+    bool isRunning;
+    [SerializeField]
+    bool isClimbing;
 
     Vector3 velocity;
+
+    [Header("Slope Speed Curve")]
+    public AnimationCurve slopeSpeedCurve;
 
     [Header("Ground Check")]
     public float groundCheckRadius = 0.45f;
@@ -26,6 +31,11 @@ public class PlayerCharacterController : MonoBehaviour
     [Header("Animation Smoothing")]
     public float moveAnimSmooth;
     public float lookAnimSmooth;
+
+    [Header("Ledge Climb")]
+    public Vector3 ledgeCheckPoint;
+    public float ledgeCheckDistance;
+    public float ledgeClimbTime;
 
     // Components
     PlayerSettings playerSettings
@@ -56,25 +66,13 @@ public class PlayerCharacterController : MonoBehaviour
 
         if (isGrounded)
         {
-            float fallSpeed = rb.velocity.y;
-            velocity = rb.velocity;
-            velocity.y = 0f;
-
-            Vector3 moveDir = transform.TransformVector(
-                new Vector3(moveInput.x, 0f, moveInput.y));
-            float speed = (run && moveInput.y > 0.2f) ?
-                playerSettings.runSpeed :
-                playerSettings.walkSpeed;
-            velocity = Vector3.Lerp(
-                velocity,
-                moveDir * speed,
-                playerSettings.acceleration);
-            velocity.y = fallSpeed;
-
+            ComputeVelocity();
             rb.velocity = velocity;
         }
-
-        run = false;
+        else
+        {
+            isRunning = false;
+        }
     }
 
     bool CheckGround()
@@ -88,6 +86,42 @@ public class PlayerCharacterController : MonoBehaviour
             out groundHit,
             groundCheckDistance,
             groundMask);
+    }
+
+    void ComputeVelocity()
+    {
+        velocity = rb.velocity;
+        float fallSpeed = rb.velocity.y;
+        velocity.y = 0f;
+
+        Vector3 moveDir = transform.TransformVector(
+            new Vector3(moveInput.x, 0f, moveInput.y));
+
+        isRunning = (run && moveInput.y > 0.2f);
+        float speed = (isRunning) ?
+            playerSettings.runSpeed :
+            playerSettings.walkSpeed;
+
+        // Adjust speed based on slope
+        float slopeAngle = Vector3.Angle(groundHit.normal, Vector3.up);
+        slopeAngle *= Mathf.Abs(
+            Vector3.Dot(
+                transform.forward,
+                new Vector3(groundHit.normal.x, 0f, groundHit.normal.z).normalized));
+        speed *= slopeSpeedCurve.Evaluate(
+            slopeAngle / 50f);
+
+        velocity = Vector3.Lerp(
+            velocity,
+            moveDir * speed,
+            playerSettings.acceleration);
+
+        Debug.DrawLine(
+                groundHit.point,
+                groundHit.point + velocity,
+                Color.blue);
+
+        velocity.y = fallSpeed;
     }
 
     void UpdatePhysicsMaterial()
@@ -135,7 +169,7 @@ public class PlayerCharacterController : MonoBehaviour
         anim.SetFloat("SpeedY", animMove.y);
 
         // Animate movement
-        float targetAnimSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude / 
+        float targetAnimSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude /
             playerSettings.runSpeed;
         float animSpeed = Mathf.Lerp(
             anim.GetFloat("Speed"),
@@ -161,9 +195,78 @@ public class PlayerCharacterController : MonoBehaviour
         moveInput = move;
     }
 
-    public void Run()
+    public void Climb()
     {
-        run = true;
+        Ray ray = new Ray(
+            transform.TransformPoint(ledgeCheckPoint),
+            Vector3.down);
+        RaycastHit ledgeHit;
+        if(Physics.Raycast(
+            ray,
+            out ledgeHit,
+            ledgeCheckDistance))
+        {
+            ray = new Ray(
+                ledgeHit.point - Vector3.up * 0.01f,
+                Vector3.up);
+            if (!Physics.Raycast(
+                ray,
+                collider.height))
+            {
+                Vector3 point = ledgeHit.point + Vector3.up * collider.height * 0.5f;
+                StartCoroutine(ClimbLedge(point));
+            }
+        }
+    }
+
+    IEnumerator ClimbLedge(Vector3 point)
+    {
+        collider.enabled = false;
+        rb.isKinematic = true;
+        isClimbing = true;
+        isRunning = false;
+        run = false;
+
+        float t = 0f;
+
+        while (true)
+        {
+            transform.position = Vector3.Lerp(
+                transform.position,
+                point,
+                t / ledgeClimbTime);
+
+            t += Time.fixedDeltaTime;
+            if (t > ledgeClimbTime)
+                break;
+
+            if (Vector3.Distance(transform.position, point) <= 0.05f)
+                break;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        collider.enabled = true;
+        rb.isKinematic = false;
+        isClimbing = false;
+    }
+
+    public bool IsClimbing()
+    {
+        return isClimbing;
+    }
+
+    public void Run(bool run)
+    {
+        if (isClimbing)
+            return;
+
+        this.run = run;
+    }
+
+    public bool IsRunning()
+    {
+        return isRunning;
     }
 
     public void AnimateLookLean(Vector2 look)
@@ -177,5 +280,10 @@ public class PlayerCharacterController : MonoBehaviour
         Gizmos.DrawWireSphere(
             transform.position + Vector3.down * groundCheckDistance,
             groundCheckRadius);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(
+            transform.TransformPoint(ledgeCheckPoint),
+            transform.TransformPoint(ledgeCheckPoint) - Vector3.up * ledgeCheckDistance);
     }
 }
