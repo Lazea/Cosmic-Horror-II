@@ -45,6 +45,22 @@ public class PlayerPropController : MonoBehaviour
         cc = GetComponent<PlayerCharacterController>();
     }
 
+    private void OnDisable()
+    {
+        anim.ResetTrigger("Attack");
+        anim.ResetTrigger("AttackHeavy");
+        anim.SetBool("Blocking", false);
+        anim.ResetTrigger("Block");
+        anim.ResetTrigger("Equipt");
+        anim.ResetTrigger("Throw");
+
+        anim.SetFloat("Speed", 0f);
+        anim.SetFloat("SpeedX", 0f);
+        anim.SetFloat("SpeedY", 0f);
+        anim.SetFloat("LookX", 0f);
+        anim.SetFloat("LookY", 0f);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -98,11 +114,11 @@ public class PlayerPropController : MonoBehaviour
         }
 
         equiptProp.transform.parent = GameManager.Instance.propsContainer;
-        foreach (Collider coll in equiptProp.colls)
+        foreach (Collider coll in equiptProp.Colliders)
             coll.enabled = true;
-        equiptProp.rb.isKinematic = false;
-        equiptProp.rb.interpolation = RigidbodyInterpolation.Interpolate;
-        equiptProp.rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        equiptProp.RB.isKinematic = false;
+        equiptProp.RB.interpolation = RigidbodyInterpolation.Interpolate;
+        equiptProp.RB.collisionDetectionMode = CollisionDetectionMode.Continuous;
         equiptProp.isHeld = false;
 
         equiptProp = null;
@@ -111,6 +127,9 @@ public class PlayerPropController : MonoBehaviour
 
     public void DropProp()
     {
+        if (!this.enabled)
+            return;
+
         if (cc.IsClimbing())
             return;
 
@@ -124,8 +143,8 @@ public class PlayerPropController : MonoBehaviour
 
         _prop.transform.position = propDropPoint.position;
         _prop.transform.rotation = propDropPoint.rotation;
-        _prop.rb.velocity = Vector3.zero; // _prop.transform.forward * 0.75f;
-        _prop.rb.angularVelocity = Vector3.zero;
+        _prop.RB.velocity = Vector3.zero;
+        _prop.RB.angularVelocity = Vector3.zero;
 
         anim.SetBool("Blocking", false);
     }
@@ -134,6 +153,9 @@ public class PlayerPropController : MonoBehaviour
     #region [Prop Actions]
     public void ThrowProp()
     {
+        if (!this.enabled)
+            return;
+
         if (cc.IsClimbing())
             return;
 
@@ -150,9 +172,10 @@ public class PlayerPropController : MonoBehaviour
 
         _prop.transform.position = propThrowPoint.position;
         _prop.transform.rotation = propThrowPoint.rotation;
-        float _throwForce = (_prop.rb.mass >= 6f) ? throwForce * 1.75f : throwForce;
-        _prop.rb.AddForce(_prop.transform.forward * _throwForce, ForceMode.Impulse);
-        _prop.rb.angularVelocity = _prop.transform.forward * Random.Range(-1f, 1f) * 4f;
+        _prop.RB.velocity = Vector3.zero;
+        float _throwForce = (_prop.RB.mass >= 6f) ? throwForce * 1.75f : throwForce;
+        _prop.RB.AddForce(_prop.transform.forward * _throwForce, ForceMode.Impulse);
+        _prop.RB.angularVelocity = _prop.transform.forward * Random.Range(-1f, 1f) * 4f;
 
         anim.SetTrigger("Throw");
         anim.SetBool("Blocking", false);
@@ -161,6 +184,9 @@ public class PlayerPropController : MonoBehaviour
     #region [Prop Attacking]
     public void Attack()
     {
+        if (!this.enabled)
+            return;
+
         if (cc.IsClimbing())
             return;
 
@@ -314,6 +340,9 @@ public class PlayerPropController : MonoBehaviour
 
     public void BlockStart()
     {
+        if (!this.enabled)
+            return;
+
         if (cc.IsClimbing())
             return;
 
@@ -334,6 +363,9 @@ public class PlayerPropController : MonoBehaviour
 
     public void Block()
     {
+        if (!this.enabled)
+            return;
+
         if (equiptProp == null)
             return;
 

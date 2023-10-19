@@ -228,21 +228,20 @@ public class PlayerCharacterController : MonoBehaviour
         run = false;
 
         float t = 0f;
-
+        Vector3 startPoint = transform.position;
         while (true)
         {
+            if (t > ledgeClimbTime)
+                break;
+            if (Vector3.Distance(transform.position, point) <= 0.05f)
+                break;
+
             transform.position = Vector3.Lerp(
-                transform.position,
+                startPoint,
                 point,
                 t / ledgeClimbTime);
 
             t += Time.fixedDeltaTime;
-            if (t > ledgeClimbTime)
-                break;
-
-            if (Vector3.Distance(transform.position, point) <= 0.05f)
-                break;
-
             yield return new WaitForFixedUpdate();
         }
 

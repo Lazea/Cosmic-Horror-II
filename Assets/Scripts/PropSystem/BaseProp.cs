@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BaseProp : MonoBehaviour, IDamageable
+public class BaseProp : MonoBehaviour, IProp, IDamageable
 {
     [Header("ID")]
     public int id;
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 
     // TODO: Move this later to the game settings
     [System.Serializable]
@@ -60,9 +64,11 @@ public class BaseProp : MonoBehaviour, IDamageable
 
     // Components
     [HideInInspector]
-    public Rigidbody rb;
+    Rigidbody rb;
+    public Rigidbody RB { get { return rb; } }
     [HideInInspector]
-    public Collider[] colls;
+    Collider[] colliders;
+    public Collider[] Colliders { get { return colliders; } }
 
     private void Awake()
     {
@@ -77,17 +83,11 @@ public class BaseProp : MonoBehaviour, IDamageable
         }
 
         rb = GetComponent<Rigidbody>();
-        colls = GetComponents<Collider>();
+        colliders = GetComponents<Collider>();
     }
 
     // Start is called before the first frame update
     void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
     {
         
     }

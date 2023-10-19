@@ -14,7 +14,8 @@ public class InteractableCheck : MonoBehaviour
 
     bool hasSelection;
     bool isPickingUp;
-    public BaseProp selectedProp;
+    public IProp selectedProp;
+    public IInteractable selectedInteractable;
 
     Transform cameraTransform
     {
@@ -23,16 +24,31 @@ public class InteractableCheck : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent<BaseProp> onPropPickup = new UnityEvent<BaseProp>();
+    public UnityEvent<KeyPickup> onKeyPickup = new UnityEvent<KeyPickup>();
+    public UnityEvent<HealthPickup> onHealthPickup = new UnityEvent<HealthPickup>();
+
+    // Components
+    Player player;
 
     void Awake()
     {
+        player = GetComponent<Player>();
+    }
 
+    private void OnDisable()
+    {
+        selectedProp = null;
+        selectedInteractable = null;
+        UIManager.Instance.HideInteractionPrompt();
+
+        StopCoroutine("PickupProp");
     }
 
     // Update is called once per frame
     void Update()
     {
         selectedProp = null;
+        selectedInteractable = null;
         hasSelection = false;
 
         Ray ray = new Ray(
@@ -56,18 +72,35 @@ public class InteractableCheck : MonoBehaviour
             {
                 if (hit.collider.tag == "Prop")
                 {
-                    UIManager.Instance.ShowInteractionPrompt("[E] to Pick Up");
-                    selectedProp = hit.collider.GetComponent<BaseProp>();
+                    var healthPickup = hit.collider.GetComponent<HealthPickup>();
+                    if (healthPickup != null)
+                    {
+                        if (player.IsHurt)
+                        {
+                            UIManager.Instance.ShowInteractionPrompt("[E] to Pick Up");
+                            selectedProp = hit.collider.GetComponent<IProp>();
+                        }
+                        else
+                        {
+                            UIManager.Instance.ShowInteractionPrompt("Health is Full");
+                        }
+                    }
+                    else
+                    {
+                        UIManager.Instance.ShowInteractionPrompt("[E] to Pick Up");
+                        selectedProp = hit.collider.GetComponent<IProp>();
+                    }
                     hasSelection = true;
                 }
-                else if (hit.collider.tag == "LargeProp")
-                {
-                    UIManager.Instance.ShowInteractionPrompt("Hold [E] to Move");
-                    hasSelection = true;
-                }
+                //else if (hit.collider.tag == "LargeProp")
+                //{
+                //    UIManager.Instance.ShowInteractionPrompt("Hold [E] to Move");
+                //    hasSelection = true;
+                //}
                 else if (hit.collider.tag == "Interactable")
                 {
-                    UIManager.Instance.ShowInteractionPrompt("Hold [E] to Interact");
+                    UIManager.Instance.ShowInteractionPrompt("[E] to Interact");
+                    selectedInteractable = hit.collider.GetComponent<IInteractable>();
                     hasSelection = true;
                 }
             }
@@ -79,44 +112,82 @@ public class InteractableCheck : MonoBehaviour
 
     public void Interact()
     {
+        if (!this.enabled)
+            return;
+
         if (isPickingUp)
         {
             Debug.Log("Still picking up prop");
             return;    
         }
 
-        if (selectedProp == null)
+        if(selectedInteractable != null)
         {
-            Debug.Log("Nothing to interact with");
+            Debug.Log(string.Format(
+                "Interact with {0}",
+                selectedInteractable.GetGameObject().name));
+            selectedInteractable.Interact(gameObject);
+        }
+
+        if (selectedProp != null)
+        {
+            isPickingUp = true;
+            Debug.Log(string.Format(
+                "Interact with {0}",
+                selectedProp.GetGameObject().name));
+            StartCoroutine(PickupProp(selectedProp));
             return;
         }
 
-        isPickingUp = true;
-        StartCoroutine(PickupProp(selectedProp));
-        Debug.Log(string.Format("Interact with {0}", selectedProp.name));
+        Debug.Log("Nothing to interact with");
     }
 
-    IEnumerator PickupProp(BaseProp prop)
+    IEnumerator PickupProp(IProp prop)
     {
-        foreach(Collider coll in prop.colls)
+        foreach (Collider coll in prop.Colliders)
             coll.enabled = false;
-        prop.rb.isKinematic = true;
-        prop.rb.interpolation = RigidbodyInterpolation.None;
-        prop.rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
-        prop.rb.velocity = Vector3.zero;
-        prop.rb.angularVelocity = Vector3.zero;
+        prop.RB.isKinematic = true;
+        prop.RB.interpolation = RigidbodyInterpolation.None;
+        prop.RB.collisionDetectionMode = CollisionDetectionMode.Discrete;
+        prop.RB.velocity = Vector3.zero;
+        prop.RB.angularVelocity = Vector3.zero;
 
-        while (Vector3.Distance(prop.transform.position, transform.position) >= 0.1f)
+        while (Vector3.Distance(
+            prop.GetGameObject().transform.position,
+            transform.position) >= 0.1f)
         {
-            prop.transform.position = Vector3.Lerp(
-                prop.transform.position,
+            prop.GetGameObject().transform.position = Vector3.Lerp(
+                prop.GetGameObject().transform.position,
                 transform.position,
                 25f * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 
-        onPropPickup.Invoke(prop);
-        isPickingUp = false;
+        var propGObj = prop.GetGameObject();
+
+        // Pickup Prop
+        var baseProp = propGObj.GetComponent<BaseProp>();
+        if(baseProp != null)
+        {
+            onPropPickup.Invoke(baseProp);
+            isPickingUp = false;
+        }
+
+        // Pickup Key
+        var keyPickup = propGObj.GetComponent <KeyPickup>();
+        if (keyPickup != null)
+        {
+            onKeyPickup.Invoke(keyPickup);
+            isPickingUp = false;
+        }
+
+        // Pickup Health
+        var healthPickup = propGObj.GetComponent<HealthPickup>();
+        if (healthPickup != null)
+        {
+            onHealthPickup.Invoke(healthPickup);
+            isPickingUp = false;
+        }
     }
 
     private void OnDrawGizmos()
