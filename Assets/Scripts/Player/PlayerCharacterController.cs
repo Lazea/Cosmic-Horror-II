@@ -64,6 +64,8 @@ public class PlayerCharacterController : MonoBehaviour
 
             rb.velocity = velocity;
         }
+
+        run = false;
     }
 
     bool CheckGround()
@@ -111,7 +113,7 @@ public class PlayerCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        run = false;
+
     }
 
     public void Move(Vector2 move)

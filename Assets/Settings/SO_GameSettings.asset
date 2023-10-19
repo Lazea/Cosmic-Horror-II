@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSettings:
     maxHealth: 100
-    walkSpeed: 2
-    runSpeed: 3.75
+    walkSpeed: 2.5
+    runSpeed: 4
     acceleration: 0.2
     staticPhysicsMaterial: {fileID: 13400000, guid: ec13cb239b3f0f34abe0d79cbb4f950d,
       type: 2}
     dynamicPhysicsMaterial: {fileID: 13400000, guid: 063376ae475fa5e42828765abd1a5521,
       type: 2}
   controlSettings:
-    xSensitivity: 0.75
-    ySensitivity: 0.75
+    xSensitivity: 0.3
+    ySensitivity: 0.3
     yInverted: 0
     pitchClamp: 70
