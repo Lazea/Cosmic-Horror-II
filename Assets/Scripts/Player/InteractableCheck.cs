@@ -39,7 +39,8 @@ public class InteractableCheck : MonoBehaviour
     {
         selectedProp = null;
         selectedInteractable = null;
-        UIManager.Instance.HideInteractionPrompt();
+        if(UIManager.Instance != null)
+            UIManager.Instance.HideInteractionPrompt();
 
         StopCoroutine("PickupProp");
     }
