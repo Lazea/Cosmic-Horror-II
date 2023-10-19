@@ -4238,9 +4238,9 @@ MonoBehaviour:
   isGrounded: 0
   moveAnimSmooth: 10
   lookAnimSmooth: 8
-  ledgeCheckPoint: {x: 0, y: 0.55, z: 0.6}
+  ledgeCheckPoint: {x: 0, y: 0.55, z: 0.7}
   ledgeCheckDistance: 1.1
-  ledgeClimbTime: 1.55
+  ledgeClimbTime: 0.42
 --- !u!114 &901505366
 MonoBehaviour:
   m_ObjectHideFlags: 0
