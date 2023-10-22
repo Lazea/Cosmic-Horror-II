@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [CreateAssetMenu(
     fileName="SO_GameSettings",
@@ -9,6 +10,7 @@ public class GameSettings : ScriptableObject
 {
     public PlayerSettings playerSettings;
     public ControlSettings controlSettings;
+    public AudioMixer audioMixer;
     public PropSettings propSettings;
 }
 

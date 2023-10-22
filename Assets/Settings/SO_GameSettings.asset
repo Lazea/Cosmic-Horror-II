@@ -26,6 +26,7 @@ MonoBehaviour:
     ySensitivity: 0.5
     yInverted: 0
     pitchClamp: 70
+  audioMixer: {fileID: 24100000, guid: 6f6c948c3b27f3b49b14d35e923610b2, type: 2}
   propSettings:
     AttackShortRange: 1.45
     AttackLongRange: 1.95

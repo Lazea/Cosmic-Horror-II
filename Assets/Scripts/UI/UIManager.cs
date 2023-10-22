@@ -10,7 +10,7 @@ public class UIManager : Singleton<UIManager>
     public TextMeshProUGUI interactionPromptText;
 
     [Header("Menu Panel")]
-    public GameObject menuPanel;
+    public GameObject pausePanel;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class UIManager : Singleton<UIManager>
         gameplayPanel.SetActive(true);
         interactionPromptText.gameObject.SetActive(false);
 
-        menuPanel.SetActive(false);
+        pausePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,5 +36,17 @@ public class UIManager : Singleton<UIManager>
     public void HideInteractionPrompt()
     {
         interactionPromptText.gameObject.SetActive(false);
+    }
+
+    public void ShowPausePanel()
+    {
+        gameplayPanel.SetActive(false);
+        pausePanel.SetActive(true);
+    }
+
+    public void ShowGameplayPanel()
+    {
+        pausePanel.SetActive(false);
+        gameplayPanel.SetActive(true);
     }
 }
