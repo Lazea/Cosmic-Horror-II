@@ -107,9 +107,9 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
         else
         {
             rb.AddForceAtPosition(
-            hitForce,
-            hitPoint,
-            ForceMode.Impulse);
+                hitForce,
+                hitPoint,
+                ForceMode.Impulse);
         }
 
         onPropDamaged.Invoke();
@@ -169,9 +169,9 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
         }
 
         float impactMultipier = 1f;
-        foreach (var s in propSettings.propMaterialImpactDamageMultipiers)
+        foreach (var s in propSettings.propMaterialImpactDamageMultipliers)
             if (s.propMaterial == propMaterial)
-                impactMultipier = s.multipier;
+                impactMultipier = s.multiplier;
 
         int impactDamage = (int)(propSettings.propImpactDamageCurve.Evaluate(
             impactForce) * impactMultipier);

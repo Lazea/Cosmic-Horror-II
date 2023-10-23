@@ -271,6 +271,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Editor",
+            "id": "ab320af2-8e26-4870-8bb0-cfa7fa42e3cc",
+            "actions": [
+                {
+                    "name": "ToggleCursor",
+                    "type": "Button",
+                    "id": "4e553da2-c648-4e96-ad1d-e5171450d5d5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6d22f944-e9ae-4221-a76a-c3553735a225",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleCursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

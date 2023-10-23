@@ -30,8 +30,8 @@ MonoBehaviour:
   propSettings:
     AttackShortRange: 1.45
     AttackLongRange: 1.95
-    attackLightForce: 12
-    attackHeavyForce: 18
+    attackLightForce: 24
+    attackHeavyForce: 32
     propImpactDamageCurve:
       serializedVersion: 2
       m_Curve:
@@ -65,15 +65,15 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    propMaterialImpactDamageMultipiers:
+    propMaterialImpactDamageMultipliers:
     - propMaterial: 0
-      multipier: 1.15
+      multiplier: 1.25
     - propMaterial: 1
-      multipier: 0
+      multiplier: 1
     - propMaterial: 2
-      multipier: 2
+      multiplier: 2
     - propMaterial: 3
-      multipier: 1
+      multiplier: 0
     propsDataset:
     - id: 0
       name: ShortRangeTest
@@ -83,5 +83,5 @@ MonoBehaviour:
     - id: 1
       name: LongRangeTest
       propMaterial: 0
-      durability: 5
+      durability: 10
       damage: 2

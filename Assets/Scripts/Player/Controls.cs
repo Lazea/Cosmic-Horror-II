@@ -293,6 +293,34 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Editor"",
+            ""id"": ""ab320af2-8e26-4870-8bb0-cfa7fa42e3cc"",
+            ""actions"": [
+                {
+                    ""name"": ""ToggleCursor"",
+                    ""type"": ""Button"",
+                    ""id"": ""4e553da2-c648-4e96-ad1d-e5171450d5d5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6d22f944-e9ae-4221-a76a-c3553735a225"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -311,6 +339,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // App
         m_App = asset.FindActionMap("App", throwIfNotFound: true);
         m_App_Pause = m_App.FindAction("Pause", throwIfNotFound: true);
+        // Editor
+        m_Editor = asset.FindActionMap("Editor", throwIfNotFound: true);
+        m_Editor_ToggleCursor = m_Editor.FindAction("ToggleCursor", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -524,6 +555,52 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public AppActions @App => new AppActions(this);
+
+    // Editor
+    private readonly InputActionMap m_Editor;
+    private List<IEditorActions> m_EditorActionsCallbackInterfaces = new List<IEditorActions>();
+    private readonly InputAction m_Editor_ToggleCursor;
+    public struct EditorActions
+    {
+        private @Controls m_Wrapper;
+        public EditorActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ToggleCursor => m_Wrapper.m_Editor_ToggleCursor;
+        public InputActionMap Get() { return m_Wrapper.m_Editor; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EditorActions set) { return set.Get(); }
+        public void AddCallbacks(IEditorActions instance)
+        {
+            if (instance == null || m_Wrapper.m_EditorActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_EditorActionsCallbackInterfaces.Add(instance);
+            @ToggleCursor.started += instance.OnToggleCursor;
+            @ToggleCursor.performed += instance.OnToggleCursor;
+            @ToggleCursor.canceled += instance.OnToggleCursor;
+        }
+
+        private void UnregisterCallbacks(IEditorActions instance)
+        {
+            @ToggleCursor.started -= instance.OnToggleCursor;
+            @ToggleCursor.performed -= instance.OnToggleCursor;
+            @ToggleCursor.canceled -= instance.OnToggleCursor;
+        }
+
+        public void RemoveCallbacks(IEditorActions instance)
+        {
+            if (m_Wrapper.m_EditorActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IEditorActions instance)
+        {
+            foreach (var item in m_Wrapper.m_EditorActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_EditorActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public EditorActions @Editor => new EditorActions(this);
     public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -539,5 +616,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IAppActions
     {
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IEditorActions
+    {
+        void OnToggleCursor(InputAction.CallbackContext context);
     }
 }

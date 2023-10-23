@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
 {
     public GameSettings settings;
 
+    public Player player;
     public Transform propsContainer;
 
     public bool IsPaused
@@ -15,15 +16,20 @@ public class GameManager : Singleton<GameManager>
     }
 
     [Header("Events")]
-    public SOGameEventSystem.BaseGameEvent onGamePause;
-    public SOGameEventSystem.BaseGameEvent onGameResume;
+    public BaseGameEvent onGamePause;
+    public BaseGameEvent onGameResume;
 
     // Components
     Controls.AppActions controls;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
+        base.Awake();
+
+        var _player = GameObject.Find("Player");
+        if(_player != null)
+            player = _player.GetComponent<Player>();
+
         controls = new Controls().App;
     }
 
@@ -31,11 +37,7 @@ public class GameManager : Singleton<GameManager>
     {
         controls.Pause.performed += ctx =>
         {
-            ToggleGamePause();
-            if (IsPaused)
-                onGamePause.Raise();
-            else
-                onGameResume.Raise();
+            ToggleGamePause(true);
         };
     }
 
@@ -49,12 +51,6 @@ public class GameManager : Singleton<GameManager>
         controls.Disable();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public static GameSettings Settings()
     {
         return Resources.Load<GameSettings>(
@@ -62,19 +58,31 @@ public class GameManager : Singleton<GameManager>
     }
 
     #region [Game Pause]
-    public void PauseGame()
+    public void PauseGame(bool raiseEvent)
     {
         Time.timeScale = 0f;
+        if (raiseEvent)
+            onGamePause.Raise();
     }
 
-    public void ResumeGame()
+    public void ResumeGame(bool raiseEvent)
     {
         Time.timeScale = 1f;
+        if (raiseEvent)
+            onGameResume.Raise();
     }
 
-    public void ToggleGamePause()
+    public void ToggleGamePause(bool raiseEvent)
     {
         Time.timeScale = (IsPaused) ? 1f : 0f;
+
+        if (raiseEvent)
+        {
+            if(IsPaused)
+                onGamePause.Raise();
+            else
+                onGameResume.Raise();
+        }
     }
     #endregion
 

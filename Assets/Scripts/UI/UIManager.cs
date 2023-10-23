@@ -11,42 +11,56 @@ public class UIManager : Singleton<UIManager>
 
     [Header("Menu Panel")]
     public GameObject pausePanel;
+    public GameObject menuPanel;
+    public GameObject optionsPanel;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameplayPanel.SetActive(true);
-        interactionPromptText.gameObject.SetActive(false);
-
-        pausePanel.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        if(gameplayPanel != null)
+            gameplayPanel.SetActive(true);
         
+        if(interactionPromptText != null)
+            interactionPromptText.gameObject.SetActive(false);
+
+        if(pausePanel != null)
+            pausePanel.SetActive(false);
+
+        if(menuPanel != null)
+            menuPanel.SetActive(true);
+
+        if(optionsPanel != null)
+            optionsPanel.SetActive(false);
     }
 
     public void ShowInteractionPrompt(string msg)
     {
-        interactionPromptText.text = msg;
-        interactionPromptText.gameObject.SetActive(true);
+        if (interactionPromptText != null)
+        {
+            interactionPromptText.text = msg;
+            interactionPromptText.gameObject.SetActive(true);
+        }
     }
 
     public void HideInteractionPrompt()
     {
-        interactionPromptText.gameObject.SetActive(false);
+        if(interactionPromptText != null)
+            interactionPromptText.gameObject.SetActive(false);
     }
 
     public void ShowPausePanel()
     {
         gameplayPanel.SetActive(false);
         pausePanel.SetActive(true);
+        menuPanel.SetActive(true);
+        optionsPanel.SetActive(false);
     }
 
     public void ShowGameplayPanel()
     {
         pausePanel.SetActive(false);
+        menuPanel.SetActive(true);
+        optionsPanel.SetActive(false);
         gameplayPanel.SetActive(true);
     }
 }

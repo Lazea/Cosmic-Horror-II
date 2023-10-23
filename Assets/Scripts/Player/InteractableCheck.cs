@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using SOGameEventSystem;
+using UnityEngine.SceneManagement;
 using SOGameEventSystem.Events;
 
 public class InteractableCheck : MonoBehaviour
@@ -18,6 +18,7 @@ public class InteractableCheck : MonoBehaviour
     bool isPickingUp;
     public IProp selectedProp;
     public IInteractable selectedInteractable;
+    bool quitting;
 
     Transform cameraTransform
     {
@@ -40,12 +41,20 @@ public class InteractableCheck : MonoBehaviour
 
     private void OnDisable()
     {
+        StopCoroutine("PickupProp");
+
+        if (quitting)
+            return;
+
         selectedProp = null;
         selectedInteractable = null;
         if(UIManager.Instance != null)
             UIManager.Instance.HideInteractionPrompt();
+    }
 
-        StopCoroutine("PickupProp");
+    private void OnApplicationQuit()
+    {
+        quitting = true;
     }
 
     // Update is called once per frame

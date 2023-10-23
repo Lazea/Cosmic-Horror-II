@@ -51,13 +51,13 @@ public struct PropSettings
     public float attackHeavyForce;
     public AnimationCurve propImpactDamageCurve;
     [System.Serializable]
-    public struct PropMaterialImpactDamageMultipier
+    public struct PropMaterialImpactDamageMultiplier
     {
         public PropMaterial propMaterial;
         [Range(1f, 2f)]
-        public float multipier;
+        public float multiplier;
     }
-    public PropMaterialImpactDamageMultipier[] propMaterialImpactDamageMultipiers;
+    public PropMaterialImpactDamageMultiplier[] propMaterialImpactDamageMultipliers;
 
     [Header("Props Dataset")]
     public PropData[] propsDataset;

@@ -6,10 +6,16 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    public int health;
+    [SerializeField]
+    int health;
+    public int Health { get { return health; } }
     public bool IsHurt
     {
         get { return (health < GameManager.Instance.settings.playerSettings.maxHealth); }
+    }
+    public bool IsDead
+    {
+        get { return health <= 0; }
     }
 
     [Header("Events")]

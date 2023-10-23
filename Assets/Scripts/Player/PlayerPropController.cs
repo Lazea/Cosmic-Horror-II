@@ -318,6 +318,13 @@ public class PlayerPropController : MonoBehaviour
                     hit.point,
                     gameObject);
             }
+            else if(hit.collider.attachedRigidbody != null)
+            {
+                hit.collider.attachedRigidbody.AddForceAtPosition(
+                    attackForce,
+                    hit.point,
+                    ForceMode.Impulse);
+            }
 
             Debug.Log(
                 string.Format("Player Attack hit {0} with {1} damage and {2}:{3} force",
