@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -8,10 +11,36 @@ using UnityEngine.Audio;
     menuName="Scriptable Objects/Game Settings")]
 public class GameSettings : ScriptableObject
 {
+    [Header("Player")]
     public PlayerSettings playerSettings;
+
+    [Header("Controls")]
     public ControlSettings controlSettings;
+
+    [Header("Audio")]
     public AudioMixer audioMixer;
+
+    [Header("Props")]
     public PropSettings propSettings;
+    public TextAsset csvAsset;
+    [ContextMenu("Parse CSV")]
+    public void ParseCSV()
+    {
+        propSettings.propsDataset = CSVSerializer.Deserialize<PropData>(csvAsset.text);
+        for (int i = 0; i < propSettings.propsDataset.Length; i++)
+        {
+            propSettings.propsDataset[i].id = i;
+        }
+
+        // TODO: Map prefabs to database items
+        //string[] guids = AssetDatabase.FindAssets("t:Prefab", new[] {"Assets/Prefabs/Props"});
+        //foreach (var guid in guids)
+        //{
+        //    var path = AssetDatabase.GUIDToAssetPath(guid);
+        //    GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            
+        //}
+    }
 }
 
 [System.Serializable]
