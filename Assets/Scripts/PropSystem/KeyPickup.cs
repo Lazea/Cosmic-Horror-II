@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class KeyPickup : MonoBehaviour, IProp
 {
+    public int keyID;
+
     Rigidbody rb;
     public Rigidbody RB { get { return rb; } }
 
@@ -20,11 +22,5 @@ public class KeyPickup : MonoBehaviour, IProp
     {
         rb = GetComponent<Rigidbody>();
         colliders = GetComponents<Collider>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

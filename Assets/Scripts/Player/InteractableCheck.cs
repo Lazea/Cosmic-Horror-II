@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using SOGameEventSystem;
+using SOGameEventSystem.Events;
 
 public class InteractableCheck : MonoBehaviour
 {
@@ -24,7 +26,8 @@ public class InteractableCheck : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent<BaseProp> onPropPickup = new UnityEvent<BaseProp>();
-    public UnityEvent<KeyPickup> onKeyPickup = new UnityEvent<KeyPickup>();
+    public IntGameEvent KeyPickup;
+    public UnityEvent onKeyPickup = new UnityEvent();
     public UnityEvent<HealthPickup> onHealthPickup = new UnityEvent<HealthPickup>();
 
     // Components
@@ -178,8 +181,11 @@ public class InteractableCheck : MonoBehaviour
         var keyPickup = propGObj.GetComponent <KeyPickup>();
         if (keyPickup != null)
         {
-            onKeyPickup.Invoke(keyPickup);
+            KeyPickup.Raise(keyPickup.keyID);
+            onKeyPickup.Invoke();
             isPickingUp = false;
+
+            Destroy(keyPickup.gameObject);
         }
 
         // Pickup Health
