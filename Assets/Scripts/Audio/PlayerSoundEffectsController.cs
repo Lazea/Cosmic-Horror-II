@@ -144,7 +144,7 @@ public class PlayerSoundEffectsController : MonoBehaviour
     Material GetGroundMaterial()
     {
         var hit = pc.GroundHitGround;
-        if (hit.collider != null)
+        if (hit.collider != null && hit.collider.tag != "Terrain")
         {
             return hit.collider.GetComponent<MeshRenderer>().
                 sharedMaterial;

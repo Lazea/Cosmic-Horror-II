@@ -60,10 +60,14 @@ public class MusicManager : MonoBehaviour
     {
         HandleFadeInMainMusic(100f);
 
-        IndoorReverbZone.enabled = false;
-        OutdoorReverbZone.enabled = true;
-        BasementReverbZone.enabled = false;
-        TunnelReverbZone.enabled = false;
+        if (IndoorReverbZone != null)
+            IndoorReverbZone.enabled = false;
+        if (OutdoorReverbZone != null)
+            OutdoorReverbZone.enabled = true;
+        if (BasementReverbZone != null)
+            BasementReverbZone.enabled = false;
+        if (TunnelReverbZone != null)
+            TunnelReverbZone.enabled = false;
         
         layer1AudioSource.volume = 0f;
         layer2AudioSource.volume = 0f;
