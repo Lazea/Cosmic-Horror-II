@@ -37,13 +37,11 @@ public class PlayerSoundEffectsController : MonoBehaviour
 
     public void PlayWalkFootstep()
     {
-        Debug.Log("Walk Step");
         PlayFootstep(true);
     }
 
     public void PlayRunFootstep()
     {
-        Debug.Log("Run Step");
         PlayFootstep(false);
     }
 
