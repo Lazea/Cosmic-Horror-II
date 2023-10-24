@@ -11,13 +11,15 @@ public class PlayerPropController : MonoBehaviour
 
     [Header("Prop")]
     public BaseProp equiptProp;
-    public Collider propHoldingCollider;
+    public Collider propHoldingColliderLarge;
+    public Collider propHoldingColliderSmall;
 
     [Header("Points")]
     public Transform playerHandOneHandedProps;
     public Transform playerHandTwoHandedProps;
     public Transform playerHandMediumProps;
-    public Transform propDropPoint;
+    public Transform largePropDropPoint;
+    public Transform smallPropDropPoint;
     public Transform propThrowPoint;
 
     [Header("Attacking")]
@@ -43,6 +45,8 @@ public class PlayerPropController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         cc = GetComponent<PlayerCharacterController>();
+
+        EnablePropHoldingCollider(false);
     }
 
     private void OnDisable()
@@ -73,7 +77,35 @@ public class PlayerPropController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        propHoldingCollider.enabled = (equiptProp != null);
+        EnablePropHoldingCollider(equiptProp != null);
+    }
+
+    void EnablePropHoldingCollider(bool enable)
+    {
+        if(enable)
+        {
+            if (equiptProp != null)
+            {
+                switch (equiptProp.propType)
+                {
+                    case PropType.Medium:
+                        propHoldingColliderLarge.enabled = true;
+                        propHoldingColliderSmall.enabled = false;
+                        return;
+                    case PropType.Heavy:
+                        propHoldingColliderLarge.enabled = true;
+                        propHoldingColliderSmall.enabled = false;
+                        return;
+                    default:
+                        propHoldingColliderLarge.enabled = false;
+                        propHoldingColliderSmall.enabled = true;
+                        return;
+                }
+            }
+        }
+
+        propHoldingColliderLarge.enabled = false;
+        propHoldingColliderSmall.enabled = false;
     }
 
     #region [Equipt and Drop]
@@ -104,7 +136,7 @@ public class PlayerPropController : MonoBehaviour
         prop.isHeld = true;
 
         equiptProp = prop;
-        propHoldingCollider.enabled = true;
+        EnablePropHoldingCollider(true);
 
         anim.SetTrigger("Equipt");
         anim.SetBool("Blocking", false);
@@ -118,7 +150,7 @@ public class PlayerPropController : MonoBehaviour
             return false;
         }
 
-        propHoldingCollider.enabled = false;
+        EnablePropHoldingCollider(false);
 
         equiptProp.transform.parent = GameManager.Instance.propsContainer;
         foreach (Collider coll in equiptProp.Colliders)
@@ -148,8 +180,16 @@ public class PlayerPropController : MonoBehaviour
 
         Debug.Log(string.Format("Drop {0}", _prop.name));
 
-        _prop.transform.position = propDropPoint.position;
-        _prop.transform.rotation = propDropPoint.rotation;
+        if(_prop.propType == PropType.Medium || _prop.propType == PropType.Heavy)
+        {
+            _prop.transform.position = largePropDropPoint.position;
+            _prop.transform.rotation = largePropDropPoint.rotation;
+        }
+        else
+        {
+            _prop.transform.position = smallPropDropPoint.position;
+            _prop.transform.rotation = smallPropDropPoint.rotation;
+        }
         _prop.RB.velocity = Vector3.zero;
         _prop.RB.angularVelocity = Vector3.zero;
 

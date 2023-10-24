@@ -9,7 +9,9 @@ public class InteractableCheck : MonoBehaviour
 {
     [Header("Interactables Stats")]
     public float checkRadius;
+    public AnimationCurve checkDistanceCurve;
     public float checkDistance;
+    float _checkDistance;
     public LayerMask mask;
     public LayerMask coverMask;
     RaycastHit hit;
@@ -64,6 +66,9 @@ public class InteractableCheck : MonoBehaviour
         selectedInteractable = null;
         hasSelection = false;
 
+        float angle = Vector3.Angle(Vector3.up, Camera.main.transform.forward);
+        _checkDistance = checkDistanceCurve.Evaluate(angle);
+        _checkDistance *= checkDistance;
         Ray ray = new Ray(
             cameraTransform.position,
             cameraTransform.forward);
@@ -71,7 +76,7 @@ public class InteractableCheck : MonoBehaviour
             ray,
             checkRadius,
             out hit,
-            checkDistance,
+            _checkDistance,
             mask))
         {
             Vector3 hitDisp = hit.point - cameraTransform.position;
@@ -209,14 +214,18 @@ public class InteractableCheck : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = (hit.collider != null) ? Color.green : Color.red;
+
+        float distance = checkDistance;
+        if (Application.isPlaying)
+            distance = _checkDistance;
         Gizmos.DrawWireSphere(
             cameraTransform.position,
             checkRadius);
         Gizmos.DrawWireSphere(
-            cameraTransform.position + cameraTransform.forward * checkDistance,
+            cameraTransform.position + cameraTransform.forward * distance,
             checkRadius);
         Gizmos.DrawLine(
             cameraTransform.position,
-            cameraTransform.position + cameraTransform.forward * checkDistance);
+            cameraTransform.position + cameraTransform.forward * distance);
     }
 }

@@ -33,6 +33,61 @@ Transform:
   - {fileID: 9048699255310195384}
   m_Father: {fileID: 8771815507386556120}
   m_LocalEulerAnglesHint: {x: 6.693, y: -7.673, z: -31.415}
+--- !u!1 &354191562250412028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 207262371474056706}
+  - component: {fileID: 973589667317666647}
+  m_Layer: 12
+  m_Name: PropHoldingCollider_Small
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &207262371474056706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354191562250412028}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.171, z: 0.692}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3499191936500034792}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &973589667317666647
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354191562250412028}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.16639996
+  m_Height: 0.7053552
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.0574086, z: -0.20390272}
 --- !u!1 &496290009733234783
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +579,37 @@ AudioLowPassFilter:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2152855685816817179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4365713940223588357}
+  m_Layer: 3
+  m_Name: SmallPropDropPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4365713940223588357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2152855685816817179}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.32, z: 0.507}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3499191936500034792}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2578121573109916816
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1471812906633963574}
   m_Layer: 3
-  m_Name: PropDropPoint
+  m_Name: LargePropDropPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -549,7 +635,7 @@ Transform:
   m_GameObject: {fileID: 2578121573109916816}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0.875}
+  m_LocalPosition: {x: 0, y: 0.32, z: 0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -694,7 +780,9 @@ Transform:
   m_Children:
   - {fileID: 3053830337107895733}
   - {fileID: 1471812906633963574}
+  - {fileID: 4365713940223588357}
   - {fileID: 2781513810161066479}
+  - {fileID: 207262371474056706}
   - {fileID: 7179231081025877335}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1087,6 +1175,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkRadius: 0.125
+  checkDistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.35
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 40
+      value: 0.35
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 88
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.5004352
+      outWeight: 0.4516971
+    - serializedVersion: 3
+      time: 94
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   checkDistance: 1.65
   mask:
     serializedVersion: 2
@@ -1145,11 +1275,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   equiptProp: {fileID: 0}
-  propHoldingCollider: {fileID: 3870776104378046049}
+  propHoldingColliderLarge: {fileID: 3870776104378046049}
+  propHoldingColliderSmall: {fileID: 973589667317666647}
   playerHandOneHandedProps: {fileID: 4853654980054441168}
   playerHandTwoHandedProps: {fileID: 4944342678606141338}
   playerHandMediumProps: {fileID: 553188620640135328}
-  propDropPoint: {fileID: 1471812906633963574}
+  largePropDropPoint: {fileID: 1471812906633963574}
+  smallPropDropPoint: {fileID: 4365713940223588357}
   propThrowPoint: {fileID: 7509364570484567854}
   attackMask:
     serializedVersion: 2
@@ -1478,7 +1610,7 @@ GameObject:
   - component: {fileID: 2781513810161066479}
   - component: {fileID: 3870776104378046049}
   m_Layer: 12
-  m_Name: PropHoldingCollider
+  m_Name: PropHoldingCollider_Large
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1518,10 +1650,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
-  m_Height: 1.08
+  m_Radius: 0.3188324
+  m_Height: 0.86224234
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.03167373, z: -0.047511578}
 --- !u!1 &9211570464545701629
 GameObject:
   m_ObjectHideFlags: 0
