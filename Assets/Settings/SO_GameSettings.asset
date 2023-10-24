@@ -76,28 +76,303 @@ MonoBehaviour:
       multiplier: 0
     propsDataset:
     - id: 0
-      name: Sledge Hammer
+      name: Axe
       propMaterial: 1
       durability: 10
-      damage: 5
-    - id: 1
-      name: Scythe
-      propMaterial: 1
-      durability: 8
       damage: 4
-    - id: 2
-      name: Stick
+    - id: 1
+      name: Barrel
       propMaterial: 0
-      durability: 4
+      durability: 8
+      damage: 3
+    - id: 2
+      name: BeerBottle
+      propMaterial: 2
+      durability: 3
       damage: 2
     - id: 3
+      name: Book.1
+      propMaterial: 3
+      durability: 8
+      damage: 1
+    - id: 4
+      name: Book.2
+      propMaterial: 3
+      durability: 8
+      damage: 1
+    - id: 5
+      name: BookShelf
+      propMaterial: 0
+      durability: 8
+      damage: 4
+    - id: 6
+      name: Bowl
+      propMaterial: 2
+      durability: 3
+      damage: 1
+    - id: 7
+      name: Brick
+      propMaterial: 3
+      durability: 5
+      damage: 3
+    - id: 8
+      name: Broom
+      propMaterial: 0
+      durability: 4
+      damage: 1
+    - id: 9
+      name: Bucket
+      propMaterial: 1
+      durability: 10
+      damage: 2
+    - id: 10
+      name: ButcherKnife
+      propMaterial: 1
+      durability: 10
+      damage: 4
+    - id: 11
+      name: CardboardBox
+      propMaterial: 3
+      durability: 1
+      damage: 1
+    - id: 12
+      name: Chair
+      propMaterial: 0
+      durability: 8
+      damage: 3
+    - id: 13
+      name: CookingPot.1
+      propMaterial: 1
+      durability: 10
+      damage: 3
+    - id: 14
+      name: CookingPot.2
+      propMaterial: 1
+      durability: 10
+      damage: 3
+    - id: 15
+      name: Crowbar
+      propMaterial: 1
+      durability: 10
+      damage: 4
+    - id: 16
+      name: DeskClock
+      propMaterial: 3
+      durability: 2
+      damage: 1
+    - id: 17
+      name: FishingRod
+      propMaterial: 3
+      durability: 2
+      damage: 1
+    - id: 18
+      name: FoodCan
+      propMaterial: 1
+      durability: 4
+      damage: 1
+    - id: 19
+      name: FryingPan
+      propMaterial: 1
+      durability: 10
+      damage: 3
+    - id: 20
       name: Glass
       propMaterial: 2
       durability: 2
-      damage: 3
-    - id: 4
-      name: Fishing Rod
-      propMaterial: 3
-      durability: 5
       damage: 1
+    - id: 21
+      name: Globe
+      propMaterial: 3
+      durability: 4
+      damage: 1
+    - id: 22
+      name: Hammer
+      propMaterial: 1
+      durability: 10
+      damage: 3
+    - id: 23
+      name: Hoe
+      propMaterial: 1
+      durability: 7
+      damage: 3
+    - id: 24
+      name: Jar
+      propMaterial: 2
+      durability: 3
+      damage: 1
+    - id: 25
+      name: Kettle
+      propMaterial: 1
+      durability: 10
+      damage: 3
+    - id: 26
+      name: KitchenKnife
+      propMaterial: 1
+      durability: 10
+      damage: 4
+    - id: 27
+      name: Mop
+      propMaterial: 0
+      durability: 4
+      damage: 1
+    - id: 28
+      name: Mug
+      propMaterial: 2
+      durability: 2
+      damage: 1
+    - id: 29
+      name: PictureFrame.1
+      propMaterial: 0
+      durability: 3
+      damage: 1
+    - id: 30
+      name: PictureFrame.2
+      propMaterial: 0
+      durability: 3
+      damage: 1
+    - id: 31
+      name: PictureFrame.3
+      propMaterial: 0
+      durability: 3
+      damage: 1
+    - id: 32
+      name: Pipe
+      propMaterial: 1
+      durability: 10
+      damage: 4
+    - id: 33
+      name: Pitchfork
+      propMaterial: 1
+      durability: 7
+      damage: 4
+    - id: 34
+      name: PlantPot.1
+      propMaterial: 2
+      durability: 1
+      damage: 3
+    - id: 35
+      name: Plate
+      propMaterial: 2
+      durability: 2
+      damage: 1
+    - id: 36
+      name: Saw
+      propMaterial: 1
+      durability: 8
+      damage: 4
+    - id: 37
+      name: Screwdriver
+      propMaterial: 1
+      durability: 5
+      damage: 2
+    - id: 38
+      name: Scythe
+      propMaterial: 1
+      durability: 15
+      damage: 5
+    - id: 39
+      name: Shovel
+      propMaterial: 1
+      durability: 10
+      damage: 3
+    - id: 40
+      name: Sickle
+      propMaterial: 1
+      durability: 10
+      damage: 4
+    - id: 41
+      name: SledgeHammer
+      propMaterial: 1
+      durability: 15
+      damage: 5
+    - id: 42
+      name: Stool
+      propMaterial: 0
+      durability: 7
+      damage: 3
+    - id: 43
+      name: Table
+      propMaterial: 0
+      durability: 8
+      damage: 4
+    - id: 44
+      name: TableLamp
+      propMaterial: 2
+      durability: 2
+      damage: 2
+    - id: 45
+      name: TallLamp
+      propMaterial: 1
+      durability: 5
+      damage: 2
+    - id: 46
+      name: Toolbox
+      propMaterial: 1
+      durability: 10
+      damage: 3
+    - id: 47
+      name: Tray
+      propMaterial: 1
+      durability: 4
+      damage: 2
+    - id: 48
+      name: TreeBranch
+      propMaterial: 0
+      durability: 2
+      damage: 1
+    - id: 49
+      name: Vase
+      propMaterial: 2
+      durability: 1
+      damage: 3
+    - id: 50
+      name: Vase.2
+      propMaterial: 2
+      durability: 1
+      damage: 3
+    - id: 51
+      name: WaterCan
+      propMaterial: 1
+      durability: 6
+      damage: 2
+    - id: 52
+      name: Wheel
+      propMaterial: 3
+      durability: 10
+      damage: 2
+    - id: 53
+      name: WineBottle
+      propMaterial: 2
+      durability: 3
+      damage: 3
+    - id: 54
+      name: WineGlass
+      propMaterial: 2
+      durability: 1
+      damage: 1
+    - id: 55
+      name: WoodCrate.1
+      propMaterial: 0
+      durability: 6
+      damage: 3
+    - id: 56
+      name: WoodCrate.2
+      propMaterial: 0
+      durability: 6
+      damage: 3
+    - id: 57
+      name: WoodPlank
+      propMaterial: 0
+      durability: 4
+      damage: 3
+    - id: 58
+      name: Woodplank.Short
+      propMaterial: 0
+      durability: 5
+      damage: 2
+    - id: 59
+      name: Wrench
+      propMaterial: 1
+      durability: 10
+      damage: 3
   csvAsset: {fileID: 4900000, guid: 47a9a23b9207693478158f2c11a7daad, type: 3}
