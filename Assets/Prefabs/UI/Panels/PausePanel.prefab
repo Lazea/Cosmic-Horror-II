@@ -623,6 +623,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5660185888324660669}
     m_Modifications:
+    - target: {fileID: 1157597792076912759, guid: f828479ef81516647a7b7d413d3b1d52,
+        type: 3}
+      propertyPath: clickClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 82d90b86c62c24d4f9f9d41303827715, type: 3}
     - target: {fileID: 2416274770217959726, guid: f828479ef81516647a7b7d413d3b1d52,
         type: 3}
       propertyPath: m_Pivot.x
@@ -906,6 +911,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2960316437519930298, guid: 4ababd9d7990ed343bb35aad846dc6ab,
+        type: 3}
+      propertyPath: clickClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 82d90b86c62c24d4f9f9d41303827715, type: 3}
     - target: {fileID: 3005413652539112965, guid: 4ababd9d7990ed343bb35aad846dc6ab,
         type: 3}
       propertyPath: m_AnchorMax.y

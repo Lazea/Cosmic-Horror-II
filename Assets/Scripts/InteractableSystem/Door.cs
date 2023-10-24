@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField]
     bool locked;
+    [SerializeField]
     bool justUnlocked;
     public bool Locked { get { return locked; } }
     public int keyID;
@@ -14,6 +15,7 @@ public class Door : MonoBehaviour
     [Header("Joint")]
     public HingeJoint joint;
     float previousAngle = 0f;
+    [SerializeField]
     float delta;
 
     [Header("Events")]
@@ -37,18 +39,18 @@ public class Door : MonoBehaviour
         delta = Mathf.Abs(joint.angle - previousAngle) / Time.fixedDeltaTime;
         previousAngle = joint.angle;
 
-        if (locked && delta > 0.85f)
-        {
-            onDoorLocked.Invoke();
-        }
-        else if(!locked && delta > 35f)
-        {
-            onDoorSwing.Invoke();
-        }
-        else if(justUnlocked && delta > 0.85f)
+        if (justUnlocked && delta > 6f)
         {
             onDoorUnlocked.Invoke();
             justUnlocked = false;
+        }
+        else if (!locked && delta > 35f)
+        {
+            onDoorSwing.Invoke();
+        }
+        else if (locked && delta > 0.8f)
+        {
+            onDoorLocked.Invoke();
         }
     }
 

@@ -8,6 +8,7 @@ TagManager:
   - Prop
   - LargeProp
   - Interactable
+  - Music
   layers:
   - Default
   - TransparentFX

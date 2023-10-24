@@ -32,7 +32,7 @@ public class UIAudioSlider : MonoBehaviour
 
         float value = 0f;
         audioMixer.GetFloat(GetMixerName(), out value);
-        SetSliderValue(GameManager.GetVolume(value));
+        SetSliderValue(value);
     }
 
     public string GetMixerName()
@@ -58,10 +58,6 @@ public class UIAudioSlider : MonoBehaviour
     public void UpdateMixerGroupVolume(float value)
     {
         var audioMixer = GameManager.Instance.settings.audioMixer;
-        value = GameManager.GetNormalizedVolume(value);
-        if (slider.value != value)
-        {
-            audioMixer.SetFloat(GetMixerName(), value);
-        }
+        audioMixer.SetFloat(GetMixerName(), value);
     }
 }

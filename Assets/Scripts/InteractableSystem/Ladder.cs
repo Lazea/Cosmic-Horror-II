@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Playables;
+using UnityEngine.Events;
 
 public class Ladder : MonoBehaviour, IInteractable
 {
@@ -11,12 +11,19 @@ public class Ladder : MonoBehaviour, IInteractable
     [Header("Movement Stats")]
     public float climbSpeed;
     public float mountTime;
+    bool isMoving;
 
     [Header("Mount Points")]
     public Transform topMountPoint;
     public Transform bottomMountPoint;
     public Transform topDismountPoint;
     public Transform bottomDismountPoint;
+
+    [Header("Events")]
+    public UnityEvent onMount;
+    public UnityEvent onDismount;
+    public UnityEvent onMove;
+    public UnityEvent onStop;
 
     public GameObject GetGameObject()
     {
@@ -55,11 +62,24 @@ public class Ladder : MonoBehaviour, IInteractable
         Vector3 actorPoint = actor.transform.position;
         actorPoint += Vector3.down * coll.height * 0.5f;
 
+        if(velocity.magnitude > 0.2f && !isMoving)
+        {
+            isMoving = true;
+            onMove.Invoke();
+        }
+        else if(velocity.magnitude <= 0.2f && isMoving)
+        {
+            isMoving = false;
+            onStop.Invoke();
+        }
+
         if(actorPoint.y > topMountPoint.position.y)
         {
             Vector3 dismountPoint = topDismountPoint.position;
             dismountPoint += Vector3.up * coll.height * 0.5f;
             StartCoroutine(DismountActorFromLadder(dismountPoint, actor));
+            isMoving = false;
+            onDismount.Invoke();
             actor = null;
         }
         if(actorPoint.y < bottomMountPoint.position.y)
@@ -67,6 +87,8 @@ public class Ladder : MonoBehaviour, IInteractable
             Vector3 dismountPoint = bottomDismountPoint.position;
             dismountPoint += Vector3.up * coll.height * 0.5f;
             StartCoroutine(DismountActorFromLadder(dismountPoint, actor));
+            isMoving = false;
+            onDismount.Invoke();
             actor = null;
         }
     }
@@ -100,6 +122,7 @@ public class Ladder : MonoBehaviour, IInteractable
         mountPoint += Vector3.up * coll.height * 0.5f;
         this.actor = actor;
         StartCoroutine(MountActorToLadder(mountPoint, actor));
+        onMount.Invoke();
     }
 
     IEnumerator MountActorToLadder(Vector3 mountPoint, GameObject actor)

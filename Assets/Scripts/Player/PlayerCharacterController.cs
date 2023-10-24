@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerCharacterController : MonoBehaviour
 {
@@ -25,8 +26,13 @@ public class PlayerCharacterController : MonoBehaviour
     public float groundCheckDistance = 0.55f;
     public LayerMask groundMask;
     RaycastHit groundHit;
+    public RaycastHit GroundHitGround
+    {
+        get { return groundHit; }
+    }
     [SerializeField]
     bool isGrounded;
+    public UnityEvent onGroundLanding;
 
     [Header("Animation Smoothing")]
     public float moveAnimSmooth;
@@ -36,6 +42,7 @@ public class PlayerCharacterController : MonoBehaviour
     public Vector3 ledgeCheckPoint;
     public float ledgeCheckDistance;
     public float ledgeClimbTime;
+    public UnityEvent onLedgeClimb;
 
     // Components
     PlayerSettings playerSettings
@@ -60,7 +67,13 @@ public class PlayerCharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = CheckGround();
+        bool _isGrounded = CheckGround();
+        if (_isGrounded != isGrounded)
+        {
+            if (_isGrounded)
+                onGroundLanding.Invoke();
+            isGrounded = _isGrounded;
+        }
 
         UpdatePhysicsMaterial();
 
@@ -215,6 +228,7 @@ public class PlayerCharacterController : MonoBehaviour
             {
                 Vector3 point = ledgeHit.point + Vector3.up * collider.height * 0.5f;
                 StartCoroutine(ClimbLedge(point));
+                onLedgeClimb.Invoke();
             }
         }
     }

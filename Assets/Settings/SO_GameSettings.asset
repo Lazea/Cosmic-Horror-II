@@ -22,8 +22,8 @@ MonoBehaviour:
     dynamicPhysicsMaterial: {fileID: 13400000, guid: 063376ae475fa5e42828765abd1a5521,
       type: 2}
   controlSettings:
-    xSensitivity: 0.5
-    ySensitivity: 0.5
+    xSensitivity: 0.35
+    ySensitivity: 0.35
     yInverted: 0
     pitchClamp: 70
   audioMixer: {fileID: 24100000, guid: 6f6c948c3b27f3b49b14d35e923610b2, type: 2}
