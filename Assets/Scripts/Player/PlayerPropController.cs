@@ -89,13 +89,13 @@ public class PlayerPropController : MonoBehaviour
 
         switch (prop.propType)
         {
-            case BaseProp.PropType.OneHanded:
+            case PropType.OneHanded:
                 prop.transform.parent = playerHandOneHandedProps;
                 break;
-            case BaseProp.PropType.TwoHanded:
+            case PropType.TwoHanded:
                 prop.transform.parent = playerHandTwoHandedProps;
                 break;
-            case BaseProp.PropType.Medium:
+            case PropType.Medium:
                 prop.transform.parent = playerHandMediumProps;
                 break;
         }
@@ -222,7 +222,7 @@ public class PlayerPropController : MonoBehaviour
 
         if (canAttack)
         {
-            if (equiptProp.propType == BaseProp.PropType.Medium)
+            if (equiptProp.propType == PropType.Medium)
                 anim.SetTrigger("AttackHeavy");
             else
                 anim.SetTrigger("Attack");

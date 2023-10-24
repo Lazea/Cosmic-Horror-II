@@ -6,6 +6,9 @@ using UnityEngine.Events;
 public class Damageable : MonoBehaviour, IDamageable
 {
     public int durability;
+    public PropType propType;
+    public PropMaterial propMaterial;
+    public PropWeight propWeight;
 
     [Header("Effects")]
     public GameObject damageEffect;

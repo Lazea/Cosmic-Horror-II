@@ -12,15 +12,9 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
         return gameObject;
     }
 
-    // TODO: Move this later to the game settings
-    [System.Serializable]
-    public enum PropType
-    {
-        OneHanded,
-        TwoHanded,
-        Medium,
-    }
     public PropType propType;
+    public PropWeight propWeight;
+
 
     // TODO: Move this later to the game settings
     [System.Serializable]

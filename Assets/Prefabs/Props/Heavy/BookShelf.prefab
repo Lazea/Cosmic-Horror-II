@@ -107,9 +107,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d51fcc0cfa3ab46bc39e1216e6ebe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 15
+  durability: 8
+  material: 1
   damageEffect: {fileID: 0}
   destroyEffect: {fileID: 0}
+  onPropImpact:
+    m_PersistentCalls:
+      m_Calls: []
   onPropDamaged:
     m_PersistentCalls:
       m_Calls: []

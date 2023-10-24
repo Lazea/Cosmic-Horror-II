@@ -33,13 +33,35 @@ public class GameSettings : ScriptableObject
         }
 
         // TODO: Map prefabs to database items
-        //string[] guids = AssetDatabase.FindAssets("t:Prefab", new[] {"Assets/Prefabs/Props"});
-        //foreach (var guid in guids)
-        //{
-        //    var path = AssetDatabase.GUIDToAssetPath(guid);
-        //    GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        string[] guids = AssetDatabase.FindAssets(
+            "t:Prefab",
+            new[] { "Assets/Prefabs/Props" });
+        foreach (var guid in guids)
+        {
+            var path = AssetDatabase.GUIDToAssetPath(guid);
+            GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
 
-        //}
+            foreach(var prop in propSettings.propsDataset)
+            {
+                if(prop.name == go.name)
+                {
+                    var baseProp = go.GetComponent<BaseProp>();
+                    if (baseProp != null)
+                    {
+                        baseProp.id = prop.id;
+                    }
+
+                    var damageable = go.GetComponent<Damageable>();
+                    if(damageable != null)
+                    {
+                        damageable.durability = prop.durability;
+                        damageable.propMaterial = prop.propMaterial;
+                        damageable.propType = prop.propType;
+                        damageable.propWeight = prop.propWeight;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -99,6 +121,8 @@ public struct PropData
     public int id;
     public string name;
     public PropMaterial propMaterial;
+    public PropType propType;
+    public PropWeight propWeight;
 
     [Header("Stats")]
     public int durability;
@@ -111,4 +135,18 @@ public enum PropMaterial
     Metal,
     Glass,
     Other
+}
+
+public enum PropWeight
+{
+    Light,
+    Heavy
+}
+
+public enum PropType
+{
+    OneHanded,
+    TwoHanded,
+    Medium,
+    Heavy
 }
