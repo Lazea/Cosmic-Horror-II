@@ -12,16 +12,9 @@ public class NPCsManager : Singleton<NPCsManager>
     [SerializeField]
     WaypointManager[] waypointManagers;
 
-    // Start is called before the first frame update
     void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Awake();
     }
 
     #region [NavMesh Positioning]

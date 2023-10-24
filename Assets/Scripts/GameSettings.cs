@@ -7,8 +7,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 [CreateAssetMenu(
-    fileName="SO_GameSettings",
-    menuName="Scriptable Objects/Game Settings")]
+    fileName = "SO_GameSettings",
+    menuName = "Scriptable Objects/Game Settings")]
 public class GameSettings : ScriptableObject
 {
     [Header("Player")]
@@ -38,7 +38,7 @@ public class GameSettings : ScriptableObject
         //{
         //    var path = AssetDatabase.GUIDToAssetPath(guid);
         //    GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            
+
         //}
     }
 }

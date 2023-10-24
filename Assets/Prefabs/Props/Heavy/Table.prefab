@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2632771608455557598}
   - component: {fileID: 5201069791470882175}
   - component: {fileID: 5988528444182260120}
+  - component: {fileID: 2120606991555846842}
   - component: {fileID: 1517634028535256880}
   - component: {fileID: 4521626459793733543}
   - component: {fileID: 1667606456936155391}
@@ -90,6 +91,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2120606991555846842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4694766301456250774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d51fcc0cfa3ab46bc39e1216e6ebe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  durability: 12
+  damageEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  onPropDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPropDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!208 &1517634028535256880
 NavMeshObstacle:
   m_ObjectHideFlags: 0

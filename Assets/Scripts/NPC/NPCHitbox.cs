@@ -13,14 +13,14 @@ public class NPCHitbox : MonoBehaviour, IDamageable
     }
     public HitboxType type;
 
-    public NPC npc;
+    public NPCBehavior npc;
 
     Rigidbody rb;
 
     private void Awake()
     {
         if(npc == null)
-            npc = GetComponentInParent<NPC>();
+            npc = GetComponentInParent<NPCBehavior>();
 
         rb = GetComponent<Rigidbody>();
     }

@@ -68,7 +68,11 @@ public class PlayerPropController : MonoBehaviour
             BlockEnd();
         else if(cc.IsClimbing() && anim.GetBool("Blocking"))
             BlockEnd();
+    }
 
+
+    private void FixedUpdate()
+    {
         propHoldingCollider.enabled = (equiptProp != null);
     }
 
@@ -100,6 +104,7 @@ public class PlayerPropController : MonoBehaviour
         prop.isHeld = true;
 
         equiptProp = prop;
+        propHoldingCollider.enabled = true;
 
         anim.SetTrigger("Equipt");
         anim.SetBool("Blocking", false);
@@ -112,6 +117,8 @@ public class PlayerPropController : MonoBehaviour
             Debug.Log("No prop to unequipt");
             return false;
         }
+
+        propHoldingCollider.enabled = false;
 
         equiptProp.transform.parent = GameManager.Instance.propsContainer;
         foreach (Collider coll in equiptProp.Colliders)
@@ -176,6 +183,7 @@ public class PlayerPropController : MonoBehaviour
         float _throwForce = (_prop.RB.mass >= 6f) ? throwForce * 1.75f : throwForce;
         _prop.RB.AddForce(_prop.transform.forward * _throwForce, ForceMode.Impulse);
         _prop.RB.angularVelocity = _prop.transform.forward * Random.Range(-1f, 1f) * 4f;
+        _prop.isThrown = true;
 
         anim.SetTrigger("Throw");
         anim.SetBool("Blocking", false);

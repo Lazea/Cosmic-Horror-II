@@ -52,6 +52,8 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
 
     [Header("Status")]
     public bool isHeld = false;
+    public bool isThrown = false;
+    bool throwEnded;
 
     [Header("Effects")]
     public GameObject damageEffect;
@@ -90,6 +92,15 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
     void Start()
     {
         
+    }
+
+    private void LateUpdate()
+    {
+        if(throwEnded)
+        {
+            throwEnded = false;
+            isThrown = false;
+        }
     }
 
     public void DealDamage(
@@ -161,6 +172,8 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
         if (collision.collider.tag == "Player")
             return;
 
+        onPropImpact.Invoke();
+
         float impactForce = collision.impulse.magnitude / rb.mass;
         var otherRB = collision.collider.attachedRigidbody;
         if (otherRB != null)
@@ -181,5 +194,17 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
             impactDamage));
         if (impactDamage > 0)
             DealDamage(impactDamage, Vector3.zero);
+
+        if (isThrown)
+        {
+            throwEnded = true;
+
+            var damageable = collision.collider.GetComponent<IDamageable>();
+            if(damageable != null)
+            {
+                DealDamage(1, Vector3.zero);
+                damageable.DealDamage(damage, Vector3.zero);
+            }
+        }
     }
 }
