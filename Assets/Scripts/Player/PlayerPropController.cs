@@ -277,6 +277,9 @@ public class PlayerPropController : MonoBehaviour
 
     public void PerformAttack1()
     {
+        if (equiptProp != null)
+            return;
+
         Vector3 forceDir = -Camera.main.transform.right;
         forceDir += Camera.main.transform.up * 0.1f;
         PerformAttackRaycast(
@@ -287,6 +290,9 @@ public class PlayerPropController : MonoBehaviour
 
     public void PerformAttack2()
     {
+        if (equiptProp != null)
+            return;
+
         Vector3 forceDir = Camera.main.transform.right;
         forceDir += Camera.main.transform.up * 0.1f;
         PerformAttackRaycast(
@@ -297,6 +303,9 @@ public class PlayerPropController : MonoBehaviour
 
     public void PerformHeavyAttack1()
     {
+        if (equiptProp != null)
+            return;
+
         Vector3 forceDir = -Camera.main.transform.right;
         forceDir += Camera.main.transform.up * 0.1f;
         PerformAttackRaycast(
