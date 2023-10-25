@@ -277,7 +277,7 @@ public class PlayerPropController : MonoBehaviour
 
     public void PerformAttack1()
     {
-        if (equiptProp != null)
+        if (equiptProp == null)
             return;
 
         Vector3 forceDir = -Camera.main.transform.right;
@@ -290,7 +290,7 @@ public class PlayerPropController : MonoBehaviour
 
     public void PerformAttack2()
     {
-        if (equiptProp != null)
+        if (equiptProp == null)
             return;
 
         Vector3 forceDir = Camera.main.transform.right;
@@ -388,11 +388,12 @@ public class PlayerPropController : MonoBehaviour
                 string.Format("Player Attack hit {0} with {1} damage and {2}:{3} force",
                 hit.collider.name, attackDamage, attackForce, attackForce.magnitude));
 
+            onAttackHit.Invoke(equiptProp);
+
             equiptProp.durability--;
             if (equiptProp.durability <= 0)
                 DestroyEquiptProp();
 
-            onAttackHit.Invoke(equiptProp);
             return true;
         }
         else
