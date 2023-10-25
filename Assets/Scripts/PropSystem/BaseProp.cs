@@ -53,6 +53,10 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
     public GameObject damageEffect;
     public GameObject destroyEffect;
 
+    [Header("Components On Destroy")]
+    public float componentsLiftime = 4f;
+    public Behaviour[] componentsToDetachOnDestroy;
+
     [Header("Events")]
     public UnityEvent onPropImpact;
     public UnityEvent onPropDamaged;
@@ -156,6 +160,12 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
                 destroyEffect,
                 transform.position,
                 transform.rotation);
+        }
+
+        foreach(var b in componentsToDetachOnDestroy)
+        {
+            b.transform.parent = null;
+            Destroy(b.gameObject, componentsLiftime);
         }
 
         Destroy(gameObject);
