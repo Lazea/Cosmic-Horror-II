@@ -763,10 +763,15 @@ public class NPCBehavior : MonoBehaviour
             damage = (int)(damage * 2.5f);
         health = Mathf.Max(health - damage, 0);
 
+        Vector3 hitDir = hitForce;
+        hitDir.y = 0f;
+        hitDir.Normalize();
+        float dot = Vector3.Dot(hitDir, transform.right);
+
         // TODO: Update to change direction and hit intensity
         PlayHurtReaction(
             hitboxType,
-            true,
+            (dot > 0f),
             true);
 
         if (health <= 0)
