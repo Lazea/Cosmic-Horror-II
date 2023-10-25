@@ -8745,6 +8745,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 821600447968459530, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3499191936500034792, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8794,6 +8799,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4406585071686363346, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
+        type: 3}
+      propertyPath: m_NoiseProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: ea90a1c9bc3a4c440b36b0804572e786,
+        type: 2}
+    - target: {fileID: 4406585071686363346, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
+        type: 3}
+      propertyPath: m_AmplitudeGain
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5895040308991897240, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
         type: 3}

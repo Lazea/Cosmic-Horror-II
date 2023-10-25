@@ -240,8 +240,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 2020796527813019414}
-  shakeIntesnity: 1.5
+  shakeIntesnity: 1.75
   shakeTime: 0.15
+  idleShaleIntensity: 1
+  idleNoiseSettings: {fileID: 11400000, guid: ea90a1c9bc3a4c440b36b0804572e786, type: 2}
+  impactNoiseSettings: {fileID: 11400000, guid: 52ee1829a5a8f504b962394bae9ce632,
+    type: 2}
 --- !u!1 &821600447968459530
 GameObject:
   m_ObjectHideFlags: 0

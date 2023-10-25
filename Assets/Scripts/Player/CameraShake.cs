@@ -8,14 +8,18 @@ public class CameraShake : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera;
     public float shakeIntesnity = 1f;
     public float shakeTime = 0.2f;
+    public float idleShaleIntensity = 1f;
 
     float t;
     CinemachineBasicMultiChannelPerlin multiChannelPerlin;
+    public NoiseSettings idleNoiseSettings;
+    public NoiseSettings impactNoiseSettings;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        multiChannelPerlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        StopCameraShake();
     }
 
     // Update is called once per frame
@@ -34,7 +38,7 @@ public class CameraShake : MonoBehaviour
     [ContextMenu("Shake Camera")]
     public void ShakeCamera()
     {
-        var multiChannelPerlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        multiChannelPerlin.m_NoiseProfile = impactNoiseSettings;
         multiChannelPerlin.m_AmplitudeGain = shakeIntesnity;
         t = shakeTime;
     }
@@ -42,8 +46,8 @@ public class CameraShake : MonoBehaviour
     [ContextMenu("Stop Camera Shake")]
     public void StopCameraShake()
     {
-        var multiChannelPerlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        multiChannelPerlin.m_AmplitudeGain = 0f;
+        multiChannelPerlin.m_NoiseProfile = idleNoiseSettings;
+        multiChannelPerlin.m_AmplitudeGain = idleShaleIntensity;
         t = 0f;
     }
 }
