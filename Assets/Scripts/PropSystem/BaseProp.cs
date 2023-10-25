@@ -190,10 +190,10 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
 
         int impactDamage = (int)(propSettings.propImpactDamageCurve.Evaluate(
             impactForce) * impactMultipier);
-        Debug.Log(string.Format("[{0}] Impact Force: {1}; Damage: {2}",
-            name,
-            impactForce,
-            impactDamage));
+        //Debug.Log(string.Format("[{0}] Impact Force: {1}; Damage: {2}",
+        //    name,
+        //    impactForce,
+        //    impactDamage));
         if (impactDamage > 0)
             DealDamage(impactDamage, Vector3.zero);
 

@@ -144,8 +144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openVolume: 0.3
   closeVolume: 1
-  lockVolume: 0.2
-  unlockVolume: 1
+  lockVolume: 0.45
+  unlockVolume: 0.3
   doorOpen: {fileID: 8300000, guid: a2e03c941269ea24e86f3aa35a382e60, type: 3}
   doorClose: {fileID: 8300000, guid: 5a51f503566e6174ea1e166f111f4b08, type: 3}
   doorLocked: {fileID: 8300000, guid: e4a6f0d4eb871d34696440692a5959c8, type: 3}

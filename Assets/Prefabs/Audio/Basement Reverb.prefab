@@ -45,7 +45,7 @@ AudioReverbZone:
   m_ReverbPreset: 27
   m_Room: -600
   m_RoomHF: 0
-  m_DecayTime: 3.4
+  m_DecayTime: 2
   m_DecayHFRatio: 1.3
   m_Reflections: -602
   m_ReflectionsDelay: 0.015

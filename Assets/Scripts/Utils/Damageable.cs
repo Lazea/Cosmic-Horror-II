@@ -19,6 +19,9 @@ public class Damageable : MonoBehaviour, IDamageable
     public UnityEvent onPropDamaged;
     public UnityEvent onPropDestroyed;
 
+    public float componentsLiftime = 4f;
+    public Behaviour[] componentsToDetachOnDestroy;
+
     // Components
     Rigidbody rb;
 
@@ -52,6 +55,12 @@ public class Damageable : MonoBehaviour, IDamageable
 
         if (durability <= 0)
         {
+            foreach (var b in componentsToDetachOnDestroy)
+            {
+                b.transform.parent = null;
+                Destroy(b.gameObject, componentsLiftime);
+            }
+
             DestroyObject();
         }
         else if (damageEffect != null)

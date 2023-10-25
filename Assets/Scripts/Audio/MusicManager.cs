@@ -17,6 +17,7 @@ public class MusicManager : MonoBehaviour
     float currentCutoffFrequency;
     float currentHighPassFrequency;
     public bool Indoor = false;
+    int JumpScareIndex = 0;
 
     int randIndex;
     int prevIndex;
@@ -49,6 +50,7 @@ public class MusicManager : MonoBehaviour
     public AudioClip DeathStinger;
     public AudioClip PauseStinger;
     public AudioClip[] Instruments = new AudioClip[3];
+    public AudioClip[] JumpScares = new AudioClip[2];
 
     private void Awake()
     {
@@ -255,42 +257,45 @@ public class MusicManager : MonoBehaviour
     [ContextMenu("Indoor")]
     public void EnterAudioEvent()
     {
+        Indoor = true;
+
         //Reverb Zone switch
         IndoorReverbZone.enabled = true;
         OutdoorReverbZone.enabled = false;
-
-        Indoor = true;
     }
 
     [ContextMenu("Outdoor")]
     public void ExitAudioEvent()
     {
+        Indoor = false;
+
         //Reverb Zone switch
         IndoorReverbZone.enabled = false;
         OutdoorReverbZone.enabled = true;
 
-        Indoor = false;
     }
 
     [ContextMenu("Basement")]
     public void UndergroundAudioEvent()
     {
+        Indoor = true;
+
         //Reverb switch
         BasementReverbZone.enabled = true;
         TunnelReverbZone.enabled = true;
         OutdoorReverbZone.enabled = false;
 
-        Indoor = true;
     }
 
     public void UndergroundExitEvent()
     {
+        Indoor = false;
+
         //Reverb switch
         BasementReverbZone.enabled = false;
         TunnelReverbZone.enabled = false;
         OutdoorReverbZone.enabled = true;
 
-        Indoor = false;
     }
 
     [ContextMenu("HeartBeat")]
@@ -303,6 +308,14 @@ public class MusicManager : MonoBehaviour
     public void RegainedHealthEvent()
     {
         heartbeatSource.enabled = false;
+    }
+
+    [ContextMenu("JumpScare")]
+    public void PlayJumpScare()
+    {
+        JumpScareIndex = (JumpScareIndex + 1) % 2;
+
+        oneShotSource.PlayOneShot(JumpScares[JumpScareIndex], .6f);
     }
 
     IEnumerator FadeInMusic(
@@ -341,7 +354,7 @@ public class MusicManager : MonoBehaviour
     IEnumerator Intermittents()
     {
 
-        float randInterval = Random.Range(5f, 7f);
+        float randInterval = Random.Range(4f, 6f);
 
         yield return new WaitForSeconds(randInterval);
 
@@ -353,7 +366,7 @@ public class MusicManager : MonoBehaviour
 
         //int randIndex = Random.Range(0, 2);
         float randPitch = Random.Range(0.6f, 1.2f);
-        float randVol = Random.Range(0.2f, 0.4f);
+        float randVol = Random.Range(0.3f, 0.6f);
         float randPan = Random.Range(-.5f, .5f);
 
         prevIndex = randIndex;
