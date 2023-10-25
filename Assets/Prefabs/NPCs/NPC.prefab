@@ -1854,7 +1854,7 @@ MonoBehaviour:
   sightRange: 15
   coverMask:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 16513
   playerSpotted: 0
   lightAttackDamage: 20
   heavyAttackDamage: 35
