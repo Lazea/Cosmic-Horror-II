@@ -66,7 +66,7 @@ public class NPCBehavior : MonoBehaviour
         get
         {
             if (anim != null)
-                return anim.GetCurrentAnimatorStateInfo(1);
+                return anim.GetCurrentAnimatorStateInfo(0);
             else
                 return new AnimatorStateInfo();
         }
@@ -176,7 +176,7 @@ public class NPCBehavior : MonoBehaviour
                 StopAllCoroutines();
                 SetPositionOffset(1.5f, 2.5f);
                 SetWaitState();
-                float waitT = Random.Range(0.5f, 2.25f);
+                float waitT = Random.Range(0.2f, 0.75f);
                 StartCoroutine(ExecuteDelayed(
                     () =>
                     {
@@ -282,8 +282,18 @@ public class NPCBehavior : MonoBehaviour
         {
             if (IsChaseState())
             {
+                float distance = Vector3.Distance(
+                    player.transform.position,
+                    transform.position);
                 float i = Random.Range(0f, 1f);
-                SetRunning((i >= 0.85f));
+                if (distance >= sightRange * 0.5f)
+                {
+                    SetRunning((i >= 0.1f));
+                }
+                else
+                {
+                    SetRunning((i >= 0.8f));
+                }
             }
 
             yield return new WaitForSeconds(3.75f);
@@ -292,8 +302,6 @@ public class NPCBehavior : MonoBehaviour
 
     void HandleAttacking()
     {
-        agent.updateRotation = false;
-
         Vector3 playerPos = player.transform.position;
         playerPos.y = transform.position.y;
         Vector3 dir = playerPos - transform.position;
@@ -673,23 +681,28 @@ public class NPCBehavior : MonoBehaviour
 
     public void SetPassiveState()
     {
+        agent.updateRotation = true;
         npcState = NPCState.Passive;
     }
 
     public void SetChaseState()
     {
         currentWaypoint = null;
+        agent.updateRotation = true;
         npcState = NPCState.Chase;
     }
 
     public void SetAttackState()
     {
+        agent.updateRotation = false;
         currentWaypoint = null;
         npcState = NPCState.Attack;
     }
 
     public void SetDeadState()
     {
+        agent.updateRotation = false;
+        StopMoving();
         currentWaypoint = null;
         npcState = NPCState.Dead;
     }

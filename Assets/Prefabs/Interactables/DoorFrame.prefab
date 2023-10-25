@@ -862,6 +862,7 @@ GameObject:
   - component: {fileID: 7275076930050681327}
   - component: {fileID: 6854904821641391019}
   - component: {fileID: 1816068325462633053}
+  - component: {fileID: 1377418183270226747}
   m_Layer: 14
   m_Name: Door
   m_TagString: Untagged
@@ -1266,3 +1267,19 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!208 &1377418183270226747
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6771300238525992548}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.70000005, y: 0.95000005, z: 0.075}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

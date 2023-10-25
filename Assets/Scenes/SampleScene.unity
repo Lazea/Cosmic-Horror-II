@@ -1015,11 +1015,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFrame
       objectReference: {fileID: 0}
-    - target: {fileID: 6771300238525992548, guid: 2d10dfae55d25f640a97ce1b54a4d155,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7275076930050681327, guid: 2d10dfae55d25f640a97ce1b54a4d155,
         type: 3}
       propertyPath: m_Mesh

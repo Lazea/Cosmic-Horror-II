@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class Door : MonoBehaviour
@@ -23,15 +24,27 @@ public class Door : MonoBehaviour
     public UnityEvent onDoorLocked;
     public UnityEvent onDoorUnlocked;
 
+    // Components
+    NavMeshObstacle obstacle;
+
     // Start is called before the first frame update
     void Start()
     {
+        obstacle = GetComponentInChildren<NavMeshObstacle>();
+
         if (locked)
+        {
             LockDoor();
+        }
         else
+        {
             UnlockDoor();
+            justUnlocked = false;
+        }
 
         previousAngle = joint.angle;
+
+        obstacle.carving = locked;
     }
 
     private void FixedUpdate()
@@ -68,6 +81,7 @@ public class Door : MonoBehaviour
     void LockDoor()
     {
         locked = true;
+        obstacle.carving = locked;
 
         JointLimits limits = new JointLimits();
         limits.min = -1.5f;
@@ -88,6 +102,7 @@ public class Door : MonoBehaviour
     {
         justUnlocked = true;
         locked = false;
+        obstacle.carving = locked;
 
         JointLimits limits = new JointLimits();
         limits.min = -90f;

@@ -229,7 +229,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: 0.27459955, z: 0.00000014901158}
+  m_ConnectedAnchor: {x: 0.0000002682209, y: 0.27459916, z: 0.00000019371505}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -823,7 +823,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000021733281, y: 0.44016755, z: -0.00000080466236}
+  m_ConnectedAnchor: {x: 0.00000021733281, y: 0.4401676, z: -0.00000081211294}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -969,7 +969,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.093541384, y: 0.05330775, z: 0.0113869505}
+  m_ConnectedAnchor: {x: 0.093541145, y: 0.053307805, z: 0.0113869365}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1115,7 +1115,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000021085723, y: 0.44016755, z: -0.00000080466236}
+  m_ConnectedAnchor: {x: -0.00000021733281, y: 0.4401676, z: -0.00000081211294}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1681,7 +1681,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.093541145, y: 0.05330775, z: 0.0113869505}
+  m_ConnectedAnchor: {x: -0.093541145, y: 0.053307805, z: 0.0113869365}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1849,22 +1849,22 @@ MonoBehaviour:
   health: 100
   npcState: 0
   head: {fileID: 3707587087711720807}
-  detectionRange: 2
+  detectionRange: 2.75
   sightFOV: 175
   sightRange: 15
   coverMask:
     serializedVersion: 2
     m_Bits: 129
   playerSpotted: 0
-  lightAttackDamage: 3
-  heavyAttackDamage: 6
+  lightAttackDamage: 20
+  heavyAttackDamage: 35
   attackRange: 2
   attackAngle: 360
   lightAttackLeftHurtbox: {fileID: 4448522395202911133}
   lightAttackRightHurtbox: {fileID: 4448522395202911133}
   heavyAttackHurtbox: {fileID: 8727732767501404507}
   isAttacking: 0
-  waypointManagerID: 0
+  waypointManagerID: -1
   currentWaypoint:
     transform: {fileID: 0}
   turnSpeedSmoothing: 0.01
@@ -2017,7 +2017,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: 0.27459955, z: 0.00000014901158}
+  m_ConnectedAnchor: {x: -0.0000002682209, y: 0.27459916, z: 0.00000019371505}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
