@@ -1846,7 +1846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c553f9c87683eaf4d995dcdc460138ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 15
   npcState: 0
   head: {fileID: 3707587087711720807}
   detectionRange: 2.75

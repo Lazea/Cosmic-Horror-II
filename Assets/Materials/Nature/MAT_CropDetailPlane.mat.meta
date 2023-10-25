@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/Nature/MAT_CropPlane.mat.meta
+guid: 5ce2186b94cb7484db8359dcfa52924d
+========
+guid: 2d1c76b4bd8c4344ab3c8c6446865ef8
+>>>>>>>> feature/statbalancing:Assets/Materials/Nature/MAT_CropDetailPlane.mat.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -32,36 +32,36 @@ public class GameSettings : ScriptableObject
             propSettings.propsDataset[i].id = i;
         }
 
-        // TODO: Map prefabs to database items
-        string[] guids = AssetDatabase.FindAssets(
-            "t:Prefab",
-            new[] { "Assets/Prefabs/Props" });
-        foreach (var guid in guids)
-        {
-            var path = AssetDatabase.GUIDToAssetPath(guid);
-            GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        //// TODO: Map prefabs to database items
+        //string[] guids = AssetDatabase.FindAssets(
+        //    "t:Prefab",
+        //    new[] { "Assets/Prefabs/Props" });
+        //foreach (var guid in guids)
+        //{
+        //    var path = AssetDatabase.GUIDToAssetPath(guid);
+        //    GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
 
-            foreach(var prop in propSettings.propsDataset)
-            {
-                if(prop.name == go.name)
-                {
-                    var baseProp = go.GetComponent<BaseProp>();
-                    if (baseProp != null)
-                    {
-                        baseProp.id = prop.id;
-                    }
+        //    foreach(var prop in propSettings.propsDataset)
+        //    {
+        //        if(prop.name == go.name)
+        //        {
+        //            var baseProp = go.GetComponent<BaseProp>();
+        //            if (baseProp != null)
+        //            {
+        //                baseProp.id = prop.id;
+        //            }
 
-                    var damageable = go.GetComponent<Damageable>();
-                    if(damageable != null)
-                    {
-                        damageable.durability = prop.durability;
-                        damageable.propMaterial = prop.propMaterial;
-                        damageable.propType = prop.propType;
-                        damageable.propWeight = prop.propWeight;
-                    }
-                }
-            }
-        }
+        //            var damageable = go.GetComponent<Damageable>();
+        //            if(damageable != null)
+        //            {
+        //                damageable.durability = prop.durability;
+        //                damageable.propMaterial = prop.propMaterial;
+        //                damageable.propType = prop.propType;
+        //                damageable.propWeight = prop.propWeight;
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
 

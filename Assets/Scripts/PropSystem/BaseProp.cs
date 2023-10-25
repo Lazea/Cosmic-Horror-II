@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -72,11 +73,14 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
 
     private void Awake()
     {
+        string _name = Regex.Replace(name, " \\(\\d+\\)", "");
         foreach (var pd in propSettings.propsDataset)
         {
-            if(pd.id == id)
+            if(pd.name == _name)
             {
                 propMaterial = pd.propMaterial;
+                propType = pd.propType;
+                propWeight = pd.propWeight;
                 durability = pd.durability;
                 damage = pd.damage;
             }
@@ -84,12 +88,6 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
 
         rb = GetComponent<Rigidbody>();
         colliders = GetComponents<Collider>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     private void LateUpdate()

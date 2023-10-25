@@ -170,16 +170,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15dec9d046182d44eae97b460837d73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 51
   propType: 1
+  propWeight: 0
   propAttackRange: 0
   propAttackForce: 0
   propMaterial: 0
   durability: 0
   damage: 0
   isHeld: 0
+  isThrown: 0
   damageEffect: {fileID: 0}
   destroyEffect: {fileID: 0}
+  componentsLiftime: 4
+  componentsToDetachOnDestroy: []
   onPropImpact:
     m_PersistentCalls:
       m_Calls: []

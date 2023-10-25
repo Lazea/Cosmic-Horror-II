@@ -759,8 +759,8 @@ public class NPCBehavior : MonoBehaviour
         Vector3 hitPoint = default,
         GameObject damageSource = null)
     {
-        if (hitboxType == NPCHitbox.HitboxType.Head)
-            damage = (int)(damage * 2.5f);
+        //if (hitboxType == NPCHitbox.HitboxType.Head)
+        //    damage = (int)(damage * 2.5f);
         health = Mathf.Max(health - damage, 0);
 
         Vector3 hitDir = hitForce;
