@@ -773,7 +773,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5895040308991897240}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.4129963, y: 1.9, z: -0.73092175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -879,7 +879,7 @@ MonoBehaviour:
   onPlayerHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  onPlayerDeath: {fileID: 0}
+  onPlayerDeath: {fileID: 11400000, guid: 33852bad802a85d4bb26bd3542e027e2, type: 2}
 --- !u!114 &4905642374846238381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,7 +1153,19 @@ MonoBehaviour:
   isGrounded: 0
   onGroundLanding:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7507319180185316994}
+        m_TargetAssemblyTypeName: PlayerSoundEffectsController, Assembly-CSharp
+        m_MethodName: PlayLanding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   moveAnimSmooth: 10
   lookAnimSmooth: 8
   ledgeCheckPoint: {x: 0, y: 0.55, z: 0.7}
@@ -1320,6 +1332,39 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 92bbc1a1f61f2034eb4ba981089b5f26, type: 3}
     - {fileID: 8300000, guid: 8a5ce8b845f0aed43894ec2959eaee7f, type: 3}
     landingClip: {fileID: 8300000, guid: 94629e8d339f57644ae6d1e970e02f69, type: 3}
+    material: {fileID: 0}
+  gravelFootStepClips:
+    walkClips:
+    - {fileID: 8300000, guid: b2f0614417d1b58418a2730f1c64ca16, type: 3}
+    - {fileID: 8300000, guid: 0f26560b62bd07e4f9e0c77354ff3ad3, type: 3}
+    - {fileID: 8300000, guid: 279b23a76c653544ba2aafbd43b68559, type: 3}
+    runClips:
+    - {fileID: 8300000, guid: 8be7fc270c7712045aa8e04d59768627, type: 3}
+    - {fileID: 8300000, guid: 499ed92d15cf4e64192eeba58a85b41b, type: 3}
+    - {fileID: 8300000, guid: 42dc08f3ae8ad294cb4dd247b07fe232, type: 3}
+    landingClip: {fileID: 8300000, guid: 3bc7d914192d60244b10c9101724f594, type: 3}
+    material: {fileID: 0}
+  dirtFootStepClips:
+    walkClips:
+    - {fileID: 8300000, guid: b2f0614417d1b58418a2730f1c64ca16, type: 3}
+    - {fileID: 8300000, guid: 0f26560b62bd07e4f9e0c77354ff3ad3, type: 3}
+    - {fileID: 8300000, guid: 279b23a76c653544ba2aafbd43b68559, type: 3}
+    runClips:
+    - {fileID: 8300000, guid: 8be7fc270c7712045aa8e04d59768627, type: 3}
+    - {fileID: 8300000, guid: 499ed92d15cf4e64192eeba58a85b41b, type: 3}
+    - {fileID: 8300000, guid: 42dc08f3ae8ad294cb4dd247b07fe232, type: 3}
+    landingClip: {fileID: 8300000, guid: 3bc7d914192d60244b10c9101724f594, type: 3}
+    material: {fileID: 0}
+  grassFootStepClips:
+    walkClips:
+    - {fileID: 8300000, guid: e154c73bdbe19ba418bb402529a093ea, type: 3}
+    - {fileID: 8300000, guid: 7059a9129891af442bd536e9e650bc8a, type: 3}
+    - {fileID: 8300000, guid: be22590a095517f41b36aad457bde158, type: 3}
+    runClips:
+    - {fileID: 8300000, guid: e2bb66bc4aed26f4089421d9328fe4b4, type: 3}
+    - {fileID: 8300000, guid: d178266ea04f8c249837b88be53447e0, type: 3}
+    - {fileID: 8300000, guid: f5203eb7d34b41e4e891b0aa460121b9, type: 3}
+    landingClip: {fileID: 8300000, guid: 04164d75840f11b488d0949fc708b884, type: 3}
     material: {fileID: 0}
   footStepClips:
   - walkClips:

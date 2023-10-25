@@ -93,9 +93,10 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
+    [ContextMenu("Kill Player")]
     public void DestroyObject()
     {
+        health = 0;
         onPlayerDeath.Raise();
-        // TODO: Play killed animation and end the game
     }
 }

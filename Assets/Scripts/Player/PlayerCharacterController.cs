@@ -26,7 +26,7 @@ public class PlayerCharacterController : MonoBehaviour
     public float groundCheckDistance = 0.55f;
     public LayerMask groundMask;
     RaycastHit groundHit;
-    public RaycastHit GroundHitGround
+    public RaycastHit GroundHit
     {
         get { return groundHit; }
     }
@@ -63,6 +63,8 @@ public class PlayerCharacterController : MonoBehaviour
         collider.material = physicsMaterial;
 
         anim = GetComponent<Animator>();
+
+        isGrounded = CheckGround();
     }
 
     private void FixedUpdate()

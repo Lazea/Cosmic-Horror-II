@@ -25,10 +25,11 @@ public class PlayerPropController : MonoBehaviour
     [Header("Attacking")]
     public LayerMask attackMask;
     public UnityEvent onAttack;
-    public UnityEvent onAttackHit;
+    public UnityEvent<BaseProp> onAttackHit = new UnityEvent<BaseProp>();
     public UnityEvent onAttackMiss;
 
-    [Header("Blocking")]
+    //[Header("Blocking")]
+    [HideInInspector]
     public UnityEvent onBlock;
 
     PropSettings propSettings
@@ -382,7 +383,7 @@ public class PlayerPropController : MonoBehaviour
             if (equiptProp.durability <= 0)
                 DestroyEquiptProp();
 
-            onAttackHit.Invoke();
+            onAttackHit.Invoke(equiptProp);
             return true;
         }
         else

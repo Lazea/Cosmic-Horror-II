@@ -9,6 +9,9 @@ public class PlayerSoundEffectsController : MonoBehaviour
 
     [Header("Footsteps")]
     public FootStepClip defaultFootStepClips;
+    public FootStepClip gravelFootStepClips;
+    public FootStepClip dirtFootStepClips;
+    public FootStepClip grassFootStepClips;
     public FootStepClip[] footStepClips;
     [System.Serializable]
     public struct FootStepClip
@@ -22,11 +25,13 @@ public class PlayerSoundEffectsController : MonoBehaviour
 
     // Components
     PlayerCharacterController pc;
+    TerrainTextureDetector terrainTextureDetector;
 
     // Start is called before the first frame update
     void Start()
     {
         pc = GetComponent<PlayerCharacterController>();
+        terrainTextureDetector = new TerrainTextureDetector();
     }
 
     // Update is called once per frame
@@ -47,68 +52,23 @@ public class PlayerSoundEffectsController : MonoBehaviour
 
     void PlayFootstep(bool isWalk)
     {
-        var mat = GetGroundMaterial();
-
         AudioClip clip = null;
-        foreach (var f in footStepClips)
+
+        if(pc.GroundHit.collider != null)
         {
-            if (f.material == mat)
+            if (pc.GroundHit.collider.GetComponent<Terrain>() != null)
             {
-                if (isWalk)
-                {
-                    do
-                    {
-                        i = Random.Range(0, f.walkClips.Length);
-                    }
-                    while (i == prevIndex);
-
-                    prevIndex = i;
-
-                    clip = f.walkClips[i];
-                }
-                else
-                {
-                    do
-                    {
-                        i = Random.Range(0, f.runClips.Length);
-                    }
-                    while (i == prevIndex);
-
-                    prevIndex = i;
-
-                    clip = f.runClips[i];
-                }
-                break;
-            }
-        }
-
-        if(clip == null)
-        {
-            if (isWalk)
-            {
-                do
-                {
-                    i = Random.Range(0, defaultFootStepClips.walkClips.Length);
-                }
-                while (i == prevIndex);
-
-                prevIndex = i;
-
-                clip = defaultFootStepClips.walkClips[i];
+                clip = GetClipFromTerrainTexture(isWalk);
             }
             else
             {
-                do
-                {
-                    i = Random.Range(0, defaultFootStepClips.runClips.Length);
-                }
-                while (i == prevIndex);
-
-                prevIndex = i;
-
-                clip = defaultFootStepClips.runClips[i];
+                clip = GetClipFromGroundMaterial(isWalk);
             }
         }
+
+        if (clip == null)
+            clip = GetRandomClip(defaultFootStepClips, isWalk);
+
         float randPitch = Random.Range(.87f, 1.13f);
         footStepsAudioSource.pitch = randPitch;
 
@@ -119,14 +79,40 @@ public class PlayerSoundEffectsController : MonoBehaviour
 
     public void PlayLanding()
     {
-        var mat = GetGroundMaterial();
         AudioClip clip = null;
-        foreach (var f in footStepClips)
+
+        if (pc.GroundHit.collider != null)
         {
-            if (f.material == mat)
+            if (pc.GroundHit.collider.GetComponent<Terrain>() != null)
             {
-                clip = f.landingClip;
-                break;
+                int terrainTextureIndex = terrainTextureDetector.
+                    GetActiveTerrainTextureIdx(transform.position);
+
+                switch (terrainTextureIndex)
+                {
+                    case 0:
+                        clip = gravelFootStepClips.landingClip;
+                        break;
+                    case 1:
+                        clip = grassFootStepClips.landingClip;
+                        break;
+                    case 2:
+                    case 3:
+                        clip = dirtFootStepClips.landingClip;
+                        break;
+                }
+            }
+            else
+            {
+                var mat = GetGroundMaterial();
+                foreach (var f in footStepClips)
+                {
+                    if (f.material == mat)
+                    {
+                        clip = f.landingClip;
+                        break;
+                    }
+                }
             }
         }
 
@@ -134,14 +120,69 @@ public class PlayerSoundEffectsController : MonoBehaviour
         {
             clip = defaultFootStepClips.landingClip;
         }
+
         float randPitch = Random.Range(.9f, 1.1f);
         footStepsAudioSource.pitch = randPitch;
         footStepsAudioSource.PlayOneShot(clip, .7f);
     }
 
+    AudioClip GetClipFromGroundMaterial(bool isWalk)
+    {
+        var mat = GetGroundMaterial();
+
+        AudioClip clip = null;
+        foreach (var f in footStepClips)
+        {
+            if (f.material == mat)
+            {
+                clip = GetRandomClip(f, isWalk);
+                break;
+            }
+        }
+
+        return clip;
+    }
+
+    AudioClip GetClipFromTerrainTexture(bool isWalk)
+    {
+        int terrainTextureIndex = terrainTextureDetector.
+            GetActiveTerrainTextureIdx(transform.position);
+
+        AudioClip clip = null;
+
+        switch (terrainTextureIndex)
+        {
+            case 0:
+                clip = GetRandomClip(gravelFootStepClips, isWalk);
+                break;
+            case 1:
+                clip = GetRandomClip(grassFootStepClips, isWalk);
+                break;
+            case 2:
+            case 3:
+                clip = GetRandomClip(dirtFootStepClips, isWalk);
+                break;
+        }
+
+        return clip;
+    }
+
+    AudioClip GetRandomClip(FootStepClip footStepClip, bool isWalk)
+    {
+        AudioClip[] clips = (isWalk) ? footStepClip.walkClips : footStepClip.runClips;
+        do
+        {
+            i = Random.Range(0, clips.Length);
+        }
+        while (i == prevIndex);
+
+        prevIndex = i;
+        return clips[i];
+    }
+
     Material GetGroundMaterial()
     {
-        var hit = pc.GroundHitGround;
+        var hit = pc.GroundHit;
         if (hit.collider != null && hit.collider.tag != "Terrain")
         {
             return hit.collider.GetComponent<MeshRenderer>().
