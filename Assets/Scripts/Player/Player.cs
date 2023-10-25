@@ -81,7 +81,7 @@ public class Player : MonoBehaviour, IDamageable
         GameObject damageSource = default)
     {
         health -= damage;
-        if(health <= 0)
+        if (health <= 0)
         {
             onPlayerHealthChange.Invoke(health);
             DestroyObject();
