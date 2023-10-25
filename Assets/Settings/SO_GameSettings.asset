@@ -76,423 +76,423 @@ MonoBehaviour:
       multiplier: 0
     propsDataset:
     - id: 0
-      name: BookShelf
-      propMaterial: 0
-      propType: 3
-      propWeight: 1
-      durability: 8
-      damage: 4
+      name: WineGlass
+      PropMaterial: 2
+      PropType: 0
+      PropWeight: 0
+      durability: 1
+      damage: 1
     - id: 1
-      name: Table
-      propMaterial: 0
-      propType: 3
-      propWeight: 1
-      durability: 8
-      damage: 4
+      name: CardboardBox
+      PropMaterial: 3
+      PropType: 1
+      PropWeight: 0
+      durability: 1
+      damage: 1
     - id: 2
-      name: Book.1
-      propMaterial: 3
-      propType: 0
-      propWeight: 0
-      durability: 8
+      name: DeskClock
+      PropMaterial: 3
+      PropType: 0
+      PropWeight: 0
+      durability: 2
       damage: 1
     - id: 3
-      name: Book.2
-      propMaterial: 3
-      propType: 0
-      propWeight: 0
-      durability: 8
+      name: Glass
+      PropMaterial: 2
+      PropType: 0
+      PropWeight: 0
+      durability: 2
       damage: 1
     - id: 4
-      name: Bowl
-      propMaterial: 2
-      propType: 0
-      propWeight: 0
-      durability: 3
+      name: Mug
+      PropMaterial: 2
+      PropType: 0
+      PropWeight: 0
+      durability: 2
       damage: 1
     - id: 5
-      name: Brick
-      propMaterial: 3
-      propType: 0
-      propWeight: 1
-      durability: 5
-      damage: 3
+      name: Plate
+      PropMaterial: 2
+      PropType: 0
+      PropWeight: 0
+      durability: 2
+      damage: 1
     - id: 6
-      name: DeskClock
-      propMaterial: 3
-      propType: 0
-      propWeight: 0
+      name: TreeBranch
+      PropMaterial: 0
+      PropType: 0
+      PropWeight: 0
       durability: 2
       damage: 1
     - id: 7
-      name: FoodCan
-      propMaterial: 1
-      propType: 0
-      propWeight: 0
-      durability: 4
+      name: FishingRod
+      PropMaterial: 3
+      PropType: 1
+      PropWeight: 0
+      durability: 2
       damage: 1
     - id: 8
-      name: Glass
-      propMaterial: 2
-      propType: 0
-      propWeight: 0
-      durability: 2
+      name: Bowl
+      PropMaterial: 2
+      PropType: 0
+      PropWeight: 0
+      durability: 3
       damage: 1
     - id: 9
       name: Jar
-      propMaterial: 2
-      propType: 0
-      propWeight: 0
+      PropMaterial: 2
+      PropType: 0
+      PropWeight: 0
       durability: 3
       damage: 1
     - id: 10
-      name: Kettle
-      propMaterial: 1
-      propType: 0
-      propWeight: 0
-      durability: 10
-      damage: 3
-    - id: 11
-      name: Mug
-      propMaterial: 2
-      propType: 0
-      propWeight: 0
-      durability: 2
-      damage: 1
-    - id: 12
       name: PictureFrame.2
-      propMaterial: 0
-      propType: 0
-      propWeight: 0
+      PropMaterial: 0
+      PropType: 0
+      PropWeight: 0
       durability: 3
       damage: 1
-    - id: 13
+    - id: 11
       name: PictureFrame.3
-      propMaterial: 0
-      propType: 0
-      propWeight: 0
+      PropMaterial: 0
+      PropType: 0
+      PropWeight: 0
+      durability: 3
+      damage: 1
+    - id: 12
+      name: PlantPot.1
+      PropMaterial: 2
+      PropType: 0
+      PropWeight: 1
+      durability: 1
+      damage: 3
+    - id: 13
+      name: PictureFrame.1
+      PropMaterial: 0
+      PropType: 1
+      PropWeight: 0
       durability: 3
       damage: 1
     - id: 14
-      name: PlantPot.1
-      propMaterial: 2
-      propType: 0
-      propWeight: 1
+      name: Vase
+      PropMaterial: 2
+      PropType: 1
+      PropWeight: 0
       durability: 1
       damage: 3
     - id: 15
-      name: Plate
-      propMaterial: 2
-      propType: 0
-      propWeight: 0
-      durability: 2
-      damage: 1
-    - id: 16
-      name: WaterCan
-      propMaterial: 1
-      propType: 0
-      propWeight: 0
-      durability: 6
-      damage: 2
-    - id: 17
-      name: WineGlass
-      propMaterial: 2
-      propType: 0
-      propWeight: 0
+      name: Vase.2
+      PropMaterial: 2
+      PropType: 1
+      PropWeight: 0
       durability: 1
+      damage: 3
+    - id: 16
+      name: FoodCan
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 0
+      durability: 4
+      damage: 1
+    - id: 17
+      name: Globe
+      PropMaterial: 3
+      PropType: 1
+      PropWeight: 0
+      durability: 4
       damage: 1
     - id: 18
-      name: Axe
-      propMaterial: 1
-      propType: 0
-      propWeight: 0
-      durability: 10
-      damage: 4
+      name: TableLamp
+      PropMaterial: 2
+      PropType: 1
+      PropWeight: 1
+      durability: 2
+      damage: 2
     - id: 19
+      name: Broom
+      PropMaterial: 0
+      PropType: 1
+      PropWeight: 0
+      durability: 4
+      damage: 1
+    - id: 20
+      name: Mop
+      PropMaterial: 0
+      PropType: 1
+      PropWeight: 0
+      durability: 4
+      damage: 1
+    - id: 21
       name: BeerBottle
-      propMaterial: 2
-      propType: 0
-      propWeight: 0
+      PropMaterial: 2
+      PropType: 0
+      PropWeight: 0
       durability: 3
       damage: 2
-    - id: 20
-      name: ButcherKnife
-      propMaterial: 1
-      propType: 0
-      propWeight: 0
-      durability: 10
-      damage: 4
-    - id: 21
-      name: CookingPot.2
-      propMaterial: 1
-      propType: 1
-      propWeight: 0
-      durability: 10
-      damage: 3
     - id: 22
-      name: Crowbar
-      propMaterial: 1
-      propType: 0
-      propWeight: 1
-      durability: 10
-      damage: 4
-    - id: 23
-      name: FryingPan
-      propMaterial: 1
-      propType: 0
-      propWeight: 1
-      durability: 10
-      damage: 3
-    - id: 24
-      name: Hammer
-      propMaterial: 1
-      propType: 0
-      propWeight: 0
-      durability: 10
-      damage: 3
-    - id: 25
-      name: KitchenKnife
-      propMaterial: 1
-      propType: 0
-      propWeight: 0
-      durability: 10
-      damage: 4
-    - id: 26
-      name: Pipe
-      propMaterial: 1
-      propType: 0
-      propWeight: 1
-      durability: 10
-      damage: 4
-    - id: 27
-      name: Saw
-      propMaterial: 1
-      propType: 0
-      propWeight: 1
+      name: Book.1
+      PropMaterial: 3
+      PropType: 0
+      PropWeight: 0
       durability: 8
-      damage: 4
-    - id: 28
+      damage: 1
+    - id: 23
+      name: Book.2
+      PropMaterial: 3
+      PropType: 0
+      PropWeight: 0
+      durability: 8
+      damage: 1
+    - id: 24
+      name: Tray
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 0
+      durability: 4
+      damage: 2
+    - id: 25
+      name: WineBottle
+      PropMaterial: 2
+      PropType: 0
+      PropWeight: 0
+      durability: 3
+      damage: 3
+    - id: 26
       name: Screwdriver
-      propMaterial: 1
-      propType: 0
-      propWeight: 0
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 0
+      durability: 5
+      damage: 2
+    - id: 27
+      name: TallLamp
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 1
+      durability: 5
+      damage: 2
+    - id: 28
+      name: Woodplank.Short
+      PropMaterial: 0
+      PropType: 1
+      PropWeight: 0
       durability: 5
       damage: 2
     - id: 29
-      name: Sickle
-      propMaterial: 1
-      propType: 0
-      propWeight: 0
-      durability: 10
-      damage: 4
+      name: WaterCan
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 0
+      durability: 6
+      damage: 2
     - id: 30
-      name: TreeBranch
-      propMaterial: 0
-      propType: 0
-      propWeight: 0
-      durability: 2
-      damage: 1
+      name: WoodPlank
+      PropMaterial: 0
+      PropType: 1
+      PropWeight: 0
+      durability: 4
+      damage: 3
     - id: 31
-      name: WineBottle
-      propMaterial: 2
-      propType: 0
-      propWeight: 0
-      durability: 3
+      name: Brick
+      PropMaterial: 3
+      PropType: 0
+      PropWeight: 1
+      durability: 5
       damage: 3
     - id: 32
-      name: Wrench
-      propMaterial: 1
-      propType: 0
-      propWeight: 1
-      durability: 10
+      name: WoodCrate.1
+      PropMaterial: 0
+      PropType: 2
+      PropWeight: 1
+      durability: 6
       damage: 3
     - id: 33
+      name: WoodCrate.2
+      PropMaterial: 0
+      PropType: 2
+      PropWeight: 1
+      durability: 6
+      damage: 3
+    - id: 34
       name: Bucket
-      propMaterial: 1
-      propType: 1
-      propWeight: 0
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 0
       durability: 10
       damage: 2
-    - id: 34
-      name: CardboardBox
-      propMaterial: 3
-      propType: 1
-      propWeight: 0
-      durability: 1
-      damage: 1
     - id: 35
-      name: Chair
-      propMaterial: 0
-      propType: 1
-      propWeight: 1
-      durability: 8
-      damage: 3
-    - id: 36
-      name: CookingPot.1
-      propMaterial: 1
-      propType: 1
-      propWeight: 0
+      name: Wheel
+      PropMaterial: 3
+      PropType: 1
+      PropWeight: 1
       durability: 10
-      damage: 3
-    - id: 37
-      name: Globe
-      propMaterial: 3
-      propType: 1
-      propWeight: 0
-      durability: 4
-      damage: 1
-    - id: 38
-      name: PictureFrame.1
-      propMaterial: 0
-      propType: 1
-      propWeight: 0
-      durability: 3
-      damage: 1
-    - id: 39
+      damage: 2
+    - id: 36
       name: Stool
-      propMaterial: 0
-      propType: 1
-      propWeight: 1
+      PropMaterial: 0
+      PropType: 1
+      PropWeight: 1
       durability: 7
       damage: 3
+    - id: 37
+      name: Hoe
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 1
+      durability: 7
+      damage: 3
+    - id: 38
+      name: Chair
+      PropMaterial: 0
+      PropType: 1
+      PropWeight: 1
+      durability: 8
+      damage: 3
+    - id: 39
+      name: Barrel
+      PropMaterial: 0
+      PropType: 2
+      PropWeight: 1
+      durability: 8
+      damage: 3
     - id: 40
-      name: TableLamp
-      propMaterial: 2
-      propType: 1
-      propWeight: 1
-      durability: 2
-      damage: 2
+      name: Pitchfork
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 1
+      durability: 7
+      damage: 4
     - id: 41
-      name: Toolbox
-      propMaterial: 1
-      propType: 1
-      propWeight: 1
+      name: Kettle
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 0
       durability: 10
       damage: 3
     - id: 42
-      name: Tray
-      propMaterial: 1
-      propType: 1
-      propWeight: 0
-      durability: 4
-      damage: 2
+      name: CookingPot.2
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 0
+      durability: 10
+      damage: 3
     - id: 43
-      name: Vase
-      propMaterial: 2
-      propType: 1
-      propWeight: 0
-      durability: 1
+      name: FryingPan
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 1
+      durability: 10
       damage: 3
     - id: 44
-      name: Vase.2
-      propMaterial: 2
-      propType: 1
-      propWeight: 0
-      durability: 1
+      name: Hammer
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 0
+      durability: 10
       damage: 3
     - id: 45
-      name: Wheel
-      propMaterial: 3
-      propType: 1
-      propWeight: 1
+      name: Wrench
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 1
       durability: 10
-      damage: 2
+      damage: 3
     - id: 46
-      name: Broom
-      propMaterial: 0
-      propType: 1
-      propWeight: 0
-      durability: 4
-      damage: 1
+      name: CookingPot.1
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 0
+      durability: 10
+      damage: 3
     - id: 47
-      name: FishingRod
-      propMaterial: 3
-      propType: 1
-      propWeight: 0
-      durability: 2
-      damage: 1
+      name: Toolbox
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 1
+      durability: 10
+      damage: 3
     - id: 48
-      name: Hoe
-      propMaterial: 1
-      propType: 1
-      propWeight: 1
-      durability: 7
+      name: Shovel
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 1
+      durability: 10
       damage: 3
     - id: 49
-      name: Mop
-      propMaterial: 0
-      propType: 1
-      propWeight: 0
-      durability: 4
-      damage: 1
+      name: BookShelf
+      PropMaterial: 0
+      PropType: 3
+      PropWeight: 1
+      durability: 8
+      damage: 4
     - id: 50
-      name: Pitchfork
-      propMaterial: 1
-      propType: 1
-      propWeight: 1
-      durability: 7
+      name: Table
+      PropMaterial: 0
+      PropType: 3
+      PropWeight: 1
+      durability: 8
       damage: 4
     - id: 51
-      name: Scythe
-      propMaterial: 1
-      propType: 1
-      propWeight: 1
-      durability: 15
-      damage: 5
+      name: Saw
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 1
+      durability: 7
+      damage: 4
     - id: 52
-      name: Shovel
-      propMaterial: 1
-      propType: 1
-      propWeight: 1
+      name: Axe
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 0
       durability: 10
-      damage: 3
+      damage: 4
     - id: 53
-      name: SledgeHammer
-      propMaterial: 1
-      propType: 1
-      propWeight: 1
+      name: ButcherKnife
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 0
+      durability: 10
+      damage: 4
+    - id: 54
+      name: Crowbar
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 1
+      durability: 10
+      damage: 4
+    - id: 55
+      name: KitchenKnife
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 0
+      durability: 10
+      damage: 4
+    - id: 56
+      name: Pipe
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 1
+      durability: 10
+      damage: 4
+    - id: 57
+      name: Sickle
+      PropMaterial: 1
+      PropType: 0
+      PropWeight: 0
+      durability: 10
+      damage: 4
+    - id: 58
+      name: Scythe
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 1
       durability: 15
       damage: 5
-    - id: 54
-      name: TallLamp
-      propMaterial: 1
-      propType: 1
-      propWeight: 1
-      durability: 5
-      damage: 2
-    - id: 55
-      name: WoodPlank
-      propMaterial: 0
-      propType: 1
-      propWeight: 0
-      durability: 4
-      damage: 3
-    - id: 56
-      name: Woodplank.Short
-      propMaterial: 0
-      propType: 1
-      propWeight: 0
-      durability: 5
-      damage: 2
-    - id: 57
-      name: Barrel
-      propMaterial: 0
-      propType: 2
-      propWeight: 1
-      durability: 8
-      damage: 3
-    - id: 58
-      name: WoodCrate.1
-      propMaterial: 0
-      propType: 2
-      propWeight: 1
-      durability: 6
-      damage: 3
     - id: 59
-      name: WoodCrate.2
-      propMaterial: 0
-      propType: 2
-      propWeight: 1
-      durability: 6
-      damage: 3
+      name: SledgeHammer
+      PropMaterial: 1
+      PropType: 1
+      PropWeight: 1
+      durability: 15
+      damage: 5
   csvAsset: {fileID: 4900000, guid: 47a9a23b9207693478158f2c11a7daad, type: 3}

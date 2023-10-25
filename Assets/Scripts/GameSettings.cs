@@ -120,9 +120,9 @@ public struct PropData
     [Header("ID")]
     public int id;
     public string name;
-    public PropMaterial propMaterial;
-    public PropType propType;
-    public PropWeight propWeight;
+    public PropMaterial PropMaterial;
+    public PropType PropType;
+    public PropWeight PropWeight;
 
     [Header("Stats")]
     public int durability;

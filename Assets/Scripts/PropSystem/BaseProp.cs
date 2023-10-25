@@ -78,11 +78,13 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
         {
             if(pd.name == _name)
             {
-                propMaterial = pd.propMaterial;
-                propType = pd.propType;
-                propWeight = pd.propWeight;
+                id = pd.id;
+                propMaterial = pd.PropMaterial;
+                propType = pd.PropType;
+                propWeight = pd.PropWeight;
                 durability = pd.durability;
                 damage = pd.damage;
+                break;
             }
         }
 
