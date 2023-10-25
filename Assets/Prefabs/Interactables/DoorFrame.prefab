@@ -769,8 +769,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locked: 0
+  justUnlocked: 0
   keyID: 0
   joint: {fileID: 1816068325462633053}
+  delta: 0
   onDoorSwing:
     m_PersistentCalls:
       m_Calls:
@@ -860,7 +862,7 @@ GameObject:
   - component: {fileID: 7275076930050681327}
   - component: {fileID: 6854904821641391019}
   - component: {fileID: 1816068325462633053}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
