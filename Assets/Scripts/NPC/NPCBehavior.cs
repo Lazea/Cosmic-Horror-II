@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -77,12 +76,11 @@ public class NPCBehavior : MonoBehaviour
     Player player { get { return NPCsManager.Instance.Player; } }
 
     [Header("Events")]
-    public UnityEvent onSpawn;
-    public UnityEvent onPassive;
-    public UnityEvent onChase;
-    public UnityEvent onAttack;
+    public UnityEvent onSpawnState;
+    public UnityEvent onPassiveState;
+    public UnityEvent onChaseState;
+    public UnityEvent onAttackState;
     public UnityEvent onLightAttack;
-    public UnityEvent onComboAttack;
     public UnityEvent onHeavyttack;
     public UnityEvent onHurt;
     public UnityEvent onDead;
@@ -115,6 +113,8 @@ public class NPCBehavior : MonoBehaviour
 
         SetStartState();
         SetPassiveState();  // TODO: Remove this once animation event calls the function
+
+        onSpawnState.Invoke();
     }
 
     void SetupHurtboxes()
@@ -651,16 +651,19 @@ public class NPCBehavior : MonoBehaviour
     #region [Hurtboxes]
     public void EnableLightAttackLeftHurtbox(int enable)
     {
+        onLightAttack.Invoke();
         lightAttackLeftHurtbox.SetActive(enable > 0);
     }
 
     public void EnableLightAttackRightHurtbox(int enable)
     {
+        onLightAttack.Invoke();
         lightAttackLeftHurtbox.SetActive(enable > 0);
     }
 
     public void EnableHeavyAttackHurtbox(int enable)
     {
+        onHeavyttack.Invoke();
         lightAttackLeftHurtbox.SetActive(enable > 0);
     }
     #endregion
@@ -683,6 +686,7 @@ public class NPCBehavior : MonoBehaviour
     {
         agent.updateRotation = true;
         npcState = NPCState.Passive;
+        onPassiveState.Invoke();
     }
 
     public void SetChaseState()
@@ -690,6 +694,7 @@ public class NPCBehavior : MonoBehaviour
         currentWaypoint = null;
         agent.updateRotation = true;
         npcState = NPCState.Chase;
+        onChaseState.Invoke();
     }
 
     public void SetAttackState()

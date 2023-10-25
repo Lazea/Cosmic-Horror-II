@@ -1876,22 +1876,19 @@ MonoBehaviour:
   stopped: 0
   running: 0
   positionOffset: {x: 0, y: 0, z: 0}
-  onSpawn:
+  onSpawnState:
     m_PersistentCalls:
       m_Calls: []
-  onPassive:
+  onPassiveState:
     m_PersistentCalls:
       m_Calls: []
-  onChase:
+  onChaseState:
     m_PersistentCalls:
       m_Calls: []
-  onAttack:
+  onAttackState:
     m_PersistentCalls:
       m_Calls: []
   onLightAttack:
-    m_PersistentCalls:
-      m_Calls: []
-  onComboAttack:
     m_PersistentCalls:
       m_Calls: []
   onHeavyttack:
