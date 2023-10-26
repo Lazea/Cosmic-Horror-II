@@ -109,4 +109,21 @@ public class Player : MonoBehaviour, IDamageable
         isDead = true;
         onPlayerDeath.Raise();
     }
+
+    public void SetHealth(int health)
+    {
+        this.health = health;
+        if(health < 0)
+        {
+            health = 0;
+        }
+        else
+        if(health > GameManager.Instance.settings.playerSettings.maxHealth)
+        {
+            health = GameManager.Instance.settings.playerSettings.maxHealth;
+        }
+
+        onPlayerHealthChange.Invoke(health);
+        PlayerHealthChangeEvent.Raise(health);
+    }
 }
