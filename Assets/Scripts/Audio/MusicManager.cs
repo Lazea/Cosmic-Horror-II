@@ -276,6 +276,11 @@ public class MusicManager : MonoBehaviour
         enableLayer1 = false;
         enableLayer2 = false;
 
+        IndoorReverbZone.enabled = false;
+        OutdoorReverbZone.enabled = true;
+        BasementReverbZone.enabled = false;
+        TunnelReverbZone.enabled = false;
+
         heartbeatSource.enabled = false;
 
         layer1AudioSource.volume = 0f;
