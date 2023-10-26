@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -13,11 +14,15 @@ public class Door : MonoBehaviour
     public bool Locked { get { return locked; } }
     public int keyID;
 
-    [Header("Joint")]
-    public HingeJoint joint;
-    float previousAngle = 0f;
-    [SerializeField]
-    float delta;
+    [System.Serializable]
+    public struct DoorJoint
+    {
+        public HingeJoint joint;
+        public float previousAngle;
+        public float delta;
+    }
+    [Header("Joints")]
+    public DoorJoint[] joints;
 
     [Header("Events")]
     public UnityEvent onDoorSwing;
@@ -42,28 +47,41 @@ public class Door : MonoBehaviour
             justUnlocked = false;
         }
 
-        previousAngle = joint.angle;
+        for(int i = 0; i < joints.Length; i++)
+        {
+            joints[i].previousAngle = joints[i].joint.angle;
+        }
 
         obstacle.carving = locked;
     }
 
     private void FixedUpdate()
     {
-        delta = Mathf.Abs(joint.angle - previousAngle) / Time.fixedDeltaTime;
-        previousAngle = joint.angle;
+        for (int i = 0; i < joints.Length; i++)
+        {
+            joints[i].delta = Mathf.Abs(
+                joints[i].joint.angle - joints[i].previousAngle) / Time.fixedDeltaTime;
+            joints[i].previousAngle = joints[i].joint.angle;
+        }
 
-        if (justUnlocked && delta > 6f)
+        for (int i = 0; i < joints.Length; i++)
         {
-            onDoorUnlocked.Invoke();
-            justUnlocked = false;
-        }
-        else if (!locked && delta > 35f)
-        {
-            onDoorSwing.Invoke();
-        }
-        else if (locked && delta > 0.8f)
-        {
-            onDoorLocked.Invoke();
+            if (justUnlocked && joints[i].delta > 6f)
+            {
+                onDoorUnlocked.Invoke();
+                justUnlocked = false;
+                break;
+            }
+            else if (!locked && joints[i].delta > 35f)
+            {
+                onDoorSwing.Invoke();
+                break;
+            }
+            else if (locked && joints[i].delta > 0.8f)
+            {
+                onDoorLocked.Invoke();
+                break;
+            }
         }
     }
 
@@ -86,7 +104,10 @@ public class Door : MonoBehaviour
         JointLimits limits = new JointLimits();
         limits.min = -1.5f;
         limits.max = 1.5f;
-        joint.limits = limits;
+        for (int i = 0; i < joints.Length; i++)
+        {
+            joints[i].joint.limits = limits;
+        }
     }
 
     public void UnlockDoor(int keyID)
@@ -107,6 +128,9 @@ public class Door : MonoBehaviour
         JointLimits limits = new JointLimits();
         limits.min = -90f;
         limits.max = 90f;
-        joint.limits = limits;
+        for (int i = 0; i < joints.Length; i++)
+        {
+            joints[i].joint.limits = limits;
+        }
     }
 }
