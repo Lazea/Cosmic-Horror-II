@@ -2075,8 +2075,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16513
   playerSpotted: 0
-  lightAttackDamage: 20
-  heavyAttackDamage: 35
+  lightAttackDamage: 5
+  heavyAttackDamage: 13
   attackRange: 2
   attackAngle: 360
   lightAttackLeftHurtbox: {fileID: 4448522395202911133}
