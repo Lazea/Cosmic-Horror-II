@@ -181,8 +181,8 @@ Transform:
   m_GameObject: {fileID: 4784110092631545583}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.82624, y: -1.502, z: 0.00000089733}
-  m_LocalScale: {x: 0.815, y: 1.0908217, z: 1.0266558}
+  m_LocalPosition: {x: 0.82624, y: -1.469, z: 0.00000089733}
+  m_LocalScale: {x: 0.815, y: 1.0760193, z: 1.0266558}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 158472195018746427}
@@ -215,7 +215,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7479957520473849428, guid: 570b1ed302c683d4ba0ae8b05dd056df, type: 3}
+  - {fileID: 2100000, guid: 658e4dd6f9700dc449c6d07cafb36919, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -256,8 +256,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8857261, y: 2.4291751, z: 0.2000002}
-  m_Center: {x: -0.009951892, y: 1.2499999, z: 0.00000057190084}
+  m_Size: {x: 1.8857261, y: 2.433225, z: 0.2000002}
+  m_Center: {x: -0.009951855, y: 1.2666125, z: 0.0000005719007}
 --- !u!54 &9024639659328646992
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1073,8 +1073,8 @@ Transform:
   m_GameObject: {fileID: 5819082822712382807}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00010043381}
-  m_LocalPosition: {x: -0.82624, y: -1.502, z: 0.00000053318}
-  m_LocalScale: {x: 0.815, y: 1.0908217, z: 1.0266558}
+  m_LocalPosition: {x: -0.82624, y: -1.469, z: 0.00000053318}
+  m_LocalScale: {x: 0.815, y: 1.0760193, z: 1.0266558}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 158472195018746427}
@@ -1107,7 +1107,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7479957520473849428, guid: 570b1ed302c683d4ba0ae8b05dd056df, type: 3}
+  - {fileID: 2100000, guid: 658e4dd6f9700dc449c6d07cafb36919, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1148,8 +1148,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8857261, y: 2.4291751, z: 0.2000002}
-  m_Center: {x: -0.009951892, y: 1.2499999, z: 0.00000057190084}
+  m_Size: {x: 1.8857261, y: 2.433225, z: 0.2000002}
+  m_Center: {x: -0.009951855, y: 1.2666125, z: 0.0000005719007}
 --- !u!54 &8491927754432858954
 Rigidbody:
   m_ObjectHideFlags: 0
