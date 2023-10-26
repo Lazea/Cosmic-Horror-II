@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 9024639659328646992}
   - component: {fileID: 7039364994019348777}
   - component: {fileID: 7698650203798077111}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BarnDoor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1057,7 +1057,7 @@ GameObject:
   - component: {fileID: 8491927754432858954}
   - component: {fileID: 3202649945728804057}
   - component: {fileID: 9037366504045031944}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BarnDoor1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

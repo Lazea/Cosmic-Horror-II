@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3441972889909608433}
   - component: {fileID: 7238953278489008372}
   - component: {fileID: 6668571963296266763}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 1540304195748031953}
   - component: {fileID: 5975028961824442594}
   - component: {fileID: 1549395506358635485}
+  - component: {fileID: 432566523848933291}
   m_Layer: 0
   m_Name: DoorFrame
   m_TagString: Untagged
@@ -1038,3 +1039,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!208 &432566523848933291
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745305085103925850}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.28, y: 1.125, z: 0.15}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.37, y: 0, z: 0}
+  m_TimeToStationary: 0.5
