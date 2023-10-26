@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using SOGameEventSystem;
 
 public class LevelManager : Singleton<LevelManager>
 {
+    public BaseGameEvent onLoadCurrentLevel;
+    public BaseGameEvent onLoadMainMenu;
+
     public void LoadLevel(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex);

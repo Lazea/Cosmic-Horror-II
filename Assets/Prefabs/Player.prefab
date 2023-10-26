@@ -1324,6 +1324,8 @@ MonoBehaviour:
   onPlayerHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  PlayerHealthChangeEvent: {fileID: 11400000, guid: f77650fd97b911140a4f717e316dfcdf,
+    type: 2}
   onPlayerDeath: {fileID: 11400000, guid: 33852bad802a85d4bb26bd3542e027e2, type: 2}
 --- !u!114 &4905642374846238381
 MonoBehaviour:

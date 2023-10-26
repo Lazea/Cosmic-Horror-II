@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SOGameEventSystem;
 using UnityEngine.Events;
+using SOGameEventSystem.Events;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour, IDamageable
     public UnityEvent onPlayerDamage;
     public UnityEvent onPlayerHeal;
     public UnityEvent<int> onPlayerHealthChange = new UnityEvent<int>();
+    public IntGameEvent PlayerHealthChangeEvent;
     public BaseGameEvent onPlayerDeath;
 
     // Start is called before the first frame update
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour, IDamageable
             GameManager.Instance.settings.playerSettings.maxHealth);
 
         onPlayerHealthChange.Invoke(health);
+        PlayerHealthChangeEvent.Raise(health);
         onPlayerHeal.Invoke();
 
         Destroy(healthPickup.gameObject);
@@ -84,11 +87,13 @@ public class Player : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             onPlayerHealthChange.Invoke(health);
+            PlayerHealthChangeEvent.Raise(health);
             DestroyObject();
         }
         else
         {
             onPlayerHealthChange.Invoke(health);
+            PlayerHealthChangeEvent.Raise(health);
             onPlayerDamage.Invoke();
         }
     }

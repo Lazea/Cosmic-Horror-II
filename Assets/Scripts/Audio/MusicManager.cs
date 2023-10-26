@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
@@ -37,6 +38,9 @@ public class MusicManager : MonoBehaviour
     public AudioSource outdoorAmbSource;
     public AudioSource heartbeatSource;
 
+    [Header("Heartbeat")]
+    public int minPlayerHealth;
+
     [Header("Audio Effects")]
     public AudioLowPassFilter AmbientLPF;
     public AudioHighPassFilter AmbientHPF;
@@ -52,9 +56,24 @@ public class MusicManager : MonoBehaviour
     public AudioClip[] Instruments = new AudioClip[3];
     public AudioClip[] JumpScares = new AudioClip[2];
 
+    static GameObject sampleInstance;
+
+    public GameObject player;
+
     private void Awake()
     {
+        //if (sampleInstance != null)
+        //    Destroy(sampleInstance);
+
+        //sampleInstance = gameObject;
         DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        player = GameObject.Find("Player");
     }
 
     // Start is called before the first frame update
@@ -80,6 +99,8 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleReverbZonePosition();
+
         if (enableLayer1 && layer1AudioSource.volume < (layer1Volume - .02f))
         {
             if (!layer1InFade)
@@ -146,6 +167,21 @@ public class MusicManager : MonoBehaviour
 
             currentHighPassFrequency = AmbientHPF.cutoffFrequency;
             AmbientHPF.cutoffFrequency = Mathf.Lerp(currentHighPassFrequency, 10f, 1f * Time.deltaTime);
+        }
+    }
+
+    void HandleReverbZonePosition()
+    {
+        if(player != null)
+        {
+            if (IndoorReverbZone != null)
+                IndoorReverbZone.transform.position = player.transform.position;
+            if (OutdoorReverbZone != null)
+                OutdoorReverbZone.transform.position = player.transform.position;
+            if (BasementReverbZone != null)
+                BasementReverbZone.transform.position = player.transform.position;
+            if (TunnelReverbZone != null)
+                TunnelReverbZone.transform.position = player.transform.position;
         }
     }
 
@@ -296,6 +332,18 @@ public class MusicManager : MonoBehaviour
         TunnelReverbZone.enabled = false;
         OutdoorReverbZone.enabled = true;
 
+    }
+
+    public void HandlePlayerHealthChange(int health)
+    {
+        if(health <= minPlayerHealth && !heartbeatSource.enabled)
+        {
+            LowHealthEvent();
+        }
+        else if (health > minPlayerHealth && heartbeatSource.enabled)
+        {
+            RegainedHealthEvent();
+        }
     }
 
     [ContextMenu("HeartBeat")]

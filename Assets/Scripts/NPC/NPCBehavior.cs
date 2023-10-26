@@ -664,7 +664,7 @@ public class NPCBehavior : MonoBehaviour
     public void EnableHeavyAttackHurtbox(int enable)
     {
         onHeavyttack.Invoke();
-        lightAttackLeftHurtbox.SetActive(enable > 0);
+        heavyAttackHurtbox.SetActive(enable > 0);
     }
     #endregion
     #endregion

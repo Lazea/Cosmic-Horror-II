@@ -176,9 +176,12 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
         if (collision.collider.tag == "Player")
             return;
 
-        onPropImpact.Invoke();
-
         float impactForce = collision.impulse.magnitude / rb.mass;
+        if (impactForce > 10f / rb.mass)
+        {
+            onPropImpact.Invoke();
+        }
+
         var otherRB = collision.collider.attachedRigidbody;
         if (otherRB != null)
         {

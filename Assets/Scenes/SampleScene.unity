@@ -7631,7 +7631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1390859126
 Transform:
   m_ObjectHideFlags: 0
@@ -11398,6 +11398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcd503132ba5d743ab1b7a6d80d5b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onLoadCurrentLevel: {fileID: 0}
+  onLoadMainMenu: {fileID: 0}
 --- !u!114 &1995142469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11717,6 +11719,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodCrate.1
       objectReference: {fileID: 0}
+    - target: {fileID: 8866590915369766316, guid: cbe4d1d774e1ebe479ae9148434555e8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11744,17 +11751,17 @@ PrefabInstance:
     - target: {fileID: 7183753421720763900, guid: 8b18c63b064d6c44d941daf10d3b6cfc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.395671
+      value: -7.354329
       objectReference: {fileID: 0}
     - target: {fileID: 7183753421720763900, guid: 8b18c63b064d6c44d941daf10d3b6cfc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.48
+      value: 0.48000017
       objectReference: {fileID: 0}
     - target: {fileID: 7183753421720763900, guid: 8b18c63b064d6c44d941daf10d3b6cfc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.6146045
+      value: -1.1146045
       objectReference: {fileID: 0}
     - target: {fileID: 7183753421720763900, guid: 8b18c63b064d6c44d941daf10d3b6cfc,
         type: 3}
@@ -12215,6 +12222,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair
       objectReference: {fileID: 0}
+    - target: {fileID: 7332909068146642274, guid: 3e4fad6493af2ab478dd2511b9868209,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7510895095876127619, guid: 3e4fad6493af2ab478dd2511b9868209,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12332,6 +12344,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CookingPot.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8628094747583642614, guid: b99114b8c2f203f43bbd0fe67f0eb56a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12960,6 +12977,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bucket
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970568420748910437, guid: 2d5c8d3297be9ea4097d3ee29685c144,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5650686573576149352, guid: 2d5c8d3297be9ea4097d3ee29685c144,
         type: 3}
@@ -13622,6 +13644,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stool
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887908345177295784, guid: fbf719b6337e29f4093ef54152395016,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14286,6 +14313,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Globe
       objectReference: {fileID: 0}
+    - target: {fileID: 6155233149240380178, guid: 82d7f3693c5650a41a41f2160b8dd9db,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14490,6 +14522,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tray
       objectReference: {fileID: 0}
+    - target: {fileID: 4634616229411407988, guid: 289bf8814cdec4e4ca16c2a035d73288,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14557,6 +14594,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WoodCrate.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115566432905787563, guid: 6a3b6bbe3a8fe9f43a8d10674f2fdd4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14643,6 +14685,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CardboardBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 6592148888853449802, guid: bde1dc08285e3b24f8e2ed34bebc06b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7277784855269067473, guid: bde1dc08285e3b24f8e2ed34bebc06b3,
         type: 3}
@@ -15014,6 +15061,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wheel
       objectReference: {fileID: 0}
+    - target: {fileID: 8474542407920944119, guid: 075030834d40bce458b693c23d110d5a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8655353281238393644, guid: 075030834d40bce458b693c23d110d5a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15229,6 +15281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782290131791920538, guid: 347f49baa36deb04b961abe49aa69875,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8828798323860920375, guid: 347f49baa36deb04b961abe49aa69875,
         type: 3}
@@ -15446,6 +15503,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TableLamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7368137680143402134, guid: 3564269c7d1a5dd4c985010ec89aca44,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15543,6 +15605,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PictureFrame.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 311920748110854670, guid: c7224e54391ad5a459c9f35d83e6b579,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2981652942078126602, guid: c7224e54391ad5a459c9f35d83e6b579,
         type: 3}
@@ -15747,6 +15814,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Toolbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375389662984392531, guid: 8db68d0361aab6848b2483e6a8bd890c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15970,6 +16042,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vase
       objectReference: {fileID: 0}
+    - target: {fileID: 2565093788737665037, guid: 00031eb5d020564438854344f2fd7eb4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16107,7 +16184,7 @@ PrefabInstance:
     - target: {fileID: 786256402454860246, guid: 8bb5c8a80cca33141ab35c18b4bef2e9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 786256402454860246, guid: 8bb5c8a80cca33141ab35c18b4bef2e9,
         type: 3}
