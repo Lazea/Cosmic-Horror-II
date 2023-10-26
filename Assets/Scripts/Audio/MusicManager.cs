@@ -9,7 +9,7 @@ public class MusicManager : MonoBehaviour
 {
     [Header("Layers")]
     public bool enableLayer1;
-    bool layer1InFade;
+    public bool layer1InFade;
     public bool enableLayer2;
     bool layer2InFade;
     public float layerFadeTime;
@@ -263,6 +263,7 @@ public class MusicManager : MonoBehaviour
     [ContextMenu("Exit to Main Menu")]
     public void ResetMusicEvent()
     {
+        Debug.Log("Music Manager Reset Music Event");
         //StopAllCoroutines();
  
         PlayResumedMusicSnapshot();

@@ -439,6 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableLayer1: 0
+  layer1InFade: 0
   enableLayer2: 0
   layerFadeTime: 800
   pauseFadeTime: 1.5
@@ -1476,6 +1477,7 @@ GameObject:
   - component: {fileID: 4537682392981386539}
   - component: {fileID: 6111645885372084733}
   - component: {fileID: 3022392008605429868}
+  - component: {fileID: 2062643028450576405}
   m_Layer: 0
   m_Name: GameStateEventListeners
   m_TagString: Untagged
@@ -1618,6 +1620,34 @@ MonoBehaviour:
   falseResponse:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2062643028450576405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8784498081940994581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265b77ea2f9706542ac8e2e2141370bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 41aeba1f56297284ba2c50af9e13a3ab, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7715597183752625322}
+        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+        m_MethodName: StartGameMusicEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &376290520725860675
 PrefabInstance:
   m_ObjectHideFlags: 0
