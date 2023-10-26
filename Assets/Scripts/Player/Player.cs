@@ -14,9 +14,10 @@ public class Player : MonoBehaviour, IDamageable
     {
         get { return (health < GameManager.Instance.settings.playerSettings.maxHealth); }
     }
+    bool isDead;
     public bool IsDead
     {
-        get { return health <= 0; }
+        get { return isDead; }
     }
 
     [Header("Events")]
@@ -101,7 +102,11 @@ public class Player : MonoBehaviour, IDamageable
     [ContextMenu("Kill Player")]
     public void DestroyObject()
     {
+        if (isDead)
+            return;
+
         health = 0;
+        isDead = true;
         onPlayerDeath.Raise();
     }
 }
