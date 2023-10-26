@@ -1226,8 +1226,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3759786, y: 1.8851929, z: 0.15}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.3379892, y: 1.8373852, z: 0.15}
+  m_Center: {x: 0.008536935, y: 0.013659477, z: -7.993347e-14}
 --- !u!59 &1816068325462633053
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -1237,7 +1237,7 @@ HingeJoint:
   m_GameObject: {fileID: 6771300238525992548}
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: -0.67, y: 0, z: 0}
+  m_Anchor: {x: -0.65, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
