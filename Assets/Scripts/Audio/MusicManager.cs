@@ -299,6 +299,8 @@ public class MusicManager : MonoBehaviour
         //Reverb Zone switch
         IndoorReverbZone.enabled = true;
         OutdoorReverbZone.enabled = false;
+        BasementReverbZone.enabled = false;
+        TunnelReverbZone.enabled = false;
     }
 
     [ContextMenu("Outdoor")]
@@ -309,29 +311,34 @@ public class MusicManager : MonoBehaviour
         //Reverb Zone switch
         IndoorReverbZone.enabled = false;
         OutdoorReverbZone.enabled = true;
+        BasementReverbZone.enabled = false;
+        TunnelReverbZone.enabled = false;
 
     }
 
     [ContextMenu("Basement")]
-    public void UndergroundAudioEvent()
+    public void BasementAudioEvent()
     {
         Indoor = true;
 
         //Reverb switch
-        BasementReverbZone.enabled = true;
-        TunnelReverbZone.enabled = true;
+        IndoorReverbZone.enabled = false;
         OutdoorReverbZone.enabled = false;
+        BasementReverbZone.enabled = true;
+        TunnelReverbZone.enabled = false;
 
     }
 
-    public void UndergroundExitEvent()
+    [ContextMenu("Tunnel")]
+    public void TunnelAudioEvent()
     {
-        Indoor = false;
+        Indoor = true;
 
         //Reverb switch
+        IndoorReverbZone.enabled = false;
+        OutdoorReverbZone.enabled = false;
         BasementReverbZone.enabled = false;
-        TunnelReverbZone.enabled = false;
-        OutdoorReverbZone.enabled = true;
+        TunnelReverbZone.enabled = true;
 
     }
 
