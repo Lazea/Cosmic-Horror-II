@@ -443,7 +443,7 @@ MonoBehaviour:
   enableLayer2: 0
   layerFadeTime: 800
   pauseFadeTime: 1.5
-  targetCutoffFrequency: 1000
+  targetCutoffFrequency: 700
   Indoor: 0
   mainThemeVolume: 0.25
   layer1Volume: 0.8
