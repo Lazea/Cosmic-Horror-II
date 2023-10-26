@@ -767,6 +767,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardboardBox
       objectReference: {fileID: 0}
+    - target: {fileID: 6592148888853449802, guid: bde1dc08285e3b24f8e2ed34bebc06b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7277784855269067473, guid: bde1dc08285e3b24f8e2ed34bebc06b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2271,6 +2276,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bucket
       objectReference: {fileID: 0}
+    - target: {fileID: 1970568420748910437, guid: 2d5c8d3297be9ea4097d3ee29685c144,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5650686573576149352, guid: 2d5c8d3297be9ea4097d3ee29685c144,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2561,6 +2571,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TableLamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368137680143402134, guid: 3564269c7d1a5dd4c985010ec89aca44,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2942,6 +2957,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vase
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565093788737665037, guid: 00031eb5d020564438854344f2fd7eb4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3730,6 +3750,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PictureFrame.1
       objectReference: {fileID: 0}
+    - target: {fileID: 311920748110854670, guid: c7224e54391ad5a459c9f35d83e6b579,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2981652942078126602, guid: c7224e54391ad5a459c9f35d83e6b579,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3846,12 +3871,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: VolumeTrigger_EnterOutdoor
       objectReference: {fileID: 0}
-    - target: {fileID: 5160244378473599437, guid: 756e50dabf1651d49a699fb219d9e7a3,
-        type: 3}
-      propertyPath: TriggerEnterEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 10154e86734224a4e84d0b0b2a0621e6,
-        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4680,6 +4699,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Globe
       objectReference: {fileID: 0}
+    - target: {fileID: 6155233149240380178, guid: 82d7f3693c5650a41a41f2160b8dd9db,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4815,6 +4839,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Toolbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375389662984392531, guid: 8db68d0361aab6848b2483e6a8bd890c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5323,6 +5352,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chair
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332909068146642274, guid: 3e4fad6493af2ab478dd2511b9868209,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7510895095876127619, guid: 3e4fad6493af2ab478dd2511b9868209,
         type: 3}
@@ -5948,6 +5982,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stool
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887908345177295784, guid: fbf719b6337e29f4093ef54152395016,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7212,6 +7251,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vase.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2317459558157503760, guid: 8bb5c8a80cca33141ab35c18b4bef2e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7229,6 +7273,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474542407920944119, guid: 075030834d40bce458b693c23d110d5a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8655353281238393644, guid: 075030834d40bce458b693c23d110d5a,
         type: 3}
@@ -7421,6 +7470,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tray
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634616229411407988, guid: 289bf8814cdec4e4ca16c2a035d73288,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7930,7 +7984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2567481984160572, guid: 756e50dabf1651d49a699fb219d9e7a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.43
+      value: 1.99
       objectReference: {fileID: 0}
     - target: {fileID: 2567481984160572, guid: 756e50dabf1651d49a699fb219d9e7a3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7975,16 +8029,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b4647af93493dc34a9b709008e383b99,
         type: 2}
-    - target: {fileID: 5160244378473599437, guid: 756e50dabf1651d49a699fb219d9e7a3,
-        type: 3}
-      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5160244378473599437, guid: 756e50dabf1651d49a699fb219d9e7a3,
-        type: 3}
-      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9097,6 +9141,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CookingPot.1
       objectReference: {fileID: 0}
+    - target: {fileID: 8628094747583642614, guid: b99114b8c2f203f43bbd0fe67f0eb56a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9317,17 +9366,17 @@ PrefabInstance:
     - target: {fileID: 3499191936500034792, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.837004
+      value: 2.48
       objectReference: {fileID: 0}
     - target: {fileID: 3499191936500034792, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 3499191936500034792, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.7690783
+      value: -7.11
       objectReference: {fileID: 0}
     - target: {fileID: 3499191936500034792, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
         type: 3}
@@ -9379,6 +9428,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799062231382268754, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8637883764083072247, guid: 6a352dbdd08f4af4ebc1adce8a6176ed,
         type: 3}

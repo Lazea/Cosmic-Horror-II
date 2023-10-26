@@ -57,17 +57,19 @@ public class NPCsManager : Singleton<NPCsManager>
         LayerMask coverMask)
     {
         Vector3 disp = point - position;
-        if(disp.magnitude <= sightRange)
+        float distance = disp.magnitude;
+        if(distance <= sightRange)
         {
             Vector3 dir = disp.normalized;
             float angle = Vector3.Angle(forward, dir);
-            if(Mathf.Abs(angle) <= sightFOV * 0.5f)
+            if (Mathf.Abs(angle) <= (sightFOV * 0.5f))
             {
                 Ray ray = new Ray(position, dir);
-                return !Physics.Raycast(
+                bool notBlocked = !Physics.Raycast(
                     ray,
-                    sightRange,
+                    distance,
                     coverMask);
+                return notBlocked;
             }
 
             return false;

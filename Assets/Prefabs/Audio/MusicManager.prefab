@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1853562703272002756}
   - component: {fileID: 2355641998208351344}
+  - component: {fileID: 5477034112157466309}
   m_Layer: 0
   m_Name: PlayerEventListeners
   m_TagString: Untagged
@@ -218,6 +219,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
         m_MethodName: DeathMusicEvent
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5477034112157466309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467933168969653269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91d60f0383fd544dba8cafb4aa287f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: f77650fd97b911140a4f717e316dfcdf, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7715597183752625322}
+        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+        m_MethodName: HandlePlayerHealthChange
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -367,7 +396,7 @@ GameObject:
   - component: {fileID: 7715597183752625322}
   m_Layer: 0
   m_Name: MusicManager
-  m_TagString: Untagged
+  m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1298,7 +1327,6 @@ GameObject:
   - component: {fileID: 5811501330419639165}
   - component: {fileID: 2665405513355994948}
   - component: {fileID: 1987414373014959893}
-  - component: {fileID: 8544256704184648586}
   m_Layer: 0
   m_Name: PlayerEnterExitEvents
   m_TagString: Untagged
@@ -1369,34 +1397,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
         m_MethodName: ExitAudioEvent
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8544256704184648586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7573808420689599689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e91d60f0383fd544dba8cafb4aa287f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: f77650fd97b911140a4f717e316dfcdf, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7715597183752625322}
-        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
-        m_MethodName: HandlePlayerHealthChange
-        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

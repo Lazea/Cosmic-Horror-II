@@ -97,9 +97,12 @@ MonoBehaviour:
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
+  TriggerEnterEvent: {fileID: 11400000, guid: 10154e86734224a4e84d0b0b2a0621e6, type: 2}
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
+  TriggerStayEvent: {fileID: 0}
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
+  TriggerExitEvent: {fileID: 0}

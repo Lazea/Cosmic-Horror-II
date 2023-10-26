@@ -695,26 +695,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7715597183752625322, guid: 4bfea5b1328039742a6165154d771f7e,
-        type: 3}
-      propertyPath: IndoorReverbZone
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7715597183752625322, guid: 4bfea5b1328039742a6165154d771f7e,
-        type: 3}
-      propertyPath: TunnelReverbZone
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7715597183752625322, guid: 4bfea5b1328039742a6165154d771f7e,
-        type: 3}
-      propertyPath: OutdoorReverbZone
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7715597183752625322, guid: 4bfea5b1328039742a6165154d771f7e,
-        type: 3}
-      propertyPath: BasementReverbZone
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7928176533772055531, guid: 4bfea5b1328039742a6165154d771f7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -851,6 +831,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcd503132ba5d743ab1b7a6d80d5b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onLoadCurrentLevel: {fileID: 0}
+  onLoadMainMenu: {fileID: 0}
 --- !u!114 &1761709291
 MonoBehaviour:
   m_ObjectHideFlags: 0

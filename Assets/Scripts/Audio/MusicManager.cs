@@ -56,16 +56,17 @@ public class MusicManager : MonoBehaviour
     public AudioClip[] Instruments = new AudioClip[3];
     public AudioClip[] JumpScares = new AudioClip[2];
 
-    static GameObject sampleInstance;
-
     public GameObject player;
 
     private void Awake()
     {
-        //if (sampleInstance != null)
-        //    Destroy(sampleInstance);
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Music");
 
-        //sampleInstance = gameObject;
+        if(objs.Length > 1) 
+        {
+            Destroy(gameObject);
+        }
+
         DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -286,7 +287,7 @@ public class MusicManager : MonoBehaviour
     {        
         ResetMusicEvent();
 
-        oneShotSource.PlayOneShot(DeathStinger, 0.9f);
+        oneShotSource.PlayOneShot(DeathStinger, 1f);
 
     }
 

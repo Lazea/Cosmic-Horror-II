@@ -139,6 +139,7 @@ public class NPCBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckForPlayer();
         HandleNPCMovement();
         UpdateNPCState();
 
@@ -170,7 +171,7 @@ public class NPCBehavior : MonoBehaviour
 
         if (IsPassiveState())
         {
-            if (CheckForPlayer())
+            if (playerSpotted)
             {
                 StopMoving();
                 StopAllCoroutines();
@@ -188,7 +189,7 @@ public class NPCBehavior : MonoBehaviour
         }
         else if (IsChaseState())
         {
-            if (CheckForPlayer())
+            if (playerSpotted)
             {
                 if (PlayerIsInFront())
                 {
@@ -208,7 +209,7 @@ public class NPCBehavior : MonoBehaviour
         }
         else if (IsAttackState())
         {
-            if (CheckForPlayer())
+            if (playerSpotted)
             {
                 if (!PlayerIsInFront())
                 {
@@ -416,6 +417,7 @@ public class NPCBehavior : MonoBehaviour
             return true;
         }
 
+        playerSpotted = false;
         return false;
     }
 
