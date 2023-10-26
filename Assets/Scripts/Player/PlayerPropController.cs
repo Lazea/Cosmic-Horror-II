@@ -303,7 +303,7 @@ public class PlayerPropController : MonoBehaviour
 
     public void PerformHeavyAttack1()
     {
-        if (equiptProp != null)
+        if (equiptProp == null)
             return;
 
         Vector3 forceDir = -Camera.main.transform.right;
