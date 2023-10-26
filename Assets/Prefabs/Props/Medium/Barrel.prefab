@@ -310,7 +310,8 @@ MonoBehaviour:
   destroyEffect: {fileID: 0}
   componentsLiftime: 4
   componentsToDetachOnDestroy:
-  - {fileID: 0}
+  - {fileID: 8757623150481118267}
+  - {fileID: 5238103540773476601}
   onPropImpact:
     m_PersistentCalls:
       m_Calls:
