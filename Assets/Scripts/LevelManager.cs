@@ -45,10 +45,6 @@ public class LevelManager : Singleton<LevelManager>
 
     public void QuitGame()
     {
-#if UNITY_STANDALONE
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
         Application.Quit();
-#endif
     }
 }

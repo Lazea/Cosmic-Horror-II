@@ -11981,6 +11981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcd503132ba5d743ab1b7a6d80d5b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGameStartEvent: {fileID: 0}
   onLoadCurrentLevel: {fileID: 0}
   onLoadMainMenu: {fileID: 0}
 --- !u!114 &1995142469

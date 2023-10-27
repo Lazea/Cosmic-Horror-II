@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -23,45 +18,15 @@ public class GameSettings : ScriptableObject
     [Header("Props")]
     public PropSettings propSettings;
     public TextAsset csvAsset;
+
     [ContextMenu("Parse CSV")]
     public void ParseCSV()
     {
-        propSettings.propsDataset = CSVSerializer.Deserialize<PropData>(csvAsset.text);
+        //propSettings.propsDataset = CSVSerializer.Deserialize<PropData>(csvAsset.text);
         for (int i = 0; i < propSettings.propsDataset.Length; i++)
         {
             propSettings.propsDataset[i].id = i;
         }
-
-        //// TODO: Map prefabs to database items
-        //string[] guids = AssetDatabase.FindAssets(
-        //    "t:Prefab",
-        //    new[] { "Assets/Prefabs/Props" });
-        //foreach (var guid in guids)
-        //{
-        //    var path = AssetDatabase.GUIDToAssetPath(guid);
-        //    GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-
-        //    foreach(var prop in propSettings.propsDataset)
-        //    {
-        //        if(prop.name == go.name)
-        //        {
-        //            var baseProp = go.GetComponent<BaseProp>();
-        //            if (baseProp != null)
-        //            {
-        //                baseProp.id = prop.id;
-        //            }
-
-        //            var damageable = go.GetComponent<Damageable>();
-        //            if(damageable != null)
-        //            {
-        //                damageable.durability = prop.durability;
-        //                damageable.propMaterial = prop.propMaterial;
-        //                damageable.propType = prop.propType;
-        //                damageable.propWeight = prop.propWeight;
-        //            }
-        //        }
-        //    }
-        //}
     }
 }
 
