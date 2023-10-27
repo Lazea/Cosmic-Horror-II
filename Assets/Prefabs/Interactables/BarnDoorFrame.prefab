@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 7708539162616605948}
   m_Layer: 0
   m_Name: BarnDoorFrame
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 16

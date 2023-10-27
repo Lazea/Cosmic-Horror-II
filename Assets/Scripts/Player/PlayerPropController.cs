@@ -389,7 +389,8 @@ public class PlayerPropController : MonoBehaviour
             ray,
             out hit,
             attackRange,
-            attackMask))
+            attackMask,
+            QueryTriggerInteraction.Ignore))
         {
             var hitDamageable = hit.collider.GetComponent<IDamageable>();
             if(hitDamageable != null)

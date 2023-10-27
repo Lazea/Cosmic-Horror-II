@@ -33,12 +33,20 @@ public class Door : MonoBehaviour
     public UnityEvent onDoorUnlocked;
 
     // Components
-    NavMeshObstacle obstacle;
+    List<NavMeshObstacle> navMeshObstacles;
 
     // Start is called before the first frame update
     void Start()
     {
-        obstacle = GetComponentInChildren<NavMeshObstacle>();
+        navMeshObstacles = new List<NavMeshObstacle>();
+        foreach (Transform c in transform)
+        {
+            var o = c.gameObject.GetComponent<NavMeshObstacle>();
+            if (o != null)
+            {
+                navMeshObstacles.Add(c.gameObject.GetComponent<NavMeshObstacle>());
+            }
+        }
 
         if (locked)
         {
@@ -55,11 +63,19 @@ public class Door : MonoBehaviour
             joints[i].previousAngle = joints[i].joint.angle;
         }
 
-        obstacle.carving = locked;
+        foreach(var o in navMeshObstacles)
+        {
+            o.carving = locked;
+        }
     }
 
     private void FixedUpdate()
     {
+        foreach(var o in navMeshObstacles)
+        {
+            o.carving = locked;
+        }
+
         for (int i = 0; i < joints.Length; i++)
         {
             joints[i].delta = Mathf.Abs(
@@ -102,7 +118,6 @@ public class Door : MonoBehaviour
     void LockDoor()
     {
         locked = true;
-        obstacle.carving = locked;
 
         JointLimits limits = new JointLimits();
         limits.min = -1.5f;
@@ -126,7 +141,6 @@ public class Door : MonoBehaviour
     {
         justUnlocked = true;
         locked = false;
-        obstacle.carving = locked;
 
         JointLimits limits = new JointLimits();
         limits.min = -90f;

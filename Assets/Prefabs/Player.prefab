@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 973589667317666647}
   m_Layer: 12
   m_Name: PropHoldingCollider_Small
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1752,6 +1752,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ledgeMask:
+    serializedVersion: 2
+    m_Bits: 129
   staticFriction: 0
   dynamicFriction: 0
 --- !u!114 &5223136293931624340
@@ -1913,7 +1916,7 @@ MonoBehaviour:
   propThrowPoint: {fileID: 7509364570484567854}
   attackMask:
     serializedVersion: 2
-    m_Bits: 1473
+    m_Bits: 17857
   onAttack:
     m_PersistentCalls:
       m_Calls:
@@ -2613,7 +2616,7 @@ GameObject:
   - component: {fileID: 3870776104378046049}
   m_Layer: 12
   m_Name: PropHoldingCollider_Large
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

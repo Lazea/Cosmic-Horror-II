@@ -43,6 +43,7 @@ public class PlayerCharacterController : MonoBehaviour
     public float ledgeCheckDistance;
     public float ledgeClimbTime;
     public UnityEvent onLedgeClimb;
+    public LayerMask ledgeMask;
 
     [Header("Physical Material Debug Detail")]
     [SerializeField]
@@ -85,7 +86,7 @@ public class PlayerCharacterController : MonoBehaviour
 
         UpdatePhysicsMaterial();
 
-        if (isGrounded)
+        if (isGrounded && !isClimbing)
         {
             ComputeVelocity();
             rb.velocity = velocity;
@@ -228,18 +229,28 @@ public class PlayerCharacterController : MonoBehaviour
         if(Physics.Raycast(
             ray,
             out ledgeHit,
-            ledgeCheckDistance))
+            ledgeCheckDistance,
+            ledgeMask,
+            QueryTriggerInteraction.Ignore))
         {
-            ray = new Ray(
+            if(ledgeHit.collider.tag == "Door" || ledgeHit.collider.tag != "Player")
+            {
+                if(!ledgeHit.collider.isTrigger)
+                {
+                    ray = new Ray(
                 ledgeHit.point - Vector3.up * 0.01f,
                 Vector3.up);
-            if (!Physics.Raycast(
-                ray,
-                collider.height))
-            {
-                Vector3 point = ledgeHit.point + Vector3.up * collider.height * 0.5f;
-                StartCoroutine(ClimbLedge(point));
-                onLedgeClimb.Invoke();
+                    if (!Physics.Raycast(
+                        ray,
+                        collider.height,
+                        ledgeMask,
+                        QueryTriggerInteraction.Ignore))
+                    {
+                        Vector3 point = ledgeHit.point + Vector3.up * collider.height * 0.5f;
+                        StartCoroutine(ClimbLedge(point));
+                        onLedgeClimb.Invoke();
+                    }
+                }
             }
         }
     }

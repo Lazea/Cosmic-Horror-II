@@ -356,6 +356,7 @@ public class NPCBehavior : MonoBehaviour
         {
             dot = Vector3.Dot(transform.forward, worldDeltaPosition.normalized);
             dot = Mathf.Abs(dot);
+            dot = Mathf.Max(dot, 0.15f);
         }
 
         if (!running)

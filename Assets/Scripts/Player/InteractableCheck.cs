@@ -87,7 +87,8 @@ public class InteractableCheck : MonoBehaviour
             if(!Physics.Raycast(
                 ray,
                 hitDisp.magnitude + 0.002f,
-                coverMask))
+                coverMask,
+                QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider.tag == "Prop")
                 {
@@ -170,11 +171,12 @@ public class InteractableCheck : MonoBehaviour
     {
         foreach (Collider coll in prop.Colliders)
             coll.enabled = false;
+
+        prop.RB.velocity = Vector3.zero;
+        prop.RB.angularVelocity = Vector3.zero;
         prop.RB.isKinematic = true;
         prop.RB.interpolation = RigidbodyInterpolation.None;
         prop.RB.collisionDetectionMode = CollisionDetectionMode.Discrete;
-        prop.RB.velocity = Vector3.zero;
-        prop.RB.angularVelocity = Vector3.zero;
 
         while (Vector3.Distance(
             prop.GetGameObject().transform.position,
