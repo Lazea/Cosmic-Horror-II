@@ -139,7 +139,10 @@ public class Door : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Enemy" || other.gameObject.layer == LayerMask.NameToLayer("LargeProp"))
+        if(
+            other.tag == "Enemy" ||
+            (other.gameObject.layer == LayerMask.NameToLayer("LargeProp") &&
+            other.tag == "Prop"))
         {
             if(other.attachedRigidbody != null)
             {
