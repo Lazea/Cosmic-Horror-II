@@ -107,7 +107,8 @@ public class PlayerCharacterController : MonoBehaviour
             groundCheckRadius,
             out groundHit,
             groundCheckDistance,
-            groundMask);
+            groundMask,
+            QueryTriggerInteraction.Ignore);
     }
 
     void ComputeVelocity()

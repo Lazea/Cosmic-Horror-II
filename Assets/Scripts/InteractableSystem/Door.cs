@@ -153,11 +153,12 @@ public class Door : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(
+        if (
             other.tag == "Enemy" ||
             (other.gameObject.layer == LayerMask.NameToLayer("LargeProp") &&
             other.tag == "Prop"))
         {
+            Debug.LogFormat("Attempting to push on {0}", other.name);
             if(other.attachedRigidbody != null)
             {
                 Vector3 disp = other.transform.position - transform.position;
