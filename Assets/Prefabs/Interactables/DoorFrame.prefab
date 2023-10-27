@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 5975028961824442594}
   - component: {fileID: 1549395506358635485}
   - component: {fileID: 432566523848933291}
+  - component: {fileID: 5257132632842928276}
   m_Layer: 0
   m_Name: DoorFrame
   m_TagString: Untagged
@@ -813,7 +814,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 10188
+  m_VersionIndex: 10191
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -966,6 +967,7 @@ MonoBehaviour:
   - joint: {fileID: 7238953278489008372}
     previousAngle: 0
     delta: 0
+  pushForce: 15
   onDoorSwing:
     m_PersistentCalls:
       m_Calls:
@@ -1055,3 +1057,26 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.58, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!136 &5257132632842928276
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745305085103925850}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Height: 1.71
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.64, z: 0}

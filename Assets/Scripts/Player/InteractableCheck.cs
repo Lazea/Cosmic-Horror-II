@@ -17,6 +17,7 @@ public class InteractableCheck : MonoBehaviour
     RaycastHit hit;
 
     bool hasSelection;
+    bool dontHaveSelectionUINotified;
     bool isPickingUp;
     public IProp selectedProp;
     public IInteractable selectedInteractable;
@@ -109,6 +110,7 @@ public class InteractableCheck : MonoBehaviour
                         selectedProp = hit.collider.GetComponent<IProp>();
                     }
                     hasSelection = true;
+                    dontHaveSelectionUINotified = false;
                 }
                 //else if (hit.collider.tag == "LargeProp")
                 //{
@@ -120,12 +122,16 @@ public class InteractableCheck : MonoBehaviour
                     UIManager.Instance.ShowInteractionPrompt("[E] to Interact");
                     selectedInteractable = hit.collider.GetComponent<IInteractable>();
                     hasSelection = true;
+                    dontHaveSelectionUINotified = false;
                 }
             }
         }
 
-        if(!hasSelection)
+        if(!hasSelection && !dontHaveSelectionUINotified)
+        {
+            dontHaveSelectionUINotified = true;
             UIManager.Instance.HideInteractionPrompt();
+        }
     }
 
     public void Interact()

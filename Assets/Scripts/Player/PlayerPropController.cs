@@ -75,7 +75,6 @@ public class PlayerPropController : MonoBehaviour
             BlockEnd();
     }
 
-
     private void FixedUpdate()
     {
         EnablePropHoldingCollider(equiptProp != null);
@@ -181,20 +180,45 @@ public class PlayerPropController : MonoBehaviour
 
         Debug.Log(string.Format("Drop {0}", _prop.name));
 
-        if(_prop.propType == PropType.Medium || _prop.propType == PropType.Heavy)
+        //if(_prop.propType == PropType.Medium || _prop.propType == PropType.Heavy)
+        //{
+        //    _prop.transform.position = largePropDropPoint.position;
+        //    _prop.transform.rotation = largePropDropPoint.rotation;
+        //}
+        //else
+        //{
+        //    _prop.transform.position = smallPropDropPoint.position;
+        //    _prop.transform.rotation = smallPropDropPoint.rotation;
+        //}
+        //_prop.RB.velocity = Vector3.zero;
+        //_prop.RB.angularVelocity = Vector3.zero;
+
+        StartCoroutine(EnablePropPhysics(_prop));
+
+        anim.SetBool("Blocking", false);
+    }
+
+    private IEnumerator EnablePropPhysics(BaseProp prop)
+    {
+        yield return new WaitForFixedUpdate();
+
+        if (prop.propType == PropType.Medium || prop.propType == PropType.Heavy)
         {
-            _prop.transform.position = largePropDropPoint.position;
-            _prop.transform.rotation = largePropDropPoint.rotation;
+            prop.transform.position = largePropDropPoint.position;
+            prop.transform.rotation = largePropDropPoint.rotation;
         }
         else
         {
-            _prop.transform.position = smallPropDropPoint.position;
-            _prop.transform.rotation = smallPropDropPoint.rotation;
+            prop.transform.position = smallPropDropPoint.position;
+            prop.transform.rotation = smallPropDropPoint.rotation;
         }
-        _prop.RB.velocity = Vector3.zero;
-        _prop.RB.angularVelocity = Vector3.zero;
 
-        anim.SetBool("Blocking", false);
+        for(int i = 0; i < 3; i++)
+        {
+            yield return new WaitForFixedUpdate();
+            prop.RB.velocity = Vector3.zero;
+            prop.RB.angularVelocity = Vector3.zero;
+        }
     }
     #endregion
 

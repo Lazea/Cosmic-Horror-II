@@ -969,6 +969,7 @@ MonoBehaviour:
   - joint: {fileID: 3202649945728804057}
     previousAngle: 0
     delta: 0
+  pushForce: 15
   onDoorSwing:
     m_PersistentCalls:
       m_Calls:

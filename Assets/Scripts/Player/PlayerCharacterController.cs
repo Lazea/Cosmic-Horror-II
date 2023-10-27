@@ -44,6 +44,12 @@ public class PlayerCharacterController : MonoBehaviour
     public float ledgeClimbTime;
     public UnityEvent onLedgeClimb;
 
+    [Header("Physical Material Debug Detail")]
+    [SerializeField]
+    float staticFriction;
+    [SerializeField]
+    float dynamicFriction;
+
     // Components
     PlayerSettings playerSettings
     {
@@ -141,31 +147,34 @@ public class PlayerCharacterController : MonoBehaviour
 
     void UpdatePhysicsMaterial()
     {
-        float staticFriction = (moveInput.magnitude > 0f) ?
+        float _staticFriction = (moveInput.magnitude > 0f) ?
             playerSettings.dynamicPhysicsMaterial.staticFriction :
             playerSettings.staticPhysicsMaterial.staticFriction;
         if (!isGrounded)
-            staticFriction = playerSettings.dynamicPhysicsMaterial.staticFriction;
+            _staticFriction = playerSettings.dynamicPhysicsMaterial.staticFriction;
 
-        float dynamicFriction = (moveInput.magnitude > 0f) ?
+        float _dynamicFriction = (moveInput.magnitude > 0f) ?
             playerSettings.dynamicPhysicsMaterial.dynamicFriction :
             playerSettings.staticPhysicsMaterial.dynamicFriction;
         if (!isGrounded)
-            dynamicFriction = playerSettings.dynamicPhysicsMaterial.dynamicFriction;
+            _dynamicFriction = playerSettings.dynamicPhysicsMaterial.dynamicFriction;
 
         physicsMaterial.staticFriction = Mathf.Lerp(
             physicsMaterial.staticFriction,
-            staticFriction,
+            _staticFriction,
             0.75f);
         physicsMaterial.dynamicFriction = Mathf.Lerp(
             physicsMaterial.dynamicFriction,
-            dynamicFriction,
+            _dynamicFriction,
             0.75f);
         physicsMaterial.frictionCombine = (moveInput.magnitude > 0f || !isGrounded) ?
             playerSettings.dynamicPhysicsMaterial.frictionCombine :
             playerSettings.staticPhysicsMaterial.frictionCombine;
 
         collider.material = physicsMaterial;
+
+        staticFriction = physicsMaterial.staticFriction;
+        dynamicFriction = physicsMaterial.dynamicFriction;
     }
 
     // Update is called once per frame

@@ -24,6 +24,9 @@ public class Door : MonoBehaviour
     [Header("Joints")]
     public DoorJoint[] joints;
 
+    [Header("Obstacle Pushing")]
+    public float pushForce;
+
     [Header("Events")]
     public UnityEvent onDoorSwing;
     public UnityEvent onDoorLocked;
@@ -131,6 +134,21 @@ public class Door : MonoBehaviour
         for (int i = 0; i < joints.Length; i++)
         {
             joints[i].joint.limits = limits;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Enemy" || other.gameObject.layer == LayerMask.NameToLayer("LargeProp"))
+        {
+            if(other.attachedRigidbody != null)
+            {
+                Vector3 disp = other.transform.position - transform.position;
+                disp.y = 0f;
+                Vector3 force = disp.normalized * pushForce;
+                other.attachedRigidbody.AddForce(force, ForceMode.Acceleration);
+                other.attachedRigidbody.AddForce(Vector3.up * 10f, ForceMode.Acceleration);
+            }
         }
     }
 }
