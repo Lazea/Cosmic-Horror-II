@@ -427,7 +427,7 @@ MonoBehaviour:
   id: 0
   propType: 2
   propWeight: 0
-  propAttackRange: 0
+  propAttackRange: 1
   propAttackForce: 0
   propMaterial: 0
   durability: 0

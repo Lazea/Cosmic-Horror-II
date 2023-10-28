@@ -23,6 +23,7 @@ public class PlayerPropController : MonoBehaviour
     public Transform propThrowPoint;
 
     [Header("Attacking")]
+    public float attackRadius;
     public LayerMask attackMask;
     public UnityEvent onAttack;
     public UnityEvent<BaseProp> onAttackHit = new UnityEvent<BaseProp>();
@@ -111,6 +112,8 @@ public class PlayerPropController : MonoBehaviour
     #region [Equipt and Drop]
     public void EquiptProp(BaseProp prop)
     {
+        Debug.LogFormat("Pickup prop {0}", prop.name);
+
         if (cc.IsClimbing())
             return;
 
@@ -347,7 +350,7 @@ public class PlayerPropController : MonoBehaviour
                 range = propSettings.AttackShortRange;
                 break;
             case BaseProp.PropAttackRange.Long:
-                range = propSettings.AttackShortRange;
+                range = propSettings.AttackLongRange;
                 break;
             default:
                 range = 1f;
@@ -385,12 +388,19 @@ public class PlayerPropController : MonoBehaviour
             Camera.main.transform.position,
             Camera.main.transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(
+        if (Physics.SphereCast(
             ray,
+            attackRadius,
             out hit,
             attackRange,
             attackMask,
             QueryTriggerInteraction.Ignore))
+        //if (Physics.Raycast(
+        //    ray,
+        //    out hit,
+        //    attackRange,
+        //    attackMask,
+        //    QueryTriggerInteraction.Ignore))
         {
             var hitDamageable = hit.collider.GetComponent<IDamageable>();
             if(hitDamageable != null)
@@ -492,13 +502,11 @@ public class PlayerPropController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (!Application.isPlaying)
-            return;
         Gizmos.color = Color.blue;
         var cameraTransform = Camera.main.transform;
         Gizmos.DrawWireSphere(
             cameraTransform.position + cameraTransform.forward * propSettings.AttackShortRange,
-            0.25f);
+            attackRadius);
         Gizmos.DrawLine(
             cameraTransform.position,
             cameraTransform.position + cameraTransform.forward * propSettings.AttackShortRange);
@@ -506,7 +514,7 @@ public class PlayerPropController : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(
             cameraTransform.position + cameraTransform.forward * propSettings.AttackLongRange,
-            0.25f);
+            attackRadius + 0.025f);
         Gizmos.DrawLine(
             cameraTransform.position,
             cameraTransform.position + cameraTransform.forward * propSettings.AttackLongRange);

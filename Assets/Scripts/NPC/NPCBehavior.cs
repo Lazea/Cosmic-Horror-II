@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -20,6 +21,16 @@ public class NPCBehavior : MonoBehaviour
         Wait
     }
     [SerializeField]
+    AnimatorStateInfo animState
+    {
+        get
+        {
+            if (anim != null)
+                return anim.GetCurrentAnimatorStateInfo(0);
+            else
+                return new AnimatorStateInfo();
+        }
+    }
 
     [Header("Perception")]
     public Transform head;
@@ -29,6 +40,7 @@ public class NPCBehavior : MonoBehaviour
     public LayerMask coverMask;
     [SerializeField]
     bool playerSpotted;
+    bool playerIsDestination;
 
     [Header("Attacking")]
     public int lightAttackDamage;
@@ -44,36 +56,26 @@ public class NPCBehavior : MonoBehaviour
     [Header("Navigation")]
     public int waypointManagerID;
     public Waypoint currentWaypoint;
-    public float turnSpeedSmoothing;
-    public float maxNavDisp;
-    public float minMoveSpeed;
-    [SerializeField]
-    float dot;
-    [SerializeField]
-    float moveSpeed;
-    [SerializeField]
-    float animSpeed;
     [SerializeField]
     bool stopped;
     [SerializeField]
     bool running;
-    Vector3 worldDeltaPosition;
-    [SerializeField]
     Vector3 positionOffset;
-    AnimatorStateInfo animState
-    {
-        get
-        {
-            if (anim != null)
-                return anim.GetCurrentAnimatorStateInfo(0);
-            else
-                return new AnimatorStateInfo();
-        }
-    }
-    bool playerIsDestination;
+
+    // Movement deltas
+    float lerpTime = 1f;
+    float currentLerpTime;
+    Vector3 rootPosition;
+    Vector2 delta;
+    Vector2 smootDeltaPosition;
+    Vector2 velocity;
+    float finalSpeed;
 
     // Player Stats
     Player player { get { return NPCsManager.Instance.Player; } }
+
+    [Header("Dead Ragdoll Lifetime")]
+    public float deadNPCRagdollLifetime;
 
     [Header("Events")]
     public UnityEvent onSpawnState;
@@ -95,7 +97,7 @@ public class NPCBehavior : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.avoidancePriority = Random.Range(0, 50);
-        agent.stoppingDistance = Random.Range(1f, 1.5f);
+        agent.stoppingDistance = Random.Range(0.8f, 1.2f);
         agent.updatePosition = false;
         agent.updateRotation = true;
 
@@ -162,6 +164,15 @@ public class NPCBehavior : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        float naveMeshDist = Vector3.Distance(transform.position, agent.nextPosition);
+        transform.position = Vector3.Lerp(
+            transform.position,
+            agent.nextPosition,
+            Mathf.Max(naveMeshDist / 0.05f, 1f));
+    }
+
     void UpdateNPCState()
     {
         if (IsStartState())
@@ -214,6 +225,7 @@ public class NPCBehavior : MonoBehaviour
                 if (!PlayerIsInFront())
                 {
                     StopAllCoroutines();
+                    SetPositionOffset(1f, 1.75f);
                     SetChaseState();
                     StartCoroutine("SetRandomRunning");
                 }
@@ -248,7 +260,7 @@ public class NPCBehavior : MonoBehaviour
             StopMoving();
             StopAllCoroutines();
             SetWaitState();
-            float waitT = Random.Range(1f, 1.5f);
+            float waitT = Random.Range(4f, 5f);
             StartCoroutine(ExecuteDelayed(
                 () => {
                     SetClosestWaypointDestination();
@@ -261,7 +273,7 @@ public class NPCBehavior : MonoBehaviour
             StopMoving();
             StopAllCoroutines();
             SetWaitState();
-            float waitT = Random.Range(1f, 1.5f);
+            float waitT = Random.Range(4f, 5f);
             StartCoroutine(ExecuteDelayed(
                 () => {
                     SetNextWaypointDestination();
@@ -348,34 +360,42 @@ public class NPCBehavior : MonoBehaviour
             agent.SetDestination(destination);
         }
 
-        worldDeltaPosition = agent.nextPosition - transform.position;
+        Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
         worldDeltaPosition.y = 0f;
 
-        dot = 0f;
-        if (!stopped)
+        float dx = Vector3.Dot(transform.right, worldDeltaPosition);
+        float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
+        delta = new Vector2(dx, dy) * 2f;
+
+        float smooth = Mathf.Min(1f, Time.deltaTime / 2f);
+        smootDeltaPosition = Vector2.Lerp(smootDeltaPosition, delta, smooth);
+
+        velocity = smootDeltaPosition / Time.deltaTime;
+        velocity *= (running) ? 1f : 0.5f;
+
+        if (stopped)
         {
-            dot = Vector3.Dot(transform.forward, worldDeltaPosition.normalized);
-            dot = Mathf.Abs(dot);
-            dot = Mathf.Max(dot, 0.15f);
+            velocity = Vector2.Lerp(Vector2.zero, velocity, agent.remainingDistance * 0.8f);
         }
 
-        if (!running)
+        //increment timer once per frame
+        currentLerpTime += Time.deltaTime;
+        if (currentLerpTime > lerpTime)
         {
-            dot *= 0.5f;
+            currentLerpTime = lerpTime;
         }
 
-        moveSpeed = Mathf.Lerp(
-            moveSpeed,
-            dot,
-            turnSpeedSmoothing * 200f * Time.deltaTime);
-
-        animSpeed = anim.GetFloat("Speed");
+        finalSpeed = Mathf.Min(
+            velocity.magnitude / 6f,
+            (running) ? 1f : 0.5f);
+        float t = currentLerpTime / lerpTime;
+        t = Mathf.Sin(t * Mathf.PI * 0.5f) * Time.deltaTime * 10f;
         anim.SetFloat(
             "Speed",
             Mathf.Lerp(
-                animSpeed,
-                moveSpeed,
-                agent.acceleration));
+                anim.GetFloat("Speed"),
+                finalSpeed,
+                t));
     }
 
     IEnumerator ExecuteDelayed(System.Action callback, float time)
@@ -584,15 +604,10 @@ public class NPCBehavior : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        Vector3 rootPosition = anim.rootPosition;
+        rootPosition = anim.rootPosition;
         rootPosition.y = agent.nextPosition.y;
 
-        if (worldDeltaPosition.magnitude > maxNavDisp)
-        {
-            rootPosition = rootPosition + worldDeltaPosition;
-        }
         transform.position = rootPosition;
-
         agent.nextPosition = rootPosition;
     }
     #endregion
@@ -830,6 +845,7 @@ public class NPCBehavior : MonoBehaviour
         SetDeadState();
         anim.SetBool("DeadBack", true);
         onDead.Invoke();
+        Destroy(gameObject, deadNPCRagdollLifetime);
     }
     #endregion
 
@@ -889,17 +905,30 @@ public class NPCBehavior : MonoBehaviour
             npcPos,
             npcPos + Quaternion.Euler(-Vector3.up * attackAngle * 0.5f) * transform.forward * attackRange);
 
-        Gizmos.color = Color.cyan;
+        if (!Application.isPlaying)
+            return;
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawSphere(agent.nextPosition, 0.1f);
+
+        Vector3 _delta = transform.TransformVector(
+            new Vector3(delta.x, 0f, delta.y));
         Gizmos.DrawLine(
-            transform.position + Vector3.up * 0.1f,
-            transform.position + worldDeltaPosition.normalized + Vector3.up * 0.1f);
+            agent.nextPosition,
+            agent.nextPosition + _delta * 10f);
+
+        Vector3 _smootDeltaPosition = transform.TransformVector(
+            new Vector3(smootDeltaPosition.x, 0f, smootDeltaPosition.y));
         Gizmos.color = Color.blue;
-        Debug.DrawLine(
-            transform.position + Vector3.up * 0.15f,
-            transform.position + worldDeltaPosition + Vector3.up * 0.15f);
-        Gizmos.color = Color.green;
-        Debug.DrawLine(
-            transform.position + Vector3.up * 0.2f,
-            transform.position + transform.forward + Vector3.up * 0.2f);
+        Gizmos.DrawLine(
+            agent.nextPosition + Vector3.up * 0.05f,
+            agent.nextPosition + Vector3.up * 0.05f + _smootDeltaPosition * 10f);
+
+        Vector3 _velocity = transform.TransformVector(
+            new Vector3(velocity.x, 0f, velocity.y));
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(
+            agent.nextPosition + Vector3.up * 0.1f,
+            agent.nextPosition + Vector3.up * 0.1f + _velocity);
     }
 }

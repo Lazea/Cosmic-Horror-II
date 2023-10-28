@@ -99,8 +99,8 @@ Rigidbody:
   m_GameObject: {fileID: 407450844292226656}
   serializedVersion: 4
   m_Mass: 1.5625
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -114,7 +114,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &5672337056716379968
@@ -199,8 +199,8 @@ Rigidbody:
   m_GameObject: {fileID: 527782146398747522}
   serializedVersion: 4
   m_Mass: 0.625
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -214,7 +214,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!144 &4747087318448695426
@@ -260,7 +260,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &3549195676002458748
@@ -286,7 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3707587087711720807}
-  - component: {fileID: 3148385014057976502}
+  - component: {fileID: 5110940713208555431}
   - component: {fileID: 7439718413765937943}
   - component: {fileID: 4618717273918964516}
   - component: {fileID: 2541376004385064014}
@@ -312,14 +312,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2379759939167677533}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &3148385014057976502
-SphereCollider:
+--- !u!136 &5110940713208555431
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555236804831797234}
-  m_Material: {fileID: 13400000, guid: fe0a0cb32c46c4e4b9393ed6a6498aed, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -330,9 +330,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.12180726
-  m_Center: {x: -9.828337e-24, y: 0.056062534, z: 0.008216853}
+  serializedVersion: 2
+  m_Radius: 0.15
+  m_Height: 0.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.035, z: 0.01}
 --- !u!54 &7439718413765937943
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -342,8 +344,8 @@ Rigidbody:
   m_GameObject: {fileID: 555236804831797234}
   serializedVersion: 4
   m_Mass: 0.625
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -357,7 +359,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!144 &4618717273918964516
@@ -369,10 +371,10 @@ CharacterJoint:
   m_GameObject: {fileID: 555236804831797234}
   m_ConnectedBody: {fileID: 7367772368980105032}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Anchor: {x: 0, y: -0.09, z: -0.025}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -7.1665075e-18, y: 0.42742443, z: 0.089023486}
+  m_ConnectedAnchor: {x: -6.5282397e-18, y: 0.34479296, z: 0.045468684}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -403,7 +405,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &2541376004385064014
@@ -647,8 +649,8 @@ Rigidbody:
   m_GameObject: {fileID: 2311665791148843408}
   serializedVersion: 4
   m_Mass: 0.625
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -662,7 +664,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!144 &8650122841785289860
@@ -708,7 +710,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &975638175138328904
@@ -960,8 +962,8 @@ Rigidbody:
   m_GameObject: {fileID: 3308909497387105469}
   serializedVersion: 4
   m_Mass: 0.9375
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -975,7 +977,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!144 &8545924820877192507
@@ -1021,7 +1023,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &6540377691440092328
@@ -1106,8 +1108,8 @@ Rigidbody:
   m_GameObject: {fileID: 3781900654066321631}
   serializedVersion: 4
   m_Mass: 0.9375
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1121,7 +1123,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!144 &4870636738988993661
@@ -1167,7 +1169,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &4739467962509670538
@@ -1252,8 +1254,8 @@ Rigidbody:
   m_GameObject: {fileID: 3855783293354539184}
   serializedVersion: 4
   m_Mass: 0.9375
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1267,7 +1269,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!144 &5632179367313722324
@@ -1313,7 +1315,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &6832091768517424479
@@ -1654,8 +1656,8 @@ Rigidbody:
   m_GameObject: {fileID: 4601607513128634018}
   serializedVersion: 4
   m_Mass: 1.5625
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1669,7 +1671,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!144 &4817338114921517689
@@ -1715,7 +1717,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &7229043391766197884
@@ -1896,8 +1898,8 @@ Rigidbody:
   m_GameObject: {fileID: 6438725308176442657}
   serializedVersion: 4
   m_Mass: 0.9375
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1911,7 +1913,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!144 &1502216113465119217
@@ -1957,7 +1959,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &5415082231916720604
@@ -2044,11 +2046,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 7003355335672114848}
   m_Enabled: 1
   m_AgentTypeID: -1372625422
-  m_Radius: 0.3
+  m_Radius: 0.6
   m_Speed: 3.5
   m_Acceleration: 3.5
   avoidancePriority: 50
-  m_AngularSpeed: 100
+  m_AngularSpeed: 800
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -2113,15 +2115,9 @@ MonoBehaviour:
   waypointManagerID: -1
   currentWaypoint:
     transform: {fileID: 0}
-  turnSpeedSmoothing: 0.01
-  maxNavDisp: 0.075
-  minMoveSpeed: 0.15
-  dot: 0
-  moveSpeed: 0
-  animSpeed: 0
   stopped: 0
   running: 0
-  positionOffset: {x: 0, y: 0, z: 0}
+  deadNPCRagdollLifetime: 180
   onSpawnState:
     m_PersistentCalls:
       m_Calls:
@@ -2290,8 +2286,8 @@ Rigidbody:
   m_GameObject: {fileID: 7602424346012398577}
   serializedVersion: 4
   m_Mass: 0.625
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2305,7 +2301,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!144 &1428711667641849319
@@ -2351,7 +2347,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &4023801528627671798
@@ -2436,8 +2432,8 @@ Rigidbody:
   m_GameObject: {fileID: 7640350517319867446}
   serializedVersion: 4
   m_Mass: 0.625
-  m_Drag: 0.01
-  m_AngularDrag: 0.075
+  m_Drag: 0.09
+  m_AngularDrag: 0.25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2451,7 +2447,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!144 &6676316722722673121
@@ -2497,7 +2493,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &3794614025124680613

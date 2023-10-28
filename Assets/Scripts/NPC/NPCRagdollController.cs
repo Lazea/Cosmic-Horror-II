@@ -49,6 +49,7 @@ public class NPCRagdollController : MonoBehaviour
 
         npcCollider = GetComponent<Collider>();
         anim = GetComponent<Animator>();
+        anim.SetFloat("DeathBlend", Random.Range(0f, 1f));
     }
 
     void FixedUpdate()
@@ -73,20 +74,48 @@ public class NPCRagdollController : MonoBehaviour
     [ContextMenu("Enable Ragdoll")]
     public void EnableRagdoll()
     {
+        Invoke("EnableRG", Random.Range(0.01f, 0.3f));
+        //anim.enabled = false;
+        //foreach(var c in components)
+        //{
+        //    c.enabled = false;
+        //}
+        //npcCollider.enabled = false;
+
+        //foreach(var rb in rigidBodies)
+        //{
+        //    rb.isKinematic = false;
+        //    rb.useGravity = true;
+        //}
+
+        //for(int i = 0; i < rigidBodies.Length; i++)
+        //{
+        //    rigidBodies[i].velocity = bones[i].GetVelocity();
+        //    rigidBodies[i].angularVelocity = bones[i].GetAngularVelocity();
+        //}
+
+        //foreach (var j in joints)
+        //{
+        //    j.enableProjection = true;
+        //}
+    }
+
+    void EnableRG()
+    {
         anim.enabled = false;
-        foreach(var c in components)
+        foreach (var c in components)
         {
             c.enabled = false;
         }
         npcCollider.enabled = false;
 
-        foreach(var rb in rigidBodies)
+        foreach (var rb in rigidBodies)
         {
             rb.isKinematic = false;
             rb.useGravity = true;
         }
 
-        for(int i = 0; i < rigidBodies.Length; i++)
+        for (int i = 0; i < rigidBodies.Length; i++)
         {
             rigidBodies[i].velocity = bones[i].GetVelocity();
             rigidBodies[i].angularVelocity = bones[i].GetAngularVelocity();
