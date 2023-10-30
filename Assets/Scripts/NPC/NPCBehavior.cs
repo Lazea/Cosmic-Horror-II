@@ -61,6 +61,14 @@ public class NPCBehavior : MonoBehaviour
     [SerializeField]
     bool running;
     Vector3 positionOffset;
+    public float minPositionOffset = 1f;
+    public float maxPositionOffset = 2.25f;
+    public float minPlayerPositionOffset = 0.75f;
+    public float maxPlayerPositionOffset = 1.5f;
+    public float minWaitTime = 0.2f;
+    public float maxWaitTime = 0.75f;
+    public float minCombatWaitTime = 1f;
+    public float maxCombatWaitTime = 3f;
     public float minRunChance;
     public float maxRunChance;
     [SerializeField]
@@ -116,10 +124,12 @@ public class NPCBehavior : MonoBehaviour
 
         SetupHurtboxes();
 
-        SetPositionOffset(1.5f, 2.5f);
+        SetPositionOffset(minPositionOffset, maxPositionOffset);
 
-        SetStartState();
-        SetPassiveState();  // TODO: Remove this once animation event calls the function
+        if (IsStartState())
+            SetPassiveState();
+        //SetStartState();
+        //SetPassiveState();  // TODO: Remove this once animation event calls the function
 
         onSpawnState.Invoke();
     }
@@ -191,9 +201,9 @@ public class NPCBehavior : MonoBehaviour
             {
                 StopMoving();
                 StopAllCoroutines();
-                SetPositionOffset(1.5f, 2.5f);
+                SetPositionOffset(minPositionOffset, maxPositionOffset);
                 SetWaitState();
-                float waitT = Random.Range(0.2f, 0.75f);
+                float waitT = Random.Range(minWaitTime, maxWaitTime);
                 StartCoroutine(ExecuteDelayed(
                     () =>
                     {
@@ -205,6 +215,7 @@ public class NPCBehavior : MonoBehaviour
         }
         else if (IsChaseState())
         {
+            Debug.LogFormat("In Chase State: spotted {0}", playerSpotted);
             if (playerSpotted)
             {
                 if (PlayerIsInFront())
@@ -219,7 +230,7 @@ public class NPCBehavior : MonoBehaviour
                 StopMoving();
                 StopAllCoroutines();
                 SetWaitState();
-                float waitT = Random.Range(1f, 3f);
+                float waitT = Random.Range(minCombatWaitTime, maxCombatWaitTime);
                 StartCoroutine(ExecuteDelayed(SetPassiveState, waitT));
             }
         }
@@ -230,7 +241,7 @@ public class NPCBehavior : MonoBehaviour
                 if (!PlayerIsInFront())
                 {
                     StopAllCoroutines();
-                    SetPositionOffset(1f, 1.75f);
+                    SetPositionOffset(minPlayerPositionOffset, maxPlayerPositionOffset);
                     SetChaseState();
                     StartCoroutine("SetRandomRunning");
                 }
@@ -240,7 +251,7 @@ public class NPCBehavior : MonoBehaviour
                 StopMoving();
                 StopAllCoroutines();
                 SetWaitState();
-                float waitT = Random.Range(1f, 3f);
+                float waitT = Random.Range(minCombatWaitTime, maxCombatWaitTime);
                 StartCoroutine(ExecuteDelayed(SetPassiveState, waitT));
             }
         }
@@ -733,6 +744,12 @@ public class NPCBehavior : MonoBehaviour
         StopMoving();
         currentWaypoint = null;
         npcState = NPCState.Dead;
+    }
+
+    [ContextMenu("Spot Player")]
+    public void SpotPlayer()
+    {
+        playerSpotted = true;
     }
     #endregion
 
