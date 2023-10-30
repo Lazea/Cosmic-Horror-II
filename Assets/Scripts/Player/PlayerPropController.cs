@@ -7,6 +7,8 @@ public class PlayerPropController : MonoBehaviour
 {
     [Header("Throw Force")]
     public float throwForce;
+    public float maxThrowMass;
+    public AnimationCurve throwForceMassCurve;
     public UnityEvent onThrow;
 
     [Header("Prop")]
@@ -183,27 +185,38 @@ public class PlayerPropController : MonoBehaviour
 
         Debug.Log(string.Format("Drop {0}", _prop.name));
 
-        StartCoroutine(EnablePropPhysics(_prop, () => { }));
+        if (_prop.propType == PropType.Medium || _prop.propType == PropType.Heavy)
+        {
+            StartCoroutine(
+                EnablePropPhysics(
+                    _prop,
+                    largePropDropPoint.position,
+                    largePropDropPoint.rotation,
+                    () => { }));
+        }
+        else
+        {
+            StartCoroutine(
+                EnablePropPhysics(
+                    _prop,
+                    smallPropDropPoint.position,
+                    smallPropDropPoint.rotation,
+                    () => { }));
+        }
 
         anim.SetBool("Blocking", false);
     }
 
     private IEnumerator EnablePropPhysics(
         BaseProp prop,
+        Vector3 point,
+        Quaternion orientation,
         UnityAction callback)
     {
         yield return new WaitForFixedUpdate();
 
-        if (prop.propType == PropType.Medium || prop.propType == PropType.Heavy)
-        {
-            prop.transform.position = largePropDropPoint.position;
-            prop.transform.rotation = largePropDropPoint.rotation;
-        }
-        else
-        {
-            prop.transform.position = smallPropDropPoint.position;
-            prop.transform.rotation = smallPropDropPoint.rotation;
-        }
+        prop.transform.position = point;
+        prop.transform.rotation = orientation;
 
         for (int i = 0; i < 2; i++)
         {
@@ -238,14 +251,16 @@ public class PlayerPropController : MonoBehaviour
 
         UnityAction Throw = () =>
         {
-            float _throwForce = (_prop.RB.mass < 6f) ? throwForce : throwForce * 1.5f;
+            float _throwForce = throwForceMassCurve.Evaluate(_prop.RB.mass / maxThrowMass);
+            _throwForce *= throwForce;
             _prop.RB.AddForce(
                 _prop.transform.forward * _throwForce,
                 ForceMode.VelocityChange);
             _prop.RB.angularVelocity = _prop.transform.forward * Random.Range(-1f, 1f) * 4f;
             _prop.isThrown = true;
         };
-        StartCoroutine(EnablePropPhysics(_prop, Throw));
+        StartCoroutine(EnablePropPhysics(
+            _prop, propThrowPoint.position, propThrowPoint.rotation, Throw));
 
         anim.SetTrigger("Throw");
         anim.SetBool("Blocking", false);
