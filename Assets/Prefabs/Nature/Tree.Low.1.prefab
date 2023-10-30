@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 6625610800157417588}
   - component: {fileID: 3767920510504688435}
   - component: {fileID: 9122935174517702355}
+  - component: {fileID: 2951769686425684935}
   m_Layer: 0
   m_Name: Tree.Low.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 20
   m_IsActive: 1
 --- !u!4 &6625610800157417588
 Transform:
@@ -83,3 +84,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!205 &2951769686425684935
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5929739882969961547}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 3.5813322, z: -0.01252234}
+  m_Size: 1.3
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.009470524
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 9122935174517702355}
+  m_Enabled: 1

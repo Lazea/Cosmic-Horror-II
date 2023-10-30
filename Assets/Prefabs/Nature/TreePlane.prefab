@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 2791885301883309011}
   - component: {fileID: 5216986725713273603}
   - component: {fileID: 1754203999749346037}
+  - component: {fileID: 2677473745994679801}
   m_Layer: 0
   m_Name: TreePlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 20
   m_IsActive: 1
 --- !u!4 &2791885301883309011
 Transform:
@@ -83,3 +84,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!205 &2677473745994679801
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437624208700606526}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 3.6, z: 0.00000027179243}
+  m_Size: 7.5999994
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.017193617
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1754203999749346037}
+  m_Enabled: 1

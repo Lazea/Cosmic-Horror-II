@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 9219901600283666647}
   - component: {fileID: 8314666828155675046}
   - component: {fileID: 5859537105795984830}
+  - component: {fileID: 5115034954959254091}
   m_Layer: 0
   m_Name: Tree.Low.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 20
   m_IsActive: 1
 --- !u!4 &9219901600283666647
 Transform:
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b32989de2bafcb34cab7090c4d20654b, type: 2}
+  - {fileID: 2100000, guid: 745c363d344c9834982f87c09deaa3ed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +84,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!205 &5115034954959254091
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404159703120534229}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 3.5813322, z: 0.00000011920929}
+  m_Size: 7.637335
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.024749056
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5859537105795984830}
+  m_Enabled: 1
