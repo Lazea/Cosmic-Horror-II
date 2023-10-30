@@ -11,6 +11,9 @@ public class RollingPropAudio : MonoBehaviour
     private void Start()
     {
         initialVol = src.volume;
+        src.enabled = false;
+        Invoke(nameof(EnableSRC), 4f);
+
     }
 
     public void SourceManipulation(AudioClip clip)
@@ -34,5 +37,10 @@ public class RollingPropAudio : MonoBehaviour
         {
             src.Play();        
         }
+    }
+
+    void EnableSRC()
+    {
+        src.enabled = true;
     }
 }

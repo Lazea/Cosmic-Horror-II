@@ -61,6 +61,10 @@ public class NPCBehavior : MonoBehaviour
     [SerializeField]
     bool running;
     Vector3 positionOffset;
+    public float minRunChance;
+    public float maxRunChance;
+    [SerializeField]
+    float runChance;
 
     // Movement deltas
     float lerpTime = 1f;
@@ -108,6 +112,7 @@ public class NPCBehavior : MonoBehaviour
         ragdollController.DisableRagdoll();
 
         running = false;
+        runChance = Random.Range(minRunChance, maxRunChance);
 
         SetupHurtboxes();
 
@@ -305,7 +310,7 @@ public class NPCBehavior : MonoBehaviour
                 }
                 else
                 {
-                    SetRunning((i >= 0.8f));
+                    SetRunning((i >= runChance));
                 }
             }
 

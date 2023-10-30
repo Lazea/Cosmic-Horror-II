@@ -358,7 +358,7 @@ Transform:
   m_GameObject: {fileID: 1051664500059525665}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.00000011920929, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -881,13 +881,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2152855685816817179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.039259404, y: 0.0043599103, z: -0.00017130117, w: 0.99921954}
   m_LocalPosition: {x: -0, y: 0.32, z: 0.595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3499191936500034792}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 4.5, y: 0.5, z: 0}
 --- !u!1 &2578121573109916816
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,13 +912,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2578121573109916816}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.019633673, y: 0, z: 0, w: 0.9998073}
   m_LocalPosition: {x: 0, y: 0.32, z: 0.863}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3499191936500034792}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.25, y: 0, z: 0}
 --- !u!1 &2845570958360848429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e852a5613888548a12b8a0824f0b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 15
+  throwForce: 8
   onThrow:
     m_PersistentCalls:
       m_Calls: []
@@ -1914,7 +1914,7 @@ MonoBehaviour:
   largePropDropPoint: {fileID: 1471812906633963574}
   smallPropDropPoint: {fileID: 4365713940223588357}
   propThrowPoint: {fileID: 7509364570484567854}
-  attackRadius: 0.075
+  attackRadius: 0.1
   attackMask:
     serializedVersion: 2
     m_Bits: 17857
@@ -2068,8 +2068,8 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 279b23a76c653544ba2aafbd43b68559, type: 3}
     runClips:
     - {fileID: 8300000, guid: 8be7fc270c7712045aa8e04d59768627, type: 3}
-    - {fileID: 8300000, guid: 499ed92d15cf4e64192eeba58a85b41b, type: 3}
-    - {fileID: 8300000, guid: 42dc08f3ae8ad294cb4dd247b07fe232, type: 3}
+    - {fileID: 8300000, guid: 8be7fc270c7712045aa8e04d59768627, type: 3}
+    - {fileID: 8300000, guid: 8be7fc270c7712045aa8e04d59768627, type: 3}
     landingClip: {fileID: 8300000, guid: 3bc7d914192d60244b10c9101724f594, type: 3}
     material: {fileID: 2100000, guid: aa392590760378043a2e7400692f5932, type: 2}
   - walkClips:
@@ -2274,7 +2274,7 @@ Transform:
   m_GameObject: {fileID: 7409756490842502114}
   serializedVersion: 2
   m_LocalRotation: {x: -0.05177205, y: -0.0021313857, z: -0.041078545, w: 0.99781144}
-  m_LocalPosition: {x: -0.004, y: -0.231, z: 0.875}
+  m_LocalPosition: {x: 0.004, y: -0.14, z: 0.866}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2517,9 +2517,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 11400000, guid: 52ee1829a5a8f504b962394bae9ce632, type: 2}
+  m_NoiseProfile: {fileID: 11400000, guid: ea90a1c9bc3a4c440b36b0804572e786, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
+  m_AmplitudeGain: 1
   m_FrequencyGain: 0.2
   mNoiseOffsets: {x: 165.75754, y: 259.5844, z: -558.11694}
 --- !u!1 &8119714480621173515

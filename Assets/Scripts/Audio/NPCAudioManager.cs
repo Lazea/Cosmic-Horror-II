@@ -112,4 +112,9 @@ public class NPCAudioManager : MonoBehaviour
     }
 
 
+    public void StopNPC()
+    {
+        loopSrc.Stop();
+    }
+
 }

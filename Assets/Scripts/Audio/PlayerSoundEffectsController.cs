@@ -301,7 +301,7 @@ public class PlayerSoundEffectsController : MonoBehaviour
         if (clip == null)
             clip = GetRandomClip(defaultFootStepClips, isWalk);
 
-        float randPitch = Random.Range(.87f, 1.13f);
+        float randPitch = Random.Range(.83f, 1f);
         footStepsAudioSource.pitch = randPitch;
 
         float randVol = Random.Range(.15f, .2f);
@@ -355,7 +355,7 @@ public class PlayerSoundEffectsController : MonoBehaviour
 
         float randPitch = Random.Range(.8f, 1f);
         footStepsAudioSource.pitch = randPitch;
-        footStepsAudioSource.PlayOneShot(clip, .2f);
+        footStepsAudioSource.PlayOneShot(clip, .15f);
     }
 
     public void PlayClimbing()

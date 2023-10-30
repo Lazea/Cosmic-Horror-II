@@ -183,25 +183,14 @@ public class PlayerPropController : MonoBehaviour
 
         Debug.Log(string.Format("Drop {0}", _prop.name));
 
-        //if(_prop.propType == PropType.Medium || _prop.propType == PropType.Heavy)
-        //{
-        //    _prop.transform.position = largePropDropPoint.position;
-        //    _prop.transform.rotation = largePropDropPoint.rotation;
-        //}
-        //else
-        //{
-        //    _prop.transform.position = smallPropDropPoint.position;
-        //    _prop.transform.rotation = smallPropDropPoint.rotation;
-        //}
-        //_prop.RB.velocity = Vector3.zero;
-        //_prop.RB.angularVelocity = Vector3.zero;
-
-        StartCoroutine(EnablePropPhysics(_prop));
+        StartCoroutine(EnablePropPhysics(_prop, () => { }));
 
         anim.SetBool("Blocking", false);
     }
 
-    private IEnumerator EnablePropPhysics(BaseProp prop)
+    private IEnumerator EnablePropPhysics(
+        BaseProp prop,
+        UnityAction callback)
     {
         yield return new WaitForFixedUpdate();
 
@@ -216,12 +205,14 @@ public class PlayerPropController : MonoBehaviour
             prop.transform.rotation = smallPropDropPoint.rotation;
         }
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             yield return new WaitForFixedUpdate();
             prop.RB.velocity = Vector3.zero;
             prop.RB.angularVelocity = Vector3.zero;
         }
+
+        callback();
     }
     #endregion
 
@@ -245,13 +236,16 @@ public class PlayerPropController : MonoBehaviour
 
         Debug.Log(string.Format("Throw {0}", _prop.name));
 
-        _prop.transform.position = propThrowPoint.position;
-        _prop.transform.rotation = propThrowPoint.rotation;
-        _prop.RB.velocity = Vector3.zero;
-        float _throwForce = (_prop.RB.mass >= 6f) ? throwForce * 1.75f : throwForce;
-        _prop.RB.AddForce(_prop.transform.forward * _throwForce, ForceMode.Impulse);
-        _prop.RB.angularVelocity = _prop.transform.forward * Random.Range(-1f, 1f) * 4f;
-        _prop.isThrown = true;
+        UnityAction Throw = () =>
+        {
+            float _throwForce = (_prop.RB.mass < 6f) ? throwForce : throwForce * 1.5f;
+            _prop.RB.AddForce(
+                _prop.transform.forward * _throwForce,
+                ForceMode.VelocityChange);
+            _prop.RB.angularVelocity = _prop.transform.forward * Random.Range(-1f, 1f) * 4f;
+            _prop.isThrown = true;
+        };
+        StartCoroutine(EnablePropPhysics(_prop, Throw));
 
         anim.SetTrigger("Throw");
         anim.SetBool("Blocking", false);
