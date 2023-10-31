@@ -11,6 +11,9 @@ public class PlayerPropController : MonoBehaviour
     public AnimationCurve throwForceMassCurve;
     public UnityEvent onThrow;
 
+    [Header("Drop Prop")]
+    public UnityEvent onDrop;
+
     [Header("Prop")]
     public BaseProp equiptProp;
     public Collider propHoldingColliderLarge;
@@ -192,7 +195,7 @@ public class PlayerPropController : MonoBehaviour
                     _prop,
                     largePropDropPoint.position,
                     largePropDropPoint.rotation,
-                    () => { }));
+                    () => { onDrop.Invoke(); }));
         }
         else
         {
@@ -201,7 +204,7 @@ public class PlayerPropController : MonoBehaviour
                     _prop,
                     smallPropDropPoint.position,
                     smallPropDropPoint.rotation,
-                    () => { }));
+                    () => { onDrop.Invoke(); }));
         }
 
         anim.SetBool("Blocking", false);
@@ -258,6 +261,8 @@ public class PlayerPropController : MonoBehaviour
                 ForceMode.VelocityChange);
             _prop.RB.angularVelocity = _prop.transform.forward * Random.Range(-1f, 1f) * 4f;
             _prop.isThrown = true;
+
+            onThrow.Invoke();
         };
         StartCoroutine(EnablePropPhysics(
             _prop, propThrowPoint.position, propThrowPoint.rotation, Throw));
