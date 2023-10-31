@@ -15,7 +15,7 @@ MonoBehaviour:
   playerSettings:
     maxHealth: 100
     walkSpeed: 1.15
-    runSpeed: 6
+    runSpeed: 2.35
     acceleration: 0.45
     staticPhysicsMaterial: {fileID: 13400000, guid: ec13cb239b3f0f34abe0d79cbb4f950d,
       type: 2}
