@@ -258,6 +258,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4408662346875560328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3260079839987855718}
+  m_Layer: 7
+  m_Name: DestroyEffectPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3260079839987855718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4408662346875560328}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.161, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7510895095876127619}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7332909068146642274
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +331,7 @@ Transform:
   m_Children:
   - {fileID: 1558060390598815141}
   - {fileID: 7992014964130551055}
+  - {fileID: 3260079839987855718}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7935268350679242809
@@ -527,8 +559,13 @@ MonoBehaviour:
   damage: 0
   isHeld: 0
   isThrown: 0
-  damageEffect: {fileID: 0}
-  destroyEffect: {fileID: 0}
+  damageEffectSize: 0.3
+  damageEffect: {fileID: 2461195010170908792, guid: 4ebd03309eb5bf945855066c9ffd7ada,
+    type: 3}
+  destroyEffectSize: 0.75
+  destroyEffectPoint: {fileID: 3260079839987855718}
+  destroyEffect: {fileID: 7487227605361056620, guid: 11dcd047a7917654292a2b31d89716cc,
+    type: 3}
   componentsLiftime: 4
   componentsToDetachOnDestroy:
   - {fileID: 2825140220246575989}

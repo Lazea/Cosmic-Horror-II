@@ -312,8 +312,13 @@ MonoBehaviour:
   damage: 0
   isHeld: 0
   isThrown: 0
-  damageEffect: {fileID: 0}
-  destroyEffect: {fileID: 0}
+  damageEffectSize: 0.2
+  damageEffect: {fileID: 2461195010170908792, guid: 4ebd03309eb5bf945855066c9ffd7ada,
+    type: 3}
+  destroyEffectSize: 0.75
+  destroyEffectPoint: {fileID: 0}
+  destroyEffect: {fileID: 7487227605361056620, guid: 11dcd047a7917654292a2b31d89716cc,
+    type: 3}
   componentsLiftime: 4
   componentsToDetachOnDestroy:
   - {fileID: 7558522563931981720}

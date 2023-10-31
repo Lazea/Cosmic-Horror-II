@@ -34,6 +34,15 @@ public class PlayerPropController : MonoBehaviour
     public UnityEvent<BaseProp> onAttackHit = new UnityEvent<BaseProp>();
     public UnityEvent onAttackMiss;
 
+    [Header("Effects")]
+    public float minEffectSize;
+    public float maxEffectSize;
+    public GameObject enemyHitFX;
+    public GameObject metalPropHitFX;
+    public GameObject woodPropHitFX;
+    public GameObject glassPropHitFX;
+    public GameObject otherPropHitFX;
+
     //[Header("Blocking")]
     [HideInInspector]
     public UnityEvent onBlock;
@@ -409,12 +418,6 @@ public class PlayerPropController : MonoBehaviour
             attackRange,
             attackMask,
             QueryTriggerInteraction.Ignore))
-        //if (Physics.Raycast(
-        //    ray,
-        //    out hit,
-        //    attackRange,
-        //    attackMask,
-        //    QueryTriggerInteraction.Ignore))
         {
             var hitDamageable = hit.collider.GetComponent<IDamageable>();
             if(hitDamageable != null)
@@ -433,6 +436,8 @@ public class PlayerPropController : MonoBehaviour
                     ForceMode.Impulse);
             }
 
+            HandleHitFX(hit, attackForce);
+
             Debug.Log(
                 string.Format("Player Attack hit {0} with {1} damage and {2}:{3} force",
                 hit.collider.name, attackDamage, attackForce, attackForce.magnitude));
@@ -449,6 +454,95 @@ public class PlayerPropController : MonoBehaviour
         {
             onAttackMiss.Invoke();
             return false;
+        }
+    }
+
+    void HandleHitFX(RaycastHit hit, Vector3 attackForce)
+    {
+        float effectSize = Random.Range(minEffectSize, maxEffectSize);
+
+        if (hit.collider.tag == "Enemy")
+        {
+            if (enemyHitFX != null)
+            {
+                Quaternion hitDirRot = Quaternion.LookRotation(
+                    attackForce.normalized,
+                    Vector3.up);
+                var effect = GameObject.Instantiate(
+                    enemyHitFX,
+                    hit.point,
+                    hitDirRot);
+                effect.transform.localScale *= effectSize;
+            }
+            else if (otherPropHitFX != null)
+            {
+                var effect = GameObject.Instantiate(
+                    otherPropHitFX,
+                    hit.point,
+                    Quaternion.identity);
+                effect.transform.localScale *= effectSize;
+            }
+        }
+        else
+        {
+            bool doDefault = false;
+            switch (equiptProp.propMaterial)
+            {
+                case PropMaterial.Metal:
+                    if (metalPropHitFX != null)
+                    {
+                        var effect = GameObject.Instantiate(
+                            metalPropHitFX,
+                            hit.point,
+                            Quaternion.identity);
+                        effect.transform.localScale *= effectSize;
+                    }
+                    else
+                    {
+                        doDefault = true;
+                    }
+                    break;
+                case PropMaterial.Glass:
+                    if (glassPropHitFX != null)
+                    {
+                        var effect = GameObject.Instantiate(
+                            glassPropHitFX,
+                            hit.point,
+                            Quaternion.identity);
+                        effect.transform.localScale *= effectSize;
+                    }
+                    else
+                    {
+                        doDefault = true;
+                    }
+                    break;
+                case PropMaterial.Wood:
+                    if (woodPropHitFX != null)
+                    {
+                        var effect = GameObject.Instantiate(
+                            woodPropHitFX,
+                            hit.point,
+                            Quaternion.identity);
+                        effect.transform.localScale *= effectSize;
+                    }
+                    else
+                    {
+                        doDefault = true;
+                    }
+                    break;
+                default:
+                    doDefault = true;
+                    break;
+            }
+
+            if (doDefault && otherPropHitFX != null)
+            {
+                var effect = GameObject.Instantiate(
+                    otherPropHitFX,
+                    hit.point,
+                    Quaternion.identity);
+                effect.transform.localScale *= effectSize;
+            }
         }
     }
     #endregion

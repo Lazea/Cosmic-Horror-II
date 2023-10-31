@@ -215,7 +215,6 @@ public class NPCBehavior : MonoBehaviour
         }
         else if (IsChaseState())
         {
-            Debug.LogFormat("In Chase State: spotted {0}", playerSpotted);
             if (playerSpotted)
             {
                 if (PlayerIsInFront())
