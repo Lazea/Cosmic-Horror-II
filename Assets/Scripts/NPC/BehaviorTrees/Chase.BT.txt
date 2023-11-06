@@ -1,0 +1,11 @@
+tree("Chasing")
+	sequence
+		StopMoving
+		SetPlayerDestinationOffset
+		random
+			Wait(0.05)
+			Wait(0.5)
+			Wait(1.0)
+			Wait(2.0)
+		ResumeMoving
+		ChasePlayer

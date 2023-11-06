@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AvatarMask_Flyinghead_Head
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature.HeadFlying
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head
+    m_Weight: 1
+  - m_Path: Armature.HeadFlying/root/head/lower_jaw
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/tail.001
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/tail.001/tail.002
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/tail.001/tail.002/tail.003
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_L.001
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_L.001/wing_arm_L.002
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_L.001/wing_arm_L.002/wing_arm_index_1_L.001
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_L.001/wing_arm_L.002/wing_arm_index_1_L.001/wing_arm_index_1_L.002
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_L.001/wing_arm_L.002/wing_arm_index_3_L.001
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_L.001/wing_arm_L.002/wing_arm_index_3_L.001/wing_arm_index_3_L.002
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_L.001/wing_arm_L.002/wing_arm_Lindex_2_L.001
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_L.001/wing_arm_L.002/wing_arm_Lindex_2_L.001/wing_arm_index_2_L.002
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_R.001
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_R.001/wing_arm_R.002
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_R.001/wing_arm_R.002/wing_arm_index_1_R.001
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_R.001/wing_arm_R.002/wing_arm_index_1_R.001/wing_arm_index_1_R.002
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_R.001/wing_arm_R.002/wing_arm_index_3_R.001
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_R.001/wing_arm_R.002/wing_arm_index_3_R.001/wing_arm_index_3_R.002
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_R.001/wing_arm_R.002/wing_arm_Lindex_2_R.001
+    m_Weight: 0
+  - m_Path: Armature.HeadFlying/root/head/wing_arm_R.001/wing_arm_R.002/wing_arm_Lindex_2_R.001/wing_arm_index_2_R.002
+    m_Weight: 0
+  - m_Path: FlyingHead
+    m_Weight: 0

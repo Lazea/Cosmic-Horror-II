@@ -416,8 +416,7 @@ public class PlayerPropController : MonoBehaviour
             attackRadius,
             out hit,
             attackRange,
-            attackMask,
-            QueryTriggerInteraction.Ignore))
+            attackMask))
         {
             var hitDamageable = hit.collider.GetComponent<IDamageable>();
             if(hitDamageable != null)
@@ -452,6 +451,7 @@ public class PlayerPropController : MonoBehaviour
         }
         else
         {
+            Debug.LogFormat("Player attack missed!");
             onAttackMiss.Invoke();
             return false;
         }

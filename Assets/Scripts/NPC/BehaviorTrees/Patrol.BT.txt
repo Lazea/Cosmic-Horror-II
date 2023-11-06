@@ -1,0 +1,20 @@
+tree("Patrolling")
+	sequence
+		StopMoving
+		random
+			Wait(1.0)
+			Wait(2.5)
+			Wait(4.0)
+		SetDestinationOffset
+		SetRunning(false)
+		fallback
+			sequence
+				SetNextWaypointDestination
+				Wait(1)
+				ResumeMoving
+				GoToDestination
+			sequence
+				SetClosestWaypointDestination
+				Wait(1)
+				ResumeMoving
+				GoToDestination

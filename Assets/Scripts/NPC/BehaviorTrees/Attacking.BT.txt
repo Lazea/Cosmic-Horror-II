@@ -1,0 +1,21 @@
+tree("Attacking")
+	sequence
+		StopMoving
+		sequence
+			random
+				PerformLeftLightAttack
+				PerformRightLightAttack
+				PerformHeavyAttack
+				sequence
+					PerformLeftLightAttack
+					PerformRightLightAttack
+				sequence
+					PerformLeftLightAttack
+					PerformHeavyAttack
+				sequence
+					PerformRightLightAttack
+					PerformHeavyAttack
+			random
+				Wait(0.05)
+				Wait(0.125)
+				Wait(0.25)

@@ -2017,8 +2017,9 @@ GameObject:
   - component: {fileID: 7221985300539633876}
   - component: {fileID: 8811768994189210038}
   - component: {fileID: 885162971842198789}
-  - component: {fileID: 5732083067095471147}
   - component: {fileID: 3753926694754197603}
+  - component: {fileID: 9118964866847879180}
+  - component: {fileID: 159622350627135280}
   m_Layer: 9
   m_Name: NPC
   m_TagString: Untagged
@@ -2034,7 +2035,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7003355335672114848}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.51767, y: 0, z: -20.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2055,9 +2056,9 @@ Animator:
   m_GameObject: {fileID: 7003355335672114848}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e0082a3b98845f84cacad843b6a0e057, type: 3}
-  m_Controller: {fileID: 9100000, guid: f52314fdac4b29e4c9a794adabecdba6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 21d24937fd5a798469b986b5135c1907, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -2111,137 +2112,6 @@ CapsuleCollider:
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: 0}
---- !u!114 &5732083067095471147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7003355335672114848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c553f9c87683eaf4d995dcdc460138ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 15
-  npcState: 0
-  head: {fileID: 3707587087711720807}
-  detectionRange: 2.75
-  sightFOV: 175
-  sightRange: 15
-  coverMask:
-    serializedVersion: 2
-    m_Bits: 16513
-  playerSpotted: 0
-  lightAttackDamage: 5
-  heavyAttackDamage: 13
-  attackRange: 2
-  attackAngle: 360
-  lightAttackLeftHurtbox: {fileID: 4448522395202911133}
-  lightAttackRightHurtbox: {fileID: 4448522395202911133}
-  heavyAttackHurtbox: {fileID: 8727732767501404507}
-  isAttacking: 0
-  waypointManagerID: -1
-  currentWaypoint:
-    transform: {fileID: 0}
-  stopped: 0
-  running: 0
-  minPositionOffset: 1
-  maxPositionOffset: 2.25
-  minPlayerPositionOffset: 0.75
-  maxPlayerPositionOffset: 1.5
-  minWaitTime: 0.2
-  maxWaitTime: 0.75
-  minCombatWaitTime: 1
-  maxCombatWaitTime: 3
-  minRunChance: 0.4
-  maxRunChance: 0.85
-  runChance: 0
-  deadNPCRagdollLifetime: 180
-  onSpawnState:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5683500568589061071}
-        m_TargetAssemblyTypeName: NPCAudioManager, Assembly-CSharp
-        m_MethodName: IdleAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onPassiveState:
-    m_PersistentCalls:
-      m_Calls: []
-  onChaseState:
-    m_PersistentCalls:
-      m_Calls: []
-  onAttackState:
-    m_PersistentCalls:
-      m_Calls: []
-  onLightAttack:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5683500568589061071}
-        m_TargetAssemblyTypeName: NPCAudioManager, Assembly-CSharp
-        m_MethodName: LightAttackAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHeavyttack:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5683500568589061071}
-        m_TargetAssemblyTypeName: NPCAudioManager, Assembly-CSharp
-        m_MethodName: HeavyAttackAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHurt:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5683500568589061071}
-        m_TargetAssemblyTypeName: NPCAudioManager, Assembly-CSharp
-        m_MethodName: DamageAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDead:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5683500568589061071}
-        m_TargetAssemblyTypeName: NPCAudioManager, Assembly-CSharp
-        m_MethodName: DeathAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3753926694754197603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2257,7 +2127,105 @@ MonoBehaviour:
   pelvis: {fileID: 407450844292226656}
   components:
   - {fileID: 8811768994189210038}
-  - {fileID: 5732083067095471147}
+  - {fileID: 9118964866847879180}
+--- !u!114 &9118964866847879180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003355335672114848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae443083a0cca143af2e333bdf3295e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard:
+    health: 12
+    state: 0
+    isRunning: 0
+    isStopped: 0
+    isAttacking: 0
+    player: {fileID: 0}
+    playerTransform: {fileID: 0}
+    playerInSight: 0
+    playerDisplacement: {x: 0, y: 0, z: 0}
+  waypointManagerID: -1
+  currentWaypoint:
+    transform: {fileID: 0}
+  minRunChance: 0.2
+  maxRunChance: 0.8
+  minStoppingDistance: 1
+  maxStoppingDistance: 1.2
+  minAngularSpeed: 280
+  maxAngularSpeed: 320
+  minPlayerOffsetRadius: 0.25
+  maxPlayerOffsetRadius: 1.25
+  minDestinationOffsetRadius: 1
+  maxDestinationOffsetRadius: 2.5
+  destinationOffset: {x: 0, y: 0, z: 0}
+  rootPosition: {x: 0, y: 0, z: 0}
+  agentPositionSmoothing: 0.1
+  head: {fileID: 3707587087711720807}
+  sightRange: 13
+  sightFOV: 200
+  detectionRange: 2.5
+  coverMask:
+    serializedVersion: 2
+    m_Bits: 129
+  attackRange: 2.25
+  aimSmooth: 0.4
+  lightAttackDamage: 2
+  heavyAttackDamage: 8
+  lightAttackHurtbox: {fileID: 4448522395202911133}
+  heavyAttackHurtbox: {fileID: 8727732767501404507}
+  deadNPCRagdollLifetime: 30
+  onSpawnState:
+    m_PersistentCalls:
+      m_Calls: []
+  onPassiveState:
+    m_PersistentCalls:
+      m_Calls: []
+  onChaseState:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttackState:
+    m_PersistentCalls:
+      m_Calls: []
+  onLightAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeavyttack:
+    m_PersistentCalls:
+      m_Calls: []
+  onHurt:
+    m_PersistentCalls:
+      m_Calls: []
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &159622350627135280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003355335672114848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e43e7170fb45b4b81dcd16d0ff55d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scripts:
+  - {fileID: 4900000, guid: 1f7d4d9175e6a0e40adfdd403cd79663, type: 3}
+  autoReset: 1
+  tickOn: 0
+  sourceInfos:
+  - isFoldout: 1
+    breakPoints: 
+    breakPointStatuses: 
+    collapsedLines: 
+    btScript: 
 --- !u!1 &7602424346012398577
 GameObject:
   m_ObjectHideFlags: 0
