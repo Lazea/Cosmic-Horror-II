@@ -16,4 +16,8 @@ public class Checkpoint : ScriptableObject
     public List<string> disabledCheckpointTriggers;
     public int[] collectedKeys;
     public GameObject[] activeNPCWaves;
+
+    // So Hacky!
+    public string bookshelfName;
+    public bool bookshelfDestroyed;
 }

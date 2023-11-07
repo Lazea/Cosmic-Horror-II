@@ -1,8 +1,5 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class CheckpointSystem : Singleton<CheckpointSystem>
@@ -33,6 +30,21 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
                 return GameObject.Find("Player").GetComponent<Player>();
             }
         }
+    }
+
+    public void BookshelfDestroyed(GameObject bookshelf)
+    {
+        checkpoint.bookshelfName = bookshelf.name;
+        Transform prnt = bookshelf.transform;
+        while(true)
+        {
+            prnt = prnt.parent;
+            if (prnt == null)
+                break;
+
+            checkpoint.bookshelfName = prnt.name + "/" + checkpoint.bookshelfName;
+        }
+        checkpoint.bookshelfDestroyed = true;
     }
 
     // Start is called before the first frame update
@@ -66,6 +78,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
             // Reset Checkpoint SO
             checkpoint.collectedKeys = null;
             checkpoint.disabledCheckpointTriggers.Clear();
+            checkpoint.bookshelfDestroyed = false;
 
             SetupFromGameStartCheckpoint();
         }
@@ -74,6 +87,13 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
             foreach (var g in gameStartObjects)
             {
                 g.SetActive(false);
+            }
+
+            // Hacky
+            if(checkpoint.bookshelfDestroyed)
+            {
+                var bookshelf = GameObject.Find(checkpoint.bookshelfName);
+                Destroy(bookshelf);
             }
 
             SetupFromCheckpoint();
