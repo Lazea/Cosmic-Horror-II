@@ -85,11 +85,9 @@ public class Player : MonoBehaviour, IDamageable
         keyIDs = _keyIDs.ToList<int>();
     }
 
-    public void KeyPickup(KeyPickup keyPickup)
+    public void KeyPickup(int keyID)
     {
-        keyIDs.Add(keyPickup.keyID);
-        Destroy(keyPickup.gameObject);
-        // TODO: Add key to inventory
+        keyIDs.Add(keyID);
     }
 
     public void DealDamage(

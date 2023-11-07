@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
     public GameObject[] gameStartObjects;
 
     [Header("Parent Objects")]
+    public Transform checkpointTriggersParent;
     public Transform keysParent;
     public Transform doorsParent;
     public Transform waypointsParent;
@@ -36,6 +38,10 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
     // Start is called before the first frame update
     void Start()
     {
+        checkpointTriggersParent = GameObject.Find(
+            "====Scene====/" +
+            "====Interactables====/" +
+            "====CheckpointTriggers====").transform;
         keysParent = GameObject.Find(
             "====Scene====/" +
             "====Interactables====/" +
@@ -57,6 +63,10 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
                 g.SetActive(true);
             }
 
+            // Reset Checkpoint SO
+            checkpoint.collectedKeys = null;
+            checkpoint.disabledCheckpointTriggers.Clear();
+
             SetupFromGameStartCheckpoint();
         }
         else
@@ -70,18 +80,18 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     #region [Checkpoint Capture]
     [ContextMenu("Capture Checkpoint")]
-    public void CaptureCheckpoint()
+    public void CaptureCheckpoint(GameObject sender)
     {
+        if (checkpoint.disabledCheckpointTriggers.Contains(sender.name))
+            return;
+
         CheckpointPlayerState(checkpoint);
         CheckpointKeys(checkpoint);
+
+        checkpoint.disabledCheckpointTriggers.Add(sender.name);
+        Destroy(sender);
     }
 
     [ContextMenu("Capture Game Start Checkpoint")]
@@ -109,15 +119,33 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
     public void SetupFromCheckpoint()
     {
         SetupPlayerState(checkpoint);
+        SetupCheckpointTriggers(checkpoint);
         SetupCollectedKeys(checkpoint);
-        SetupDoorLocks(checkpoint);
+        SetupDoorLocks();
     }
 
     public void SetupFromGameStartCheckpoint()
     {
         SetupPlayerState(gameStartCheckpoint);
+        SetupCheckpointTriggers(gameStartCheckpoint);
         SetupCollectedKeys(gameStartCheckpoint);
         SetupDoorLocks();
+    }
+
+    public void SetupCheckpointTriggers(Checkpoint _checkpoint)
+    {
+        for (int i = checkpointTriggersParent.childCount - 1; i >= 0; i--)
+        {
+            foreach (var checkpointName in _checkpoint.disabledCheckpointTriggers)
+            {
+                var ceckpointT = checkpointTriggersParent.GetChild(i);
+                if (ceckpointT.name == checkpointName)
+                {
+                    Destroy(ceckpointT.gameObject);
+                    break;
+                }
+            }
+        }
     }
 
     public void SetupPlayerState(Checkpoint _checkpoint)
@@ -130,6 +158,19 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
     public void SetupCollectedKeys(Checkpoint _checkpoint)
     {
         player.SetKeyIDs(_checkpoint.collectedKeys);
+
+        for(int i = keysParent.childCount - 1; i >= 0; i--)
+        {
+            foreach (int keyID in _checkpoint.collectedKeys)
+            {
+                var keyT = keysParent.GetChild(i);
+                if (keyT.GetComponent<KeyPickup>().keyID == keyID)
+                {
+                    Destroy(keyT.gameObject);
+                    break;
+                }
+            }
+        }
     }
 
     public void SetupDoorLocks()

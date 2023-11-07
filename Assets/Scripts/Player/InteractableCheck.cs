@@ -31,7 +31,7 @@ public class InteractableCheck : MonoBehaviour
     [Header("Events")]
     public UnityEvent<BaseProp> onPropPickup = new UnityEvent<BaseProp>();
     public IntGameEvent KeyPickup;
-    public UnityEvent onKeyPickup = new UnityEvent();
+    public UnityEvent<int> onKeyPickup = new UnityEvent<int>();
     public UnityEvent<HealthPickup> onHealthPickup = new UnityEvent<HealthPickup>();
 
     // Components
@@ -204,7 +204,7 @@ public class InteractableCheck : MonoBehaviour
         if (keyPickup != null)
         {
             KeyPickup.Raise(keyPickup.keyID);
-            onKeyPickup.Invoke();
+            onKeyPickup.Invoke(keyPickup.keyID);
             isPickingUp = false;
 
             Destroy(keyPickup.gameObject);

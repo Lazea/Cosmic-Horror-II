@@ -13,6 +13,7 @@ public class Checkpoint : ScriptableObject
     public Quaternion playerSpawnOrientation;
 
     [Header("World State")]
+    public List<string> disabledCheckpointTriggers;
     public int[] collectedKeys;
     public GameObject[] activeNPCWaves;
 }
