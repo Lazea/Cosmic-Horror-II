@@ -4,6 +4,7 @@ using UnityEngine;
 using SOGameEventSystem;
 using UnityEngine.Events;
 using SOGameEventSystem.Events;
+using System.Linq;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -18,6 +19,12 @@ public class Player : MonoBehaviour, IDamageable
     public bool IsDead
     {
         get { return isDead; }
+    }
+
+    List<int> keyIDs;
+    public List<int> KeyIDs
+    {
+        get { return keyIDs; }
     }
 
     [Header("Events")]
@@ -73,8 +80,14 @@ public class Player : MonoBehaviour, IDamageable
         Destroy(healthPickup.gameObject);
     }
 
+    public void SetKeyIDs(int[] _keyIDs)
+    {
+        keyIDs = _keyIDs.ToList<int>();
+    }
+
     public void KeyPickup(KeyPickup keyPickup)
     {
+        keyIDs.Add(keyPickup.keyID);
         Destroy(keyPickup.gameObject);
         // TODO: Add key to inventory
     }

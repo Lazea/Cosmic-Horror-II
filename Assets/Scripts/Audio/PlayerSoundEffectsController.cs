@@ -66,14 +66,6 @@ public class PlayerSoundEffectsController : MonoBehaviour
     {
         pc = GetComponent<PlayerCharacterController>();
         terrainTextureDetector = new TerrainTextureDetector();
-        footStepsAudioSource.enabled = false;
-
-        Invoke(nameof(EnableFootStepSrc), 18f);
-    }
-
-    void EnableFootStepSrc()
-    {
-        footStepsAudioSource.enabled = true;
     }
 
     /*

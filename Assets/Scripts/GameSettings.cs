@@ -6,6 +6,9 @@ using UnityEngine.Audio;
     menuName = "Scriptable Objects/Game Settings")]
 public class GameSettings : ScriptableObject
 {
+    [Header("Game State")]
+    public bool isGameStart;
+
     [Header("Player")]
     public PlayerSettings playerSettings;
 

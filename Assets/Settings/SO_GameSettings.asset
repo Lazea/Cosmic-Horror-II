@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c299a3eac35c247b9e4a95be5cc10f, type: 3}
   m_Name: SO_GameSettings
   m_EditorClassIdentifier: 
+  isGameStart: 1
   playerSettings:
     maxHealth: 100
     walkSpeed: 1.15
