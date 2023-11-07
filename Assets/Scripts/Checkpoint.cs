@@ -15,6 +15,7 @@ public class Checkpoint : ScriptableObject
     [Header("World State")]
     public List<string> disabledCheckpointTriggers;
     public int[] collectedKeys;
+    public List<string> remainingHealthpacks;
     public GameObject[] activeNPCWaves;
 
     // So Hacky!

@@ -12,11 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05058a8ba8283724f8c842ba53059e1b, type: 3}
   m_Name: SO_Checkpoint
   m_EditorClassIdentifier: 
-  playerHealth: 100
-  playerSpawnPosition: {x: 3.11264, y: 13.900001, z: -0.6916233}
-  playerSpawnOrientation: {x: -0.0000000018626451, y: -0.30994606, z: -0.0000000018626451,
-    w: -0.9507542}
+  playerHealth: 95
+  playerSpawnPosition: {x: 3.3464274, y: 13.900001, z: -0.5704403}
+  playerSpawnOrientation: {x: -0.000000010765817, y: -0.13312346, z: 4.6566123e-10,
+    w: -0.9910995}
   disabledCheckpointTriggers:
+  - VolumeTrigger_Checkpoint
   - VolumeTrigger_Checkpoint (1)
-  collectedKeys: 09000000
+  collectedKeys: 0900000001000000
+  remainingHealthpacks:
+  - HealthPickup (1)
+  - HealthPickup (2)
+  - HealthPickup (3)
+  - HealthPickup (5)
+  - HealthPickup (7)
+  - HealthPickup (8)
+  - HealthPickup (9)
+  - HealthPickup (4)
   activeNPCWaves: []
+  bookshelfName: ====Scene====/====Props====/====1stFloorWest====/BookShelf
+  bookshelfDestroyed: 1

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CheckpointSystem : Singleton<CheckpointSystem>
@@ -15,6 +16,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
     public Transform checkpointTriggersParent;
     public Transform keysParent;
     public Transform doorsParent;
+    public Transform healthPickupsParent;
     public Transform waypointsParent;
 
     Player player
@@ -62,6 +64,10 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
             "====Scene====/" +
             "====Interactables====/" +
             "====Doors====").transform;
+        healthPickupsParent = GameObject.Find(
+            "====Scene====/" +
+            "====Interactables====/" +
+            "====HealthPickups====").transform;
         waypointsParent = GameObject.Find(
             "====Scene====/" +
             "====NPCs====/" +
@@ -109,6 +115,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
 
         CheckpointPlayerState(checkpoint);
         CheckpointKeys(checkpoint);
+        CaptureHealthPickups(checkpoint);
 
         checkpoint.disabledCheckpointTriggers.Add(sender.name);
         Destroy(sender);
@@ -120,6 +127,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         CheckpointPlayerState(gameStartCheckpoint);
         gameStartCheckpoint.playerHealth = GameManager.Instance.settings.playerSettings.maxHealth;
         CheckpointKeys(gameStartCheckpoint);
+        CaptureHealthPickups(gameStartCheckpoint);
     }
 
     public void CheckpointPlayerState(Checkpoint _checkpoint)
@@ -133,6 +141,15 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
     {
         _checkpoint.collectedKeys = player.KeyIDs.ToArray();
     }
+
+    public void CaptureHealthPickups(Checkpoint _checkpoint)
+    {
+        _checkpoint.remainingHealthpacks.Clear();
+        foreach (Transform hpT in healthPickupsParent)
+        {
+            _checkpoint.remainingHealthpacks.Add(hpT.name);
+        }
+    }
     #endregion
 
     #region [Setup From Checkpoint]
@@ -142,6 +159,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         SetupCheckpointTriggers(checkpoint);
         SetupCollectedKeys(checkpoint);
         SetupDoorLocks();
+        SetupHealthPickups(checkpoint);
     }
 
     public void SetupFromGameStartCheckpoint()
@@ -150,6 +168,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         SetupCheckpointTriggers(gameStartCheckpoint);
         SetupCollectedKeys(gameStartCheckpoint);
         SetupDoorLocks();
+        SetupHealthPickups(gameStartCheckpoint);
     }
 
     public void SetupCheckpointTriggers(Checkpoint _checkpoint)
@@ -206,6 +225,18 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
                     door.UnlockDoor(id);
                     break;
                 }
+            }
+        }
+    }
+
+    public void SetupHealthPickups(Checkpoint _checkpoint)
+    {
+        for(int i = healthPickupsParent.childCount - 1; i >= 0; i--)
+        {
+            var hp = healthPickupsParent.GetChild(i).gameObject;
+            if(!_checkpoint.remainingHealthpacks.Contains(hp.name))
+            {
+                Destroy(hp);
             }
         }
     }
