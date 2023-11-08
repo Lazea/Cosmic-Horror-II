@@ -11,6 +11,7 @@ public class NPCAudioManager : MonoBehaviour
     public AudioSource oneShotSrc;
 
     [Header("Audio Clips (VO)")]
+    public AudioClip spawnClip;
     public AudioClip[] AttackGrunts = new AudioClip[3];
     public AudioClip[] DamageGrunts = new AudioClip[2];
     public AudioClip[] DeathGrunts = new AudioClip[2];
@@ -32,6 +33,11 @@ public class NPCAudioManager : MonoBehaviour
     [Header("Pitch Control")]
     public float minPitch;
     public float maxPitch;
+
+    public void SpawnAudio()
+    {
+        oneShotSrc.PlayOneShot(spawnClip, 0.5f);
+    }
 
     public void IdleAudio()
     {
