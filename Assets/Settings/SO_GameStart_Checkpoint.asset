@@ -15,5 +15,20 @@ MonoBehaviour:
   playerHealth: 100
   playerSpawnPosition: {x: 55.223, y: 1.984, z: -51.631}
   playerSpawnOrientation: {x: -0, y: -0.7071963, z: -0, w: 0.70701736}
+  disabledCheckpointTriggers: []
   collectedKeys: 
-  activeNPCWaves: []
+  remainingHealthpacks:
+  - HealthPickup (1)
+  - HealthPickup (2)
+  - HealthPickup (3)
+  - HealthPickup (4)
+  - HealthPickup (5)
+  - HealthPickup (6)
+  - HealthPickup (7)
+  - HealthPickup (8)
+  - HealthPickup (9)
+  activeNPCWaves:
+  - ====Wave0====
+  killedNPCs: []
+  bookshelfName: ====Scene====/====Props====/====1stFloorWest====/BookShelf
+  bookshelfDestroyed: 0

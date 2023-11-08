@@ -4934,6 +4934,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4835560275548704120, guid: c57c4e17def4ab14492e32ba1f57780a,
         type: 3}
+      propertyPath: onNPCKilled
+      value: 
+      objectReference: {fileID: 11400000, guid: 883ab4a0c7174cd4991027581964811b,
+        type: 2}
+    - target: {fileID: 4835560275548704120, guid: c57c4e17def4ab14492e32ba1f57780a,
+        type: 3}
       propertyPath: maxRunChance
       value: 0.6
       objectReference: {fileID: 0}
@@ -5053,6 +5059,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 678bbce993c75e94b8e98e5921357828, type: 2}
+    - target: {fileID: 6045165251744318021, guid: c57c4e17def4ab14492e32ba1f57780a,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6589044280561578195, guid: c57c4e17def4ab14492e32ba1f57780a,
         type: 3}
       propertyPath: m_Mesh

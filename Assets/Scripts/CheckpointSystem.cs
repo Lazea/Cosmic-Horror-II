@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CheckpointSystem : Singleton<CheckpointSystem>
@@ -91,6 +92,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
             checkpoint.collectedKeys = null;
             checkpoint.disabledCheckpointTriggers.Clear();
             checkpoint.bookshelfDestroyed = false;
+            checkpoint.killedNPCs.Clear();
 
             SetupFromGameStartCheckpoint();
         }
@@ -170,6 +172,18 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
             }
         }
     }
+
+    public void RecordKilledNPC(Transform npc)
+    {
+        if(npc.parent != null)
+        {
+            string npcName = npc.parent.name + "/" + npc.name;
+            if (!checkpoint.killedNPCs.Contains(npcName))
+            {
+                checkpoint.killedNPCs.Add(npcName);
+            }
+        }
+    }
     #endregion
 
     #region [Setup From Checkpoint]
@@ -181,6 +195,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         SetupDoorLocks();
         SetupHealthPickups(checkpoint);
         SetupNPCWaves(checkpoint);
+        SetupLivingNPCs(checkpoint);
     }
 
     public void SetupFromGameStartCheckpoint()
@@ -269,6 +284,21 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         {
             wave.gameObject.SetActive(
                 _checkpoint.activeNPCWaves.Contains(wave.name));
+        }
+    }
+
+    public void SetupLivingNPCs(Checkpoint _checkpoint)
+    {
+        foreach (var npcName in _checkpoint.killedNPCs)
+        {
+            var npc = npcWavesParent.Find(npcName).GetComponent<NPCBehaviors>();
+            if(npc != null)
+            {
+                if(npc.gameObject.activeInHierarchy)
+                {
+                    Destroy(npc.gameObject);
+                }
+            }
         }
     }
     #endregion

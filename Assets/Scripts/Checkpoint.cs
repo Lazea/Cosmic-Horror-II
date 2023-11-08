@@ -17,6 +17,7 @@ public class Checkpoint : ScriptableObject
     public int[] collectedKeys;
     public List<string> remainingHealthpacks;
     public List<string> activeNPCWaves;
+    public List<string> killedNPCs;
 
     // So Hacky!
     public string bookshelfName;

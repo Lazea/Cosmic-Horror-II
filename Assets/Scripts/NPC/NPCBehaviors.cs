@@ -2,6 +2,8 @@ using UnityEngine;
 using Panda;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using SOGameEventSystem;
+using SOGameEventSystem.Events;
 
 public class NPCBehaviors : MonoBehaviour
 {
@@ -67,6 +69,7 @@ public class NPCBehaviors : MonoBehaviour
     public UnityEvent onProjectileAttack;
     public UnityEvent onHurt;
     public UnityEvent onDead;
+    public TransformGameEvent onNPCKilled;
 
     // Components
     // Animator
@@ -863,6 +866,8 @@ public class NPCBehaviors : MonoBehaviour
         }
 
         onDead.Invoke();
+        if(onNPCKilled != null)
+            onNPCKilled.Raise(transform);
         Destroy(gameObject, deadNPCRagdollLifetime);
     }
 
