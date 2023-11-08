@@ -17,7 +17,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
     public Transform keysParent;
     public Transform doorsParent;
     public Transform healthPickupsParent;
-    public Transform waypointsParent;
+    public Transform npcWavesParent;
 
     Player player
     {
@@ -49,8 +49,8 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         checkpoint.bookshelfDestroyed = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    [ContextMenu("Setup Parent Objects")]
+    public void SetupParentObjects()
     {
         checkpointTriggersParent = GameObject.Find(
             "====Scene====/" +
@@ -68,12 +68,18 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
             "====Scene====/" +
             "====Interactables====/" +
             "====HealthPickups====").transform;
-        waypointsParent = GameObject.Find(
+        npcWavesParent = GameObject.Find(
             "====Scene====/" +
             "====NPCs====/" +
-            "====Waypoints====").transform;
+            "====Waves====").transform;
+    }
 
-        if(GameManager.Instance.settings.isGameStart)
+    // Start is called before the first frame update
+    void Start()
+    {
+        SetupParentObjects();
+
+        if (GameManager.Instance.settings.isGameStart)
         {
             GameManager.Instance.settings.isGameStart = false;
             foreach (var g in gameStartObjects)
@@ -116,6 +122,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         CheckpointPlayerState(checkpoint);
         CheckpointKeys(checkpoint);
         CaptureHealthPickups(checkpoint);
+        CaptureNPCWaves(checkpoint);
 
         checkpoint.disabledCheckpointTriggers.Add(sender.name);
         Destroy(sender);
@@ -126,8 +133,9 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
     {
         CheckpointPlayerState(gameStartCheckpoint);
         gameStartCheckpoint.playerHealth = GameManager.Instance.settings.playerSettings.maxHealth;
-        CheckpointKeys(gameStartCheckpoint);
+        //CheckpointKeys(gameStartCheckpoint);
         CaptureHealthPickups(gameStartCheckpoint);
+        CaptureNPCWaves(gameStartCheckpoint);
     }
 
     public void CheckpointPlayerState(Checkpoint _checkpoint)
@@ -150,6 +158,18 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
             _checkpoint.remainingHealthpacks.Add(hpT.name);
         }
     }
+
+    public void CaptureNPCWaves(Checkpoint _checkpoint)
+    {
+        _checkpoint.activeNPCWaves.Clear();
+        foreach(Transform wave in npcWavesParent)
+        {
+            if(wave.gameObject.activeInHierarchy)
+            {
+                _checkpoint.activeNPCWaves.Add(wave.name);
+            }
+        }
+    }
     #endregion
 
     #region [Setup From Checkpoint]
@@ -160,6 +180,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         SetupCollectedKeys(checkpoint);
         SetupDoorLocks();
         SetupHealthPickups(checkpoint);
+        SetupNPCWaves(checkpoint);
     }
 
     public void SetupFromGameStartCheckpoint()
@@ -169,6 +190,7 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         SetupCollectedKeys(gameStartCheckpoint);
         SetupDoorLocks();
         SetupHealthPickups(gameStartCheckpoint);
+        SetupNPCWaves(gameStartCheckpoint);
     }
 
     public void SetupCheckpointTriggers(Checkpoint _checkpoint)
@@ -231,13 +253,22 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
 
     public void SetupHealthPickups(Checkpoint _checkpoint)
     {
-        for(int i = healthPickupsParent.childCount - 1; i >= 0; i--)
+        for (int i = healthPickupsParent.childCount - 1; i >= 0; i--)
         {
             var hp = healthPickupsParent.GetChild(i).gameObject;
-            if(!_checkpoint.remainingHealthpacks.Contains(hp.name))
+            if (!_checkpoint.remainingHealthpacks.Contains(hp.name))
             {
                 Destroy(hp);
             }
+        }
+    }
+
+    public void SetupNPCWaves(Checkpoint _checkpoint)
+    {
+        foreach(Transform wave in npcWavesParent)
+        {
+            wave.gameObject.SetActive(
+                _checkpoint.activeNPCWaves.Contains(wave.name));
         }
     }
     #endregion

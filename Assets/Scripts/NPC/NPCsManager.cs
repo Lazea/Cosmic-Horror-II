@@ -12,11 +12,6 @@ public class NPCsManager : Singleton<NPCsManager>
     [SerializeField]
     WaypointManager[] waypointManagers;
 
-    void Awake()
-    {
-        base.Awake();
-    }
-
     #region [NavMesh Positioning]
     public static Vector3 GetNavMeshPositionNearPoint(Vector3 point, float radius)
     {
