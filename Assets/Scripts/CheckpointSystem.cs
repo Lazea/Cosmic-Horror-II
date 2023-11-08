@@ -173,6 +173,9 @@ public class CheckpointSystem : Singleton<CheckpointSystem>
         }
     }
 
+    // TODO: Need a way to transfer this to on capture checkpoint
+    // otherwise dying after a checkpoint results in the respawn having
+    // future dead NPCs stay dead.
     public void RecordKilledNPC(Transform npc)
     {
         if(npc.parent != null)
