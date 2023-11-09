@@ -5077,6 +5077,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40bce69486404724b841a75d6788d237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minPitchGrunt: 2.5
+  maxPitchGrunt: 3
   loopSrc: {fileID: 8749520089189862860}
   oneShotSrc: {fileID: 548133686276904266}
   spawnClip: {fileID: 8300000, guid: af02851ccb806ea48add227e5dcc5838, type: 3}
@@ -5084,12 +5086,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8d12061666731c149bddd8cfcc9fdb4e, type: 3}
   - {fileID: 8300000, guid: a91a4185174d72442880f1668fb11725, type: 3}
   DamageGrunts:
-  - {fileID: 8300000, guid: c632543c19ab6d3419b9ee02e1a1c77f, type: 3}
-  - {fileID: 8300000, guid: c632543c19ab6d3419b9ee02e1a1c77f, type: 3}
-  - {fileID: 8300000, guid: c632543c19ab6d3419b9ee02e1a1c77f, type: 3}
+  - {fileID: 8300000, guid: 21d3d3a4d81278e4bba7bb7883418f5e, type: 3}
+  - {fileID: 8300000, guid: a7c35f221affa314c9cc5d3324b3b80b, type: 3}
   DeathGrunts:
-  - {fileID: 8300000, guid: c632543c19ab6d3419b9ee02e1a1c77f, type: 3}
-  - {fileID: 8300000, guid: c632543c19ab6d3419b9ee02e1a1c77f, type: 3}
   - {fileID: 8300000, guid: c632543c19ab6d3419b9ee02e1a1c77f, type: 3}
   AttackSX:
   - {fileID: 8300000, guid: d783f4acc8f92f7449f7d03a9ac23743, type: 3}
@@ -5106,9 +5105,9 @@ MonoBehaviour:
   maxVol: 0.4
   attackVolVO: 0.7
   attackVolSX: 1
-  damageVolVO: 1
+  damageVolVO: 0.35
   damageVolSX: 1
-  deathVolVO: 1
+  deathVolVO: 0.5
   minPitch: 0.7
   maxPitch: 1
 --- !u!114 &8104231531908755170
@@ -6815,7 +6814,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.35
-  m_Pitch: 1
+  m_Pitch: 2.5
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -6823,7 +6822,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.5
-  MaxDistance: 6
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
