@@ -38,9 +38,12 @@ public class NPCAudioManager : MonoBehaviour
     public float maxPitch;
 
     public void SpawnAudio()
-    {
-        oneShotSrc.time = .9f;
-        oneShotSrc.PlayOneShot(spawnClip, 0.5f);
+    {        
+        if(spawnClip != null)
+        {
+            oneShotSrc.time = .9f;
+            oneShotSrc.PlayOneShot(spawnClip, 0.5f);
+        }
     }
 
     public void IdleAudio()

@@ -4869,6 +4869,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 382534474788423100, guid: c57c4e17def4ab14492e32ba1f57780a,
         type: 3}
+      propertyPath: minPitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 382534474788423100, guid: c57c4e17def4ab14492e32ba1f57780a,
+        type: 3}
+      propertyPath: deathVolVO
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 382534474788423100, guid: c57c4e17def4ab14492e32ba1f57780a,
+        type: 3}
+      propertyPath: attackVolVO
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 382534474788423100, guid: c57c4e17def4ab14492e32ba1f57780a,
+        type: 3}
+      propertyPath: damageVolVO
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 382534474788423100, guid: c57c4e17def4ab14492e32ba1f57780a,
+        type: 3}
       propertyPath: DeathGrunts.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -4970,7 +4990,12 @@ PrefabInstance:
     - target: {fileID: 3954859117071373169, guid: c57c4e17def4ab14492e32ba1f57780a,
         type: 3}
       propertyPath: m_Volume
-      value: 0.525
+      value: 0.319
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954859117071373169, guid: c57c4e17def4ab14492e32ba1f57780a,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3954859117071373169, guid: c57c4e17def4ab14492e32ba1f57780a,
         type: 3}
