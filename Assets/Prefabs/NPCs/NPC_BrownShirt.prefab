@@ -2828,6 +2828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40bce69486404724b841a75d6788d237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minPitchGrunt: 0.9
+  maxPitchGrunt: 1
   loopSrc: {fileID: 3954859117071373169}
   oneShotSrc: {fileID: 5385857985178207083}
   spawnClip: {fileID: 0}
