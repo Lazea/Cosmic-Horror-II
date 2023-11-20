@@ -67,6 +67,7 @@ public class PlayerSoundEffectsController : MonoBehaviour
         pc = GetComponent<PlayerCharacterController>();
         terrainTextureDetector = new TerrainTextureDetector();
     }
+
     /*
     public void AttackAudio(BaseProp bProp)
     {

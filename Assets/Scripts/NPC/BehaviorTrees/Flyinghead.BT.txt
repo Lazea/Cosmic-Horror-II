@@ -1,0 +1,29 @@
+tree("Root")
+	fallback
+		while IsInAttack
+			tree("Attacking")
+		while IsInChase
+			tree("Chasing")
+		while IsInPassive
+			fallback
+				while HasWaypointRoute
+					tree("Patrolling")
+				tree("Passive")
+
+tree("Attacking")
+	sequence
+		StopMoving
+		sequence
+			random
+				PerformAttack
+				sequence
+					PerformAttack
+					PerformAttack
+			random
+				Wait(0.05)
+				Wait(0.125)
+				Wait(0.25)
+
+tree("Passive")
+	sequence
+		StopMoving

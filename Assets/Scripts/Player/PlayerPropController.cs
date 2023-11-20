@@ -7,7 +7,12 @@ public class PlayerPropController : MonoBehaviour
 {
     [Header("Throw Force")]
     public float throwForce;
+    public float maxThrowMass;
+    public AnimationCurve throwForceMassCurve;
     public UnityEvent onThrow;
+
+    [Header("Drop Prop")]
+    public UnityEvent onDrop;
 
     [Header("Prop")]
     public BaseProp equiptProp;
@@ -28,6 +33,15 @@ public class PlayerPropController : MonoBehaviour
     public UnityEvent onAttack;
     public UnityEvent<BaseProp> onAttackHit = new UnityEvent<BaseProp>();
     public UnityEvent onAttackMiss;
+
+    [Header("Effects")]
+    public float minEffectSize;
+    public float maxEffectSize;
+    public GameObject enemyHitFX;
+    public GameObject metalPropHitFX;
+    public GameObject woodPropHitFX;
+    public GameObject glassPropHitFX;
+    public GameObject otherPropHitFX;
 
     //[Header("Blocking")]
     [HideInInspector]
@@ -183,27 +197,38 @@ public class PlayerPropController : MonoBehaviour
 
         Debug.Log(string.Format("Drop {0}", _prop.name));
 
-        StartCoroutine(EnablePropPhysics(_prop, () => { }));
+        if (_prop.propType == PropType.Medium || _prop.propType == PropType.Heavy)
+        {
+            StartCoroutine(
+                EnablePropPhysics(
+                    _prop,
+                    largePropDropPoint.position,
+                    largePropDropPoint.rotation,
+                    () => { onDrop.Invoke(); }));
+        }
+        else
+        {
+            StartCoroutine(
+                EnablePropPhysics(
+                    _prop,
+                    smallPropDropPoint.position,
+                    smallPropDropPoint.rotation,
+                    () => { onDrop.Invoke(); }));
+        }
 
         anim.SetBool("Blocking", false);
     }
 
     private IEnumerator EnablePropPhysics(
         BaseProp prop,
+        Vector3 point,
+        Quaternion orientation,
         UnityAction callback)
     {
         yield return new WaitForFixedUpdate();
 
-        if (prop.propType == PropType.Medium || prop.propType == PropType.Heavy)
-        {
-            prop.transform.position = largePropDropPoint.position;
-            prop.transform.rotation = largePropDropPoint.rotation;
-        }
-        else
-        {
-            prop.transform.position = smallPropDropPoint.position;
-            prop.transform.rotation = smallPropDropPoint.rotation;
-        }
+        prop.transform.position = point;
+        prop.transform.rotation = orientation;
 
         for (int i = 0; i < 2; i++)
         {
@@ -238,14 +263,18 @@ public class PlayerPropController : MonoBehaviour
 
         UnityAction Throw = () =>
         {
-            float _throwForce = (_prop.RB.mass < 6f) ? throwForce : throwForce * 1.5f;
+            float _throwForce = throwForceMassCurve.Evaluate(_prop.RB.mass / maxThrowMass);
+            _throwForce *= throwForce;
             _prop.RB.AddForce(
                 _prop.transform.forward * _throwForce,
                 ForceMode.VelocityChange);
             _prop.RB.angularVelocity = _prop.transform.forward * Random.Range(-1f, 1f) * 4f;
             _prop.isThrown = true;
+
+            onThrow.Invoke();
         };
-        StartCoroutine(EnablePropPhysics(_prop, Throw));
+        StartCoroutine(EnablePropPhysics(
+            _prop, propThrowPoint.position, propThrowPoint.rotation, Throw));
 
         anim.SetTrigger("Throw");
         anim.SetBool("Blocking", false);
@@ -387,14 +416,7 @@ public class PlayerPropController : MonoBehaviour
             attackRadius,
             out hit,
             attackRange,
-            attackMask,
-            QueryTriggerInteraction.Ignore))
-        //if (Physics.Raycast(
-        //    ray,
-        //    out hit,
-        //    attackRange,
-        //    attackMask,
-        //    QueryTriggerInteraction.Ignore))
+            attackMask))
         {
             var hitDamageable = hit.collider.GetComponent<IDamageable>();
             if(hitDamageable != null)
@@ -413,6 +435,8 @@ public class PlayerPropController : MonoBehaviour
                     ForceMode.Impulse);
             }
 
+            HandleHitFX(hit, attackForce);
+
             Debug.Log(
                 string.Format("Player Attack hit {0} with {1} damage and {2}:{3} force",
                 hit.collider.name, attackDamage, attackForce, attackForce.magnitude));
@@ -427,8 +451,98 @@ public class PlayerPropController : MonoBehaviour
         }
         else
         {
+            Debug.LogFormat("Player attack missed!");
             onAttackMiss.Invoke();
             return false;
+        }
+    }
+
+    void HandleHitFX(RaycastHit hit, Vector3 attackForce)
+    {
+        float effectSize = Random.Range(minEffectSize, maxEffectSize);
+
+        if (hit.collider.tag == "Enemy")
+        {
+            if (enemyHitFX != null)
+            {
+                Quaternion hitDirRot = Quaternion.LookRotation(
+                    attackForce.normalized,
+                    Vector3.up);
+                var effect = GameObject.Instantiate(
+                    enemyHitFX,
+                    hit.point,
+                    hitDirRot);
+                effect.transform.localScale *= effectSize;
+            }
+            else if (otherPropHitFX != null)
+            {
+                var effect = GameObject.Instantiate(
+                    otherPropHitFX,
+                    hit.point,
+                    Quaternion.identity);
+                effect.transform.localScale *= effectSize;
+            }
+        }
+        else
+        {
+            bool doDefault = false;
+            switch (equiptProp.propMaterial)
+            {
+                case PropMaterial.Metal:
+                    if (metalPropHitFX != null)
+                    {
+                        var effect = GameObject.Instantiate(
+                            metalPropHitFX,
+                            hit.point,
+                            Quaternion.identity);
+                        effect.transform.localScale *= effectSize;
+                    }
+                    else
+                    {
+                        doDefault = true;
+                    }
+                    break;
+                case PropMaterial.Glass:
+                    if (glassPropHitFX != null)
+                    {
+                        var effect = GameObject.Instantiate(
+                            glassPropHitFX,
+                            hit.point,
+                            Quaternion.identity);
+                        effect.transform.localScale *= effectSize;
+                    }
+                    else
+                    {
+                        doDefault = true;
+                    }
+                    break;
+                case PropMaterial.Wood:
+                    if (woodPropHitFX != null)
+                    {
+                        var effect = GameObject.Instantiate(
+                            woodPropHitFX,
+                            hit.point,
+                            Quaternion.identity);
+                        effect.transform.localScale *= effectSize;
+                    }
+                    else
+                    {
+                        doDefault = true;
+                    }
+                    break;
+                default:
+                    doDefault = true;
+                    break;
+            }
+
+            if (doDefault && otherPropHitFX != null)
+            {
+                var effect = GameObject.Instantiate(
+                    otherPropHitFX,
+                    hit.point,
+                    Quaternion.identity);
+                effect.transform.localScale *= effectSize;
+            }
         }
     }
     #endregion

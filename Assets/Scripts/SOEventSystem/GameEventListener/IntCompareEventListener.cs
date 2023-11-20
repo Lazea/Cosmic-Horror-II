@@ -24,27 +24,51 @@ public class IntCompareEventListener : BaseGameEventListener<int, IntGameEvent, 
         {
             case IntCompareType.Greater:
                 if (item > value)
+                {
                     if (trueResponse != null)
+                    {
                         trueResponse.Invoke();
+                    }
+                }
                 else
+                {
                     if (falseResponse != null)
+                    {
                         falseResponse.Invoke();
+                    }
+                }
                 break;
             case IntCompareType.Lesser:
                 if (item < value)
+                {
                     if (trueResponse != null)
+                    {
                         trueResponse.Invoke();
+                    }
+                }
                 else
+                {
                     if (falseResponse != null)
+                    {
                         falseResponse.Invoke();
+                    }
+                }
                 break;
             default:
                 if (item == value)
+                {
                     if (trueResponse != null)
+                    {
                         trueResponse.Invoke();
+                    }
+                }
                 else
+                {
                     if (falseResponse != null)
+                    {
                         falseResponse.Invoke();
+                    }
+                }
                 break;
         }
     }

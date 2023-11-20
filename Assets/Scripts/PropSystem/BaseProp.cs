@@ -51,7 +51,10 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
     bool throwEnded;
 
     [Header("Effects")]
+    public float damageEffectSize = 1f;
     public GameObject damageEffect;
+    public float destroyEffectSize = 1f;
+    public Transform destroyEffectPoint;
     public GameObject destroyEffect;
 
     [Header("Components On Destroy")]
@@ -127,14 +130,14 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
         {
             DestroyObject();
         }
-        else if(damageEffect != null)
-        {
-            Vector3 point = (hitPoint == default) ? transform.position : hitPoint;
-            GameObject.Instantiate(
-                damageEffect,
-                point,
-                transform.rotation);
-        }
+        //else if(damageEffect != null)
+        //{
+        //    Vector3 point = (hitPoint == default) ? transform.position : hitPoint;
+        //    GameObject.Instantiate(
+        //        damageEffect,
+        //        point,
+        //        transform.rotation);
+        //}
     }
 
     [ContextMenu("Deal 1 Damage")]
@@ -156,10 +159,22 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
 
         if (destroyEffect != null)
         {
-            GameObject.Instantiate(
-                destroyEffect,
-                transform.position,
-                transform.rotation);
+            if (destroyEffectPoint == null)
+            {
+                var effect = GameObject.Instantiate(
+                    destroyEffect,
+                    transform.position,
+                    transform.rotation);
+                effect.transform.localScale *= destroyEffectSize;
+            }
+            else
+            {
+                var effect = GameObject.Instantiate(
+                    destroyEffect,
+                    destroyEffectPoint.position,
+                    destroyEffectPoint.rotation);
+                effect.transform.localScale *= destroyEffectSize;
+            }
         }
 
         foreach(var b in componentsToDetachOnDestroy)
@@ -200,7 +215,24 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
         //    impactForce,
         //    impactDamage));
         if (impactDamage > 0)
+        {
             DealDamage(impactDamage, Vector3.zero);
+
+            if (damageEffect != null)
+            {
+                Vector3 contactPoint = Vector3.zero;
+                foreach (var c in collision.contacts)
+                {
+                    contactPoint += c.point;
+                }
+                contactPoint /= collision.contacts.Length;
+
+                GameObject.Instantiate(
+                    damageEffect,
+                    contactPoint,
+                    Quaternion.identity);
+            }
+        }
 
         if (isThrown)
         {
@@ -213,5 +245,14 @@ public class BaseProp : MonoBehaviour, IProp, IDamageable
                 damageable.DealDamage(damage, Vector3.zero);
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (destroyEffectPoint == null)
+            return;
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(destroyEffectPoint.position, 0.2f);
     }
 }

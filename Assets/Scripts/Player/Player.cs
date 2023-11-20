@@ -66,6 +66,7 @@ public class Player : MonoBehaviour, IDamageable
             GameManager.Instance.settings.playerSettings.maxHealth);
 
         onPlayerHealthChange.Invoke(health);
+        Debug.LogFormat("Player Health Changed to {0}", health);
         PlayerHealthChangeEvent.Raise(health);
         onPlayerHeal.Invoke();
 
@@ -88,12 +89,14 @@ public class Player : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             onPlayerHealthChange.Invoke(health);
+            Debug.LogFormat("Player Health Changed to {0}", health);
             PlayerHealthChangeEvent.Raise(health);
             DestroyObject();
         }
         else
         {
             onPlayerHealthChange.Invoke(health);
+            Debug.LogFormat("Player Health Changed to {0}", health);
             PlayerHealthChangeEvent.Raise(health);
             onPlayerDamage.Invoke();
         }
@@ -124,6 +127,7 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         onPlayerHealthChange.Invoke(health);
+        Debug.LogFormat("Player Health Changed to {0}", health);
         PlayerHealthChangeEvent.Raise(health);
     }
 }

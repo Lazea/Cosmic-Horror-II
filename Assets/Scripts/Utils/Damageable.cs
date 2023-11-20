@@ -11,7 +11,10 @@ public class Damageable : MonoBehaviour, IDamageable
     public PropWeight propWeight;
 
     [Header("Effects")]
+    public float damageEffectSize = 1f;
     public GameObject damageEffect;
+    public float destroyEffectSize = 1f;
+    public Transform destroyEffectPoint;
     public GameObject destroyEffect;
 
     [Header("Events")]
@@ -63,14 +66,14 @@ public class Damageable : MonoBehaviour, IDamageable
 
             DestroyObject();
         }
-        else if (damageEffect != null)
-        {
-            Vector3 point = (hitPoint == default) ? transform.position : hitPoint;
-            GameObject.Instantiate(
-                damageEffect,
-                point,
-                transform.rotation);
-        }
+        //else if (damageEffect != null)
+        //{
+        //    Vector3 point = (hitPoint == default) ? transform.position : hitPoint;
+        //    GameObject.Instantiate(
+        //        damageEffect,
+        //        point,
+        //        transform.rotation);
+        //}
     }
 
     [ContextMenu("Deal 1 Damage")]
@@ -92,10 +95,22 @@ public class Damageable : MonoBehaviour, IDamageable
 
         if (destroyEffect != null)
         {
-            GameObject.Instantiate(
-                destroyEffect,
-                transform.position,
-                transform.rotation);
+            if(destroyEffectPoint == null)
+            {
+                var effect = GameObject.Instantiate(
+                    destroyEffect,
+                    transform.position,
+                    transform.rotation);
+                effect.transform.localScale *= destroyEffectSize;
+            }
+            else
+            {
+                var effect = GameObject.Instantiate(
+                    destroyEffect,
+                    destroyEffectPoint.position,
+                    destroyEffectPoint.rotation);
+                effect.transform.localScale *= destroyEffectSize;
+            }
         }
 
         Destroy(gameObject);
@@ -106,6 +121,30 @@ public class Damageable : MonoBehaviour, IDamageable
         if (collision.collider.tag == "Player")
             return;
 
+        if (collision.impulse.magnitude > 6f && damageEffect != null)
+        {
+            Vector3 contactPoint = Vector3.zero;
+            foreach (var c in collision.contacts)
+            {
+                contactPoint += c.point;
+            }
+            contactPoint /= collision.contacts.Length;
+
+            GameObject.Instantiate(
+                damageEffect,
+                contactPoint,
+                Quaternion.identity);
+        }
+
         onPropImpact.Invoke();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (destroyEffectPoint == null)
+            return;
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(destroyEffectPoint.position, 0.2f);
     }
 }

@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPCRagdollController : MonoBehaviour
 {
     public GameObject pelvis;
     Rigidbody[] rigidBodies;
-    Collider[] colliders;
     CharacterJoint[] joints;
+
+    public float minEnableTime = 0.01f;
+    public float maxEnableTime = 0.3f;
 
     public Behaviour[] components;
     Collider npcCollider;
@@ -39,7 +38,6 @@ public class NPCRagdollController : MonoBehaviour
     void Start()
     {
         rigidBodies = pelvis.GetComponentsInChildren<Rigidbody>();
-        colliders = pelvis.GetComponentsInChildren<Collider>();
         joints = pelvis.GetComponentsInChildren<CharacterJoint>();
 
         bones = new BoneTransform[rigidBodies.Length];
@@ -49,7 +47,6 @@ public class NPCRagdollController : MonoBehaviour
 
         npcCollider = GetComponent<Collider>();
         anim = GetComponent<Animator>();
-        anim.SetFloat("DeathBlend", Random.Range(0f, 1f));
     }
 
     void FixedUpdate()
@@ -74,30 +71,7 @@ public class NPCRagdollController : MonoBehaviour
     [ContextMenu("Enable Ragdoll")]
     public void EnableRagdoll()
     {
-        Invoke("EnableRG", Random.Range(0.01f, 0.3f));
-        //anim.enabled = false;
-        //foreach(var c in components)
-        //{
-        //    c.enabled = false;
-        //}
-        //npcCollider.enabled = false;
-
-        //foreach(var rb in rigidBodies)
-        //{
-        //    rb.isKinematic = false;
-        //    rb.useGravity = true;
-        //}
-
-        //for(int i = 0; i < rigidBodies.Length; i++)
-        //{
-        //    rigidBodies[i].velocity = bones[i].GetVelocity();
-        //    rigidBodies[i].angularVelocity = bones[i].GetAngularVelocity();
-        //}
-
-        //foreach (var j in joints)
-        //{
-        //    j.enableProjection = true;
-        //}
+        Invoke("EnableRG", Random.Range(minEnableTime, maxEnableTime));
     }
 
     void EnableRG()

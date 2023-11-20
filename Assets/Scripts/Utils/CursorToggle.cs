@@ -16,6 +16,7 @@ public class CursorToggle : Singleton<CursorToggle>
     // Start is called before the first frame update
     void Awake()
     {
+        base.Awake();
 #if UNITY_EDITOR
         controls = new Controls().Editor;
 

@@ -46,6 +46,7 @@ Transform:
   m_Children:
   - {fileID: 4042694490007543665}
   - {fileID: 5451850173528947558}
+  - {fileID: 1178245578429657705}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4466785963201507892
@@ -114,8 +115,13 @@ MonoBehaviour:
   propType: 0
   propMaterial: 0
   propWeight: 0
-  damageEffect: {fileID: 0}
-  destroyEffect: {fileID: 0}
+  damageEffectSize: 0.4
+  damageEffect: {fileID: 2461195010170908792, guid: 4ebd03309eb5bf945855066c9ffd7ada,
+    type: 3}
+  destroyEffectSize: 1.2
+  destroyEffectPoint: {fileID: 1178245578429657705}
+  destroyEffect: {fileID: 7487227605361056620, guid: 11dcd047a7917654292a2b31d89716cc,
+    type: 3}
   onPropImpact:
     m_PersistentCalls:
       m_Calls:
@@ -671,3 +677,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &9129757570895776577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1178245578429657705}
+  m_Layer: 7
+  m_Name: DestroyEffectPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1178245578429657705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129757570895776577}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.2204459e-16, y: 0.99999994, z: 0.000000075497894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5411985785591197369}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

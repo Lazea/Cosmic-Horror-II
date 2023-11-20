@@ -55,6 +55,7 @@ public class MusicManager : MonoBehaviour
     public AudioClip[] JumpScares = new AudioClip[2];
 
     public GameObject player;
+    public PlayerSoundController playerSoundController;
 
     private void Awake()
     {
@@ -73,6 +74,11 @@ public class MusicManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         player = GameObject.Find("Player");
+
+        if(player != null)
+        {
+            playerSoundController = player.GetComponent<PlayerSoundController>();
+        }
     }
 
     // Start is called before the first frame update
@@ -350,10 +356,17 @@ public class MusicManager : MonoBehaviour
     {
         if(health <= minPlayerHealth && !heartbeatSource.enabled)
         {
+            //Call from PlayerSoundController class: Breath()
+            playerSoundController.Breath();
+
             LowHealthEvent();
         }
         else if (health > minPlayerHealth && heartbeatSource.enabled)
         {
+            //Call from PlayerSoundController class: Calm()
+            playerSoundController.Calm();
+            playerSoundController.isHealed = true;
+            
             RegainedHealthEvent();
         }
     }
