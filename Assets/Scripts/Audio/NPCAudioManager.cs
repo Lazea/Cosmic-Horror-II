@@ -5,12 +5,16 @@ using UnityEngine;
 public class NPCAudioManager : MonoBehaviour
 {
     int DamageIndex = 0;
+
+    public float minPitchGrunt = .9f;
+    public float maxPitchGrunt = 1f;
     
     [Header("Audio Sources")]
     public AudioSource loopSrc;
     public AudioSource oneShotSrc;
 
     [Header("Audio Clips (VO)")]
+    public AudioClip spawnClip;
     public AudioClip[] AttackGrunts = new AudioClip[3];
     public AudioClip[] DamageGrunts = new AudioClip[2];
     public AudioClip[] DeathGrunts = new AudioClip[2];
@@ -32,6 +36,15 @@ public class NPCAudioManager : MonoBehaviour
     [Header("Pitch Control")]
     public float minPitch;
     public float maxPitch;
+
+    public void SpawnAudio()
+    {        
+        if(spawnClip != null)
+        {
+            oneShotSrc.time = .9f;
+            oneShotSrc.PlayOneShot(spawnClip, 0.5f);
+        }
+    }
 
     public void IdleAudio()
     {
@@ -88,9 +101,9 @@ public class NPCAudioManager : MonoBehaviour
 
         DamageIndex = (DamageIndex + 1) % 2;
 
-        float randPitch = Random.Range(.9f, 1f);
+        float randPitch = Random.Range(minPitchGrunt, maxPitchGrunt);
         oneShotSrc.pitch = randPitch;
-        oneShotSrc.PlayOneShot(DeathGrunts[DamageIndex], damageVolVO);
+        oneShotSrc.PlayOneShot(DamageGrunts[DamageIndex], damageVolVO);
 
         int RandIndex = Random.Range(0, 2);
         float randPitchsx = Random.Range(.8f, .9f);
